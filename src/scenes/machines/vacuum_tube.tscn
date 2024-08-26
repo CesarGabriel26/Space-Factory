@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmi6r2d7qgtng"]
+
+[ext_resource type="Script" path="res://src/scripts/machines/vacuum_tube.gd" id="1_q1uhw"]
+[ext_resource type="Texture2D" uid="uid://c7aaqvpsaej6u" path="res://src/img/sheets/props/item_transport_sheet.png" id="2_orojc"]
+[ext_resource type="Texture2D" uid="uid://cg31kc5vn2g1y" path="res://src/img/sheets/props/item_transport_overlay_sheet.png" id="3_d2t74"]
+[ext_resource type="PackedScene" uid="uid://bjsitfm2itrmk" path="res://src/scenes/UI/inv/inv_grid.tscn" id="4_ocxip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dm1bq"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxpky"]
+size = Vector2(4, 4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5qv0"]
+
+[node name="VacuumTube" type="StaticBody2D" node_paths=PackedStringArray("colisionShape", "inventory_node", "MouseDetectionPanel", "ItemOutputsNode")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_q1uhw")
+colisionShape = NodePath("CollisionShape2D")
+MaxStack = 1
+inventory_node = NodePath("inventory/inv_grid")
+MouseDetectionPanel = NodePath("Panel")
+ItemOutputsNode = NodePath("Outputs")
+MonoOutput = true
+
+[node name="model" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="model"]
+visible = false
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(16, -16, -16, -16, -16, 16, 16, 16)
+
+[node name="layer0" type="Sprite2D" parent="model"]
+texture = ExtResource("2_orojc")
+region_enabled = true
+region_rect = Rect2(64, 32, 32, 32)
+
+[node name="layer1" type="Sprite2D" parent="model"]
+z_index = 1
+texture = ExtResource("3_d2t74")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="Item" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_dm1bq")
+
+[node name="item_detector" type="Area2D" parent="."]
+position = Vector2(-16, -16)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item_detector"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_uxpky")
+debug_color = Color(1, 0.364706, 0, 0.419608)
+
+[node name="center" type="Marker2D" parent="."]
+z_index = 4096
+
+[node name="Detector_down" type="RayCast2D" parent="center"]
+position = Vector2(0, 24)
+target_position = Vector2(0, 8)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="Detector_up" type="RayCast2D" parent="center"]
+position = Vector2(0, -24)
+target_position = Vector2(0, -8)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="Detector_left" type="RayCast2D" parent="center"]
+position = Vector2(-24, 0)
+target_position = Vector2(-8, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="Detector_right" type="RayCast2D" parent="center"]
+position = Vector2(24, 0)
+target_position = Vector2(8, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="inventory" type="Node2D" parent="."]
+z_index = 4000
+
+[node name="inv_grid" parent="inventory" instance=ExtResource("4_ocxip")]
+offset_left = 16.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 0.0
+columns = 1
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l5qv0")
+
+[node name="Outputs" type="Node2D" parent="."]
+
+[node name="0" type="Marker2D" parent="Outputs"]
+
+[node name="0" type="RayCast2D" parent="Outputs/0"]
+position = Vector2(0, 17)
+target_position = Vector2(0, 16)
+collision_mask = 4
+hit_from_inside = true
+
+[connection signal="body_entered" from="item_detector" to="." method="_on_item_detector_body_entered"]

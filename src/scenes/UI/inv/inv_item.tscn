@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv50krqnwmda4"]
+
+[ext_resource type="Script" path="res://src/scripts/ui/inv/inv_item.gd" id="1_gmlga"]
+[ext_resource type="Texture2D" uid="uid://cupw13oxxv8dc" path="res://src/img/items/barra_de_cobre.png" id="2_8nsdd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3swd"]
+bg_color = Color(0.215902, 0.215902, 0.215902, 1)
+
+[node name="inv_item" type="Panel"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = -1
+anchor_right = 0.0138889
+anchor_bottom = 0.0246914
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o3swd")
+script = ExtResource("1_gmlga")
+metadata/_edit_use_anchors_ = true
+
+[node name="Texture_react" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.89, 0.89)
+texture = ExtResource("2_8nsdd")
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 15.0
+offset_bottom = 15.0
+scale = Vector2(0.345592, 0.345592)
+text = "25"
+horizontal_alignment = 1
+vertical_alignment = 1

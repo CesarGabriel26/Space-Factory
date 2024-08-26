@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmi6r2d7qgtng"]
+
+[ext_resource type="Script" path="res://src/scripts/machines/vacuum_tube.gd" id="1_8rj2x"]
+[ext_resource type="Texture2D" uid="uid://c7aaqvpsaej6u" path="res://src/img/sheets/props/item_transport_sheet.png" id="2_orojc"]
+[ext_resource type="Texture2D" uid="uid://cg31kc5vn2g1y" path="res://src/img/sheets/props/item_transport_overlay_sheet.png" id="3_d2t74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dm1bq"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxpky"]
+size = Vector2(16, 32)
+
+[node name="vacuum_tube" type="StaticBody2D" node_paths=PackedStringArray("ItemDetector", "MainSprite", "Overlays", "NearbyTilesFetectors", "BodyColision")]
+script = ExtResource("1_8rj2x")
+ItemDetector = NodePath("item_detector")
+MainSprite = NodePath("layer0")
+Overlays = [NodePath("layer0/layer1")]
+NearbyTilesFetectors = [NodePath("nearby_tiles_detectors/down"), NodePath("nearby_tiles_detectors/right"), NodePath("nearby_tiles_detectors/left"), NodePath("nearby_tiles_detectors/up")]
+BodyColision = NodePath("CollisionShape2D")
+
+[node name="layer0" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_orojc")
+region_enabled = true
+region_rect = Rect2(64, 32, 32, 32)
+
+[node name="layer1" type="Sprite2D" parent="layer0"]
+visible = false
+z_index = 1
+texture = ExtResource("3_d2t74")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_dm1bq")
+
+[node name="item_detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item_detector"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_uxpky")
+debug_color = Color(1, 0.364706, 0, 0.419608)
+
+[node name="nearby_tiles_detectors" type="Node2D" parent="."]
+
+[node name="down" type="RayCast2D" parent="nearby_tiles_detectors"]
+position = Vector2(16, 40)
+target_position = Vector2(0, 8)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="right" type="RayCast2D" parent="nearby_tiles_detectors"]
+position = Vector2(40, 16)
+target_position = Vector2(8, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="left" type="RayCast2D" parent="nearby_tiles_detectors"]
+position = Vector2(-8, 16)
+target_position = Vector2(-8, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="up" type="RayCast2D" parent="nearby_tiles_detectors"]
+position = Vector2(16, -8)
+target_position = Vector2(0, -8)
+collision_mask = 4
+hit_from_inside = true

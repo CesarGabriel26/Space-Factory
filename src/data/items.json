@@ -1,0 +1,40 @@
+{
+	"minerio_de_cobre": {
+		"value": 80
+	},
+	"minerio_de_zinco": {
+		"value": 80
+	},
+	"minerio_de_ferro": {
+		"value": 80
+	},
+	"minerio_de_ouro": {
+		"value": 80
+	},
+	
+	"barra_de_cobre": {
+		"value": 150
+	},
+	"barra_de_ferro": {
+		"value": 150
+	},
+	"barra_de_ouro": {
+		"value": 150
+	},
+	"barra_de_zinco": {
+		"value": 150
+	},
+	
+	"engrenagem_de_cobre": {
+		"value": 200
+	},
+	"engrenagem_de_ferro": {
+		"value": 200
+	},
+	"engrenagem_de_ouro": {
+		"value": 200
+	},
+	"engrenagem_de_zinco": {
+		"value": 200
+	}
+}

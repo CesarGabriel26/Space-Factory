@@ -1,0 +1,187 @@
+{
+	"ResourceDril_Mk1" : {
+		"source" : "res://src/scenes/machines/miner.tscn",
+		"menu_icon" : "res://src/img/builds icons/ResourceDril_1.png",
+		"menu" : "estracao",
+		"data" : {
+			"delay" : 5,
+			"tier" : 0,
+			"resources" : [
+				"minerio_de_cobre",
+				"minerio_de_ferro",
+				"minerio_de_ouro",
+				"minerio_de_zinco"
+			]
+		}
+	},
+	"ResourceDril_Mk2" : {
+		"source" : "res://src/scenes/machines/miner.tscn",
+		"menu_icon" : "res://src/img/builds icons/ResourceDril_2.png",
+		"menu" : "estracao",
+		"data" : {
+			"delay" : 2.5,
+			"tier" : 1,
+			"resources" : [
+				"minerio_de_cobre",
+				"minerio_de_ferro",
+				"minerio_de_ouro",
+				"minerio_de_zinco"
+			]
+		},
+	},
+	"ResourceDril_Mk3" : {
+		"source" : "res://src/scenes/machines/miner.tscn",
+		"menu_icon" : "res://src/img/builds icons/ResourceDril_3.png",
+		"menu" : "estração",
+		"data" : {
+			"delay" : 1,
+			"tier" : 2,
+			"resources" : [
+				"minerio_de_cobre",
+				"minerio_de_ferro",
+				"minerio_de_ouro",
+				"minerio_de_zinco"
+			]
+		},
+	},
+	"ResourceDril_Mk4" : {
+		"source" : "res://src/scenes/machines/miner.tscn",
+		"menu_icon" : "res://src/img/builds icons/ResourceDril_4.png",
+		"menu" : "estracao",
+		"data" : {
+			"delay" : 0.1,
+			"tier" : 3,
+			"resources" : [
+				"minerio_de_cobre",
+				"minerio_de_ferro",
+				"minerio_de_ouro",
+				"minerio_de_zinco"
+			]
+		},
+	},
+	
+	"VacuumTube_Mk1" : {
+		"source" : "res://src/scenes/machines/vacuum_tube.tscn",
+		"menu_icon" : "res://src/img/builds icons/conveyor_1.png",
+		"menu" : "logistica",
+		"data" : {
+			"tier" : 0,
+		},
+	},
+	"VacuumTube_Mk2" : {
+		"source" : "res://src/scenes/machines/vacuum_tube.tscn",
+		"menu_icon" : "res://src/img/builds icons/conveyor_2.png",
+		"menu" : "logistica",
+		"data" : {
+			"tier" : 1,
+		},
+	},
+	"VacuumTube_Mk3" : {
+		"source" : "res://src/scenes/machines/vacuum_tube.tscn",
+		"menu_icon" : "res://src/img/builds icons/conveyor_3.png",
+		"menu" : "logistica",
+		"data" : {
+			"tier" : 2,
+		},
+	},
+	"VacuumTube_Mk4" : {
+		"source" : "res://src/scenes/machines/vacuum_tube.tscn",
+		"menu_icon" : "res://src/img/builds icons/conveyor_4.png",
+		"menu" : "logistica",
+		"data" : {
+			"tier" : 3,
+		},
+	},
+	
+	"Furnace_Mk1" : {
+		"source" : "res://src/scenes/machines/furnace.tscn",
+		"menu_icon" : "res://src/img/builds icons/furnace_1.png",
+		"menu" : "refino",
+		"data" : {
+			"delay" : 5,
+			"tier" : 0,
+		},
+	},
+	"Furnace_Mk2" : {
+		"source" : "res://src/scenes/machines/furnace.tscn",
+		"menu_icon" : "res://src/img/builds icons/furnace_2.png",
+		"menu" : "refino",
+		"data" : {
+			"delay" : 2.5,
+			"tier" : 1,
+		},
+	},
+	"Furnace_Mk3" : {
+		"source" : "res://src/scenes/machines/furnace.tscn",
+		"menu_icon" : "res://src/img/builds icons/furnace_3.png",
+		"menu" : "refino",
+		"data" : {
+			"delay" : 1,
+			"tier" : 2,
+		},
+	},
+	"Furnace_Mk4" : {
+		"source" : "res://src/scenes/machines/furnace.tscn",
+		"menu_icon" : "res://src/img/builds icons/furnace_4.png",
+		"menu" : "refino",
+		"data" : {
+			"delay" : 0.1,
+			"tier" : 3,
+		},
+	},
+	
+	"Cutter_Mk1" : {
+		"source" : "res://src/scenes/machines/Cutter.tscn",
+		"menu_icon" : "res://src/img/builds icons/cutter_1.png",
+		"menu" : "fabricação",
+		"data" : {
+			"delay" : 5,
+			"tier" : 0,
+		},
+	},
+	"Cutter_Mk2" : {
+		"source" : "res://src/scenes/machines/Cutter.tscn",
+		"menu_icon" : "res://src/img/builds icons/cutter_2.png",
+		"menu" : "fabricação",
+		"data" : {
+			"delay" : 2.5,
+			"tier" : 1,
+		},
+	},
+	"Cutter_Mk3" : {
+		"source" : "res://src/scenes/machines/Cutter.tscn",
+		"menu_icon" : "res://src/img/builds icons/cutter_3.png",
+		"menu" : "fabricação",
+		"data" : {
+			"delay" : 1,
+			"tier" : 2,
+		},
+	},
+	"Cutter_Mk4" : {
+		"source" : "res://src/scenes/machines/Cutter.tscn",
+		"menu_icon" : "res://src/img/builds icons/cutter_4.png",
+		"menu" : "fabricação",
+		"data" : {
+			"delay" : 0.1,
+			"tier" : 3,
+		},
+	},
+	
+	"Trash" : {
+		"source" : "res://src/scenes/machines/trash.tscn",
+		"menu_icon" : "res://src/img/builds icons/trash.png",
+		"menu" : "logistica",
+		"data" : {
+			"tier" : "input",
+		},
+	},
+	"Seller" : {
+		"source" : "res://src/scenes/machines/seller.tscn",
+		"menu_icon" : "res://src/img/builds icons/seller.png",
+		"menu" : "logistica",
+		"data" : {
+			"tier" : "input",
+		},
+	}
+	
+}

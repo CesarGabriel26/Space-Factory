@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6kwhkbq5o1x8"]
+
+[ext_resource type="Script" path="res://src/scenes/tools/atlas_cords_generator/node_2d.gd" id="1_d30ah"]
+[ext_resource type="Texture2D" uid="uid://c7aaqvpsaej6u" path="res://src/img/sheets/props/item_transport_sheet.png" id="1_xffkx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_d30ah")
+
+[node name="ItemTransportSheet" type="Sprite2D" parent="."]
+position = Vector2(128, 56)
+texture = ExtResource("1_xffkx")
