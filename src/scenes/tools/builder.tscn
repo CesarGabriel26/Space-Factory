@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c72xg72t3q372"]
+[gd_scene load_steps=3 format=3 uid="uid://c72xg72t3q372"]
+
+[ext_resource type="Script" path="res://src/scripts/Tools/builder.gd" id="1_jwtis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7f3c"]
 size = Vector2(30, 30)
 
 [node name="builder" type="Node2D"]
 z_index = 2
+script = ExtResource("1_jwtis")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 visible = false

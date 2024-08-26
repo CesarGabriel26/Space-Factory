@@ -8,7 +8,7 @@ func _ready():
 	
 	_setup()
 	await get_tree().create_timer(.01).timeout
-	check_utotile_detectors()
+	check_autotile_detectors()
 	pass # Replace with function body.
 
 func _process(delta):
@@ -20,17 +20,12 @@ func _process(delta):
 		$Item.texture = null
 	
 	if MainGlobal.BuildingMode:
-		check_utotile_detectors()
+		check_autotile_detectors()
 	
 	pass
 
 func tick():
 	pass
-
-func _on_item_detector_body_entered(body):
-	#add_item_to_inventory(body.item_name, 1)
-	#body.queue_free()
-	pass # Replace with function body.
 
 # Auto tile
 
@@ -42,13 +37,14 @@ func check_target_tile_position():
 		var detector = detectors[i]
 		var colider = detector.get_collider()
 		
-		values_to_return[i] = (detector.is_colliding() and (colider.global_position + (colider.out_direction * 32)) == global_position)
+		if colider:
+			var colider_props = (colider.global_position + (colider.out_direction * 32) == global_position) or colider.Type == types.Starter
+			values_to_return[i] = (detector.is_colliding() and colider_props)
 	
 	return values_to_return
 
-func check_utotile_detectors():
-	for i : RayCast2D in $center.get_children():
-		i.enabled = true
+func check_autotile_detectors():
+	
 	
 	var detectors = check_target_tile_position()
 	
@@ -62,16 +58,21 @@ func check_utotile_detectors():
 		Vector2.RIGHT:
 			detectors[3] = false
 	
+	if name == "@StaticBody2D@23":
+		print(detectors)
+	
 	$model/layer0.region_rect = auto_tile(Vector2(32,32), detectors, out_direction)
 	$model/layer1.region_rect = $model/layer0.region_rect
 	
-	for i : RayCast2D in $center.get_children():
-		i.enabled = false
+	#for i : RayCast2D in $center.get_children():
+	#	i.enabled = false
 
 func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, false, false, false], out_dir : Vector2 = Vector2.DOWN):
 	const rects = {
 		Vector2.DOWN : {
 			#DOWN | LEFT | UP   | RIGHT
+			[false, false, false, false] : Vector2(2, 1), # Nada Colide, estado inicial
+			
 			[false, false, true, false] : Vector2(2, 1), # Cima_para_Baixo
 			[false, false, false, true] : Vector2(3, 2), # Direita_para_Baixo
 			[false, true, false, false] : Vector2(2, 0), # Esquerda_para_Baixo
@@ -83,6 +84,8 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 		},
 		Vector2.LEFT : {
 			#DOWN | LEFT | UP   | RIGHT
+			[false, false, false, false] : Vector2(1, 2),  # Nada Colide, estado inicial 
+			
 			[false, false, false, true] : Vector2(1, 2), # Direita_para_esquerda
 			[false, false, true, false] : Vector2(2, 2), # Cima_para_esquerda
 			[true, false, false, false] : Vector2(4, 2), # Baixo_para_esquerda
@@ -93,18 +96,22 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 			[true, false, true, true] : Vector2(1, 2) # Cima_Baixo_Direita_para_esquerda
 		},
 		Vector2.UP : {
-			#DOWN | LEFT | UP   | RIGHT
+			#DOWN | LEFT | UP   | RIGHT 
+			[false, false, false, false] : Vector2(0, 1), # Nada Colide, estado inicial 
+			
 			[true, false, false, false] : Vector2(0, 1), # Baixo_Para_cima
 			[false, false, false, true] : Vector2(0, 2), # Esquerda_Para_cima
 			[false, true, false, false] : Vector2(4, 3), # Direita_Para_cima
 			
-			[true, false, false, true] : Vector2(4, 1), # Baixo_Direita_Para_cima
-			[true, true, false, false] : Vector2(5, 3), # Baixo_Esquerda_Para_cima
+			[true, true, false, false] : Vector2(4, 1), # Baixo_Direita_Para_cima
+			[true, false, false, true] : Vector2(5, 3), # Baixo_Esquerda_Para_cima
 			
 			[true, true, false, true] : Vector2(0, 1) # Baixo_Direita_Esquerda_Para_cima
 		},
 		Vector2.RIGHT : {
 			#DOWN | LEFT | UP   | RIGHT
+			[false, false, false, false] : Vector2(1, 0), # Nada Colide, estado inicial
+			
 			[false, true, false, false] : Vector2(1, 0), # Esquerda_para_direita
 			[true, false, false, false] : Vector2(0, 0), # Baixo_para_direita
 			[false, false, true, false] : Vector2(3, 3), # Cima_para_direita
@@ -132,4 +139,3 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 			), 
 			size
 		)
-

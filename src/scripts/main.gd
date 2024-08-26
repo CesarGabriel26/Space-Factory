@@ -11,5 +11,5 @@ func _ready():
 
 func _process(delta):
 	Builder.global_position = Tile_Map.map_to_local(Tile_Map.local_to_map(get_global_mouse_position()))
-	#Builder.tilemap = Tile_Map
+	Builder.tileMap = Tile_Map
 	pass

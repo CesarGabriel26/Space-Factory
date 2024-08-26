@@ -1,9 +1,17 @@
 extends StaticBody2D
 class_name BaseMachine
 
+enum types {
+	Starter = 0,
+	Reciver
+}
+
 @export_category("properties")
 @export var Machine : String = ""
+@export var Type : types = types.Reciver
 @export var out_direction : Vector2 = Vector2.DOWN
+@export var IsAutotile : bool = false
+@export var MonoOutput : bool = false
 
 @export_subgroup("nodes")
 @export var colisionShape : CollisionShape2D = null
@@ -18,7 +26,6 @@ class_name BaseMachine
 @export_category("inputs / outputs")
 @export var MouseDetectionPanel : Panel = null
 @export var ItemOutputsNode : Node2D = null
-@export var MonoOutput : bool = false
 
 @onready var item_box = preload("res://src/scenes/machines/item_box.tscn")
 
@@ -36,8 +43,10 @@ var data = {
 
 var currentTime = 0
 var expectingItem = false
+var preview = false
 
 func _setup():
+	if preview : return
 	show_hide_inv(false)
 	if MouseDetectionPanel:
 		MouseDetectionPanel.connect("mouse_entered", show_hide_inv.bind(true))
@@ -54,11 +63,22 @@ func _setup():
 			Vector2.RIGHT:
 				ItemOutputsNode.rotation_degrees = -90
 
+func set_as_preview():
+	colisionShape.disabled = true
+	preview = true
+	
+	var marcadores = ItemOutputsNode.get_children()
+	for marcador : Marker2D in marcadores:
+		var rays = marcador.get_children()
+		for ray : RayCast2D in rays:
+			ray.enabled = false
+
 func show_hide_inv(show : bool):
 	if inventory_node:
 		inventory_node.visible = show
 
 func update_tick():
+	if preview : return
 	update()
 	if currentTime >= (data["delay"] * 10):
 		currentTime = 0
@@ -68,6 +88,7 @@ func update_tick():
 	#print(int(currentTime / 10))
 
 func update():
+	if preview : return
 	check_and_load_inv_ui()
 	
 	if ItemOutputsNode:
@@ -161,7 +182,9 @@ func move_item_out():
 					
 					var item : ItemBox = item_box.instantiate()
 					item._load_item(item_to_move)
+					
 					MainGlobal.Items_Noode.add_child(item)
+					
 					item.global_position = marcador.global_position
 					colider.InputSlot = item
 					

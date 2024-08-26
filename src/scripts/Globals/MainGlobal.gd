@@ -20,7 +20,7 @@ const conveyor_speed = [
 var map_tiles = {}
 
 var Building = "vacuum_tube"
-var BuildingMode = false
+var BuildingMode = true
 var Builds_Node = null
 var Items_Noode = null
 

@@ -17,12 +17,13 @@ size = Vector2(4, 4)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_q1uhw")
+IsAutotile = true
+MonoOutput = true
 colisionShape = NodePath("CollisionShape2D")
 MaxStack = 1
 inventory_node = NodePath("inventory/inv_grid")
 MouseDetectionPanel = NodePath("Panel")
 ItemOutputsNode = NodePath("Outputs")
-MonoOutput = true
 
 [node name="model" type="Node2D" parent="."]
 
@@ -34,7 +35,7 @@ polygon = PackedVector2Array(16, -16, -16, -16, -16, 16, 16, 16)
 [node name="layer0" type="Sprite2D" parent="model"]
 texture = ExtResource("2_orojc")
 region_enabled = true
-region_rect = Rect2(64, 32, 32, 32)
+region_rect = Rect2(128, 32, 32, 32)
 
 [node name="layer1" type="Sprite2D" parent="model"]
 z_index = 1
@@ -111,5 +112,3 @@ position = Vector2(0, 17)
 target_position = Vector2(0, 16)
 collision_mask = 4
 hit_from_inside = true
-
-[connection signal="body_entered" from="item_detector" to="." method="_on_item_detector_body_entered"]
