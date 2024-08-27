@@ -1,16 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://rr2ytmqkx1ab"]
+[gd_scene load_steps=8 format=3 uid="uid://b2lqgej4n6go5"]
 
 [ext_resource type="Script" path="res://src/scripts/machines/furnace.gd" id="1_by56t"]
 [ext_resource type="Texture2D" uid="uid://co5nr7gxnqfbv" path="res://src/img/sheets/props/MultiTilemachines.png" id="2_b25wu"]
 [ext_resource type="PackedScene" uid="uid://bjsitfm2itrmk" path="res://src/scenes/UI/inv/inv_grid.tscn" id="3_mtpd0"]
 
-[sub_resource type="Curve" id="Curve_hjwi5"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_lxbq5"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(1, 0.87451, 0.360784, 1, 0.890196, 0.435294, 0, 1, 0.277528, 0.277528, 0.277528, 1)
+[sub_resource type="Gradient" id="Gradient_y8vr0"]
+colors = PackedColorArray(0.555125, 0.284971, 1.92523e-07, 1, 0.450648, 0.450648, 0.450648, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8dal"]
 size = Vector2(64, 64)
@@ -20,13 +15,14 @@ size = Vector2(32, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cghn"]
 
-[node name="furnace" type="StaticBody2D" node_paths=PackedStringArray("inventory_node", "MouseDetectionPanel", "ItemOutputsNode", "ItemInputsNode")]
+[node name="furnace" type="StaticBody2D" node_paths=PackedStringArray("inventory_node", "outInventory_node", "MouseDetectionPanel", "ItemOutputsNode", "ItemInputsNode")]
 collision_layer = 4
 collision_mask = 4
 input_pickable = true
 script = ExtResource("1_by56t")
 Type = 1
 inventory_node = NodePath("inventory/inv_grid")
+outInventory_node = NodePath("inventory/inv_grid2")
 MouseDetectionPanel = NodePath("Panel")
 ItemOutputsNode = NodePath("Outputs")
 ItemInputsNode = NodePath("Inputs")
@@ -45,17 +41,21 @@ texture = ExtResource("2_b25wu")
 region_enabled = true
 region_rect = Rect2(0, 64, 64, 64)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="model"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 1
+position = Vector2(16, 16)
 emitting = false
-amount = 40
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_max = 35.0
-angular_velocity_max = 15.0
-scale_amount_max = 10.0
-scale_amount_curve = SubResource("Curve_hjwi5")
-color_ramp = SubResource("Gradient_lxbq5")
+amount = 20
+gravity = Vector2(0, -30)
+angular_velocity_min = -236.84
+angular_velocity_max = 189.47
+radial_accel_min = -1.65
+radial_accel_max = 5.0
+tangential_accel_min = -20.0
+tangential_accel_max = 20.0
+scale_amount_min = 5.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_y8vr0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 16)
@@ -77,6 +77,12 @@ offset_left = 32.0
 offset_top = -32.0
 offset_right = 96.0
 offset_bottom = -16.0
+
+[node name="inv_grid2" parent="inventory" instance=ExtResource("3_mtpd0")]
+offset_left = 32.0
+offset_top = -16.0
+offset_right = 96.0
+offset_bottom = 0.0
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -16.0

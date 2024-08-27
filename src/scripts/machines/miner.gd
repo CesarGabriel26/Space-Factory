@@ -8,11 +8,33 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	#$model/layer1.rotation_degrees += 50
-	#$model/CPUParticles2D.emitting = true
+	var canRun = check_can_run()
 	
-	update_tick()
+	$model/CPUParticles2D.emitting = canRun
+	
+	if canRun:
+		$model/layer1.rotation_degrees += 50
+		if $model/layer1.rotation_degrees > 360:
+			$model/layer1.rotation_degrees = 0
+	else:
+		$model/layer1.rotation_degrees = lerpf($model/layer1.rotation_degrees, 0.0, .1)
+		
+	if canRun: update_tick()
 	pass
+
+func check_can_run():
+	var toReturn = false
+	
+	for i in range(NumSlots):
+		if not Outinventory.has(i):
+			return true
+		else:
+			if Outinventory[i][1] < MaxStack:
+				toReturn = true
+			else:
+				toReturn = false
+	
+	return toReturn
 
 func tick():
 	var item = generate_resource()

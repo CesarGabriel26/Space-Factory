@@ -23,8 +23,8 @@ enum types {
 @export var NumSlots : int = 1
 @export var MaxStack : int = 5
 @export var InputSlot : ItemBox = null
-@export var inventory : Dictionary = {}
 @export var inventory_node : InventoryGrid = null
+@export var outInventory_node : InventoryGrid = null
 
 @export_category("inputs / outputs")
 @export var MouseDetectionPanel : Panel = null
@@ -49,6 +49,9 @@ var recipes = []
 var currentTime = 0
 var expectingItem = false
 var preview = false
+
+var inventory : Dictionary = {}
+var Outinventory : Dictionary = {}
 
 func _setup():
 	if preview : return
@@ -84,6 +87,8 @@ func set_as_preview():
 func show_hide_inv(show : bool):
 	if inventory_node:
 		inventory_node.visible = show
+	if outInventory_node:
+		outInventory_node.visible = show
 
 func update_tick():
 	if preview : return
@@ -98,11 +103,14 @@ func update_tick():
 func update():
 	if preview : return
 	check_and_load_inv_ui()
+	check_and_load_outinv_ui()
 	
 	if ItemOutputsNode:
 		move_item_out()
 	if InputSlot:
 		move_item_in()
+
+# INVENTARIO
 
 func check_and_load_inv_ui():
 	if inventory_node == null:
@@ -115,79 +123,103 @@ func check_and_load_inv_ui():
 				inventory_node.update_item_quantity(i, inventory[i][1])
 			else:
 				inventory_node.add_item(i, inventory[i][0], inventory[i][1])
-				
 		elif inventory_node.has_slot(i):
 			inventory_node.remove_item(i)
 
-func add_item_to_inventory(item_name : String, item_quantity : int):
-	var slot_indices: Array = inventory.keys()
+func check_and_load_outinv_ui():
+	if outInventory_node == null:
+		return
+	
+	for i in range(NumSlots):
+		if Outinventory.has(i):
+			
+			if outInventory_node.has_slot(i):
+				outInventory_node.update_item_quantity(i, Outinventory[i][1])
+			else:
+				outInventory_node.add_item(i, Outinventory[i][0], Outinventory[i][1])
+		elif outInventory_node.has_slot(i):
+			outInventory_node.remove_item(i)
+
+func add_item_to_inventory(item_name : String, item_quantity : int, inv : Dictionary = Outinventory):
+	var slot_indices: Array = inv.keys()
 	slot_indices.sort()
 	for item in slot_indices:
-		if inventory[item][0] == item_name:
-			var able_to_add = MaxStack - inventory[item][1]
+		if inv[item][0] == item_name:
+			var able_to_add = MaxStack - inv[item][1]
 			if able_to_add >= item_quantity:
-				inventory[item][1] += item_quantity
+				inv[item][1] += item_quantity
 				check_and_load_inv_ui()
 				return
 			else:
-				inventory[item][1] += able_to_add
+				inv[item][1] += able_to_add
 				item_quantity = item_quantity - able_to_add
 	
 	# item doesn't exist in inventory yet, so add it to an empty slot
 	for i in range(NumSlots):
-		if inventory.has(i) == false:
-			inventory[i] = [item_name, item_quantity]
+		if inv.has(i) == false:
+			inv[i] = [item_name, item_quantity]
 			check_and_load_inv_ui()
 			return
 		else:
-			if inventory[i][0] == item_name:
+			if inv[i][0] == item_name:
 				return
 
-func add_item_to_especific_slot(id : int, item_name : String, item_quantity : int):
-	if inventory.has(id) == false:
-		inventory[id] = [item_name, item_quantity]
+func add_item_to_especific_slot(id : int, item_name : String, item_quantity : int, inv : Dictionary = Outinventory):
+	if inv.has(id) == false:
+		inv[id] = [item_name, item_quantity]
 		check_and_load_inv_ui()
 		return
 	else:
-		if inventory[id][0] == item_name:
-			var able_to_add = MaxStack - inventory[id][1]
+		if inv[id][0] == item_name:
+			var able_to_add = MaxStack - inv[id][1]
 			if able_to_add >= item_quantity:
-				inventory[id][1] += item_quantity
+				inv[id][1] += item_quantity
 				check_and_load_inv_ui()
 				return
 			else:
-				inventory[id][1] += able_to_add
+				inv[id][1] += able_to_add
 				item_quantity = item_quantity - able_to_add
 
-func check_item_quantity(index : int):
-	if inventory[index][1] <= 0:
-		inventory.erase(index)
+func check_item_quantity(index : int, inv : Dictionary = Outinventory):
+	if inv[index][1] <= 0:
+		inv.erase(index)
 
-func get_and_remove_item_from_last_slot():
-	if inventory.size() > 0:
-		var idx = inventory.size() - 1
-		var item_to_return = inventory[idx][0]
-		inventory[idx][1] -= 1
-		check_item_quantity(idx)
+func get_and_remove_item_from_last_slot(inv : Dictionary = Outinventory):
+	if inv.size() > 0:
+		var idx = inv.size() - 1
+		var item_to_return = inv[idx][0]
+		inv[idx][1] -= 1
+		check_item_quantity(idx, inv)
 		check_and_load_inv_ui()
 		return item_to_return
+	
+	return null
+
+func get_and_remove_item_from_slot(slotIndex : int = 0, inv : Dictionary = Outinventory):
+	if inv.size() > 0:
+		var item_to_return = inv[slotIndex][0]
+		inv[slotIndex][1] -= 1
+		check_item_quantity(slotIndex)
+		check_and_load_inv_ui()
 	else:
 		return null
 
-func get_item_from_last_slot():
-	if inventory.size() > 0:
-		var idx = inventory.size() - 1
-		var item_to_return = inventory[idx][0]
+func get_item_from_last_slot(inv : Dictionary = Outinventory):
+	if inv.size() > 0:
+		var idx = inv.size() - 1
+		var item_to_return = inv[idx][0]
 		return item_to_return
 	else:
 		return null
 
-func get_item_from_first_slot():
-	if inventory.size() > 0:
-		var item_to_return = inventory[0][0]
+func get_item_from_first_slot(inv : Dictionary = Outinventory):
+	if inv.size() > 0:
+		var item_to_return = inv[0][0]
 		return item_to_return
 	else:
 		return null
+
+# END INVENTARIO
 
 func move_item_out():
 	if expectingItem:
@@ -203,7 +235,7 @@ func move_item_out():
 			ray.enabled = true
 			var colider = ray.get_collider()
 			
-			if colider:
+			if colider and colider.out_direction + out_direction != Vector2.ZERO:
 				var item_to_move = get_item_from_last_slot()
 				if item_to_move != null and colider.can_recive_item(item_to_move):
 					colider.expectingItem = true
@@ -240,8 +272,12 @@ func move_item_in():
 			if distance > 0.5:
 				InputSlot.global_position += (dir * MainGlobal.conveyor_speed[data["tier"]])
 			else:
-				add_item_to_inventory(InputSlot.item_name, 1)
+				if Type == types.Process:
+					add_item_to_inventory(InputSlot.item_name, 1, inventory)
+				else:
+					add_item_to_inventory(InputSlot.item_name, 1)
 				InputSlot.queue_free()
+				InputSlot = null
 				expectingItem = false
 
 func can_recive_item(item_name):
@@ -250,12 +286,12 @@ func can_recive_item(item_name):
 	
 	for key in inventory:
 		if inventory[key][0] == item_name:
+			#print("Item existe")
 			if (inventory[key][1] + 1) > MaxStack:
 				return false
-	
-	for key in NumSlots:
-		if inventory.has(key) and (inventory.size() + 1) > NumSlots:
-			return false
+		elif inventory.size() > 0:
+			if (inventory.size() + 1) > NumSlots:
+				return false
 	
 	if Type == types.Process:
 		for recipe in recipes:
@@ -263,4 +299,3 @@ func can_recive_item(item_name):
 				return true
 	
 	return true
-	

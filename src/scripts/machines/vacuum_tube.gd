@@ -22,6 +22,8 @@ func _process(delta):
 	if MainGlobal.BuildingMode:
 		check_autotile_detectors()
 	
+	inventory = Outinventory
+	
 	pass
 
 func tick():

@@ -20,14 +20,17 @@ size = Vector2(32, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cghn"]
 
-[node name="miner" type="StaticBody2D"]
+[node name="miner" type="StaticBody2D" node_paths=PackedStringArray("outInventory_node", "MouseDetectionPanel", "ItemOutputsNode")]
 collision_layer = 4
 collision_mask = 4
 input_pickable = true
 script = ExtResource("1_2n5go")
 Machine = "miner"
 Type = 0
-NumSlots = 5
+NumSlots = 4
+outInventory_node = NodePath("inventory/inv_grid")
+MouseDetectionPanel = NodePath("Panel")
+ItemOutputsNode = NodePath("Outputs")
 
 [node name="model" type="Node2D" parent="."]
 z_index = 1
