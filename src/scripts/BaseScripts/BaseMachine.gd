@@ -1,8 +1,11 @@
 extends StaticBody2D
 class_name BaseMachine
 
+signal ItemRecived
+
 enum types {
 	Starter = 0,
+	Process,
 	Reciver
 }
 
@@ -26,6 +29,7 @@ enum types {
 @export_category("inputs / outputs")
 @export var MouseDetectionPanel : Panel = null
 @export var ItemOutputsNode : Node2D = null
+@export var ItemInputsNode : Node2D = null
 
 @onready var item_box = preload("res://src/scenes/machines/item_box.tscn")
 
@@ -40,6 +44,7 @@ var data = {
 		"minerio_de_zinco" : 0.15  # 15% de chance
 	}
 }
+var recipes = []
 
 var currentTime = 0
 var expectingItem = false
@@ -52,6 +57,9 @@ func _setup():
 		MouseDetectionPanel.connect("mouse_entered", show_hide_inv.bind(true))
 		MouseDetectionPanel.connect("mouse_exited", show_hide_inv.bind(false))
 	
+	_reload()
+
+func _reload():
 	if MonoOutput:
 		match out_direction:
 			Vector2.DOWN:
@@ -135,6 +143,22 @@ func add_item_to_inventory(item_name : String, item_quantity : int):
 			if inventory[i][0] == item_name:
 				return
 
+func add_item_to_especific_slot(id : int, item_name : String, item_quantity : int):
+	if inventory.has(id) == false:
+		inventory[id] = [item_name, item_quantity]
+		check_and_load_inv_ui()
+		return
+	else:
+		if inventory[id][0] == item_name:
+			var able_to_add = MaxStack - inventory[id][1]
+			if able_to_add >= item_quantity:
+				inventory[id][1] += item_quantity
+				check_and_load_inv_ui()
+				return
+			else:
+				inventory[id][1] += able_to_add
+				item_quantity = item_quantity - able_to_add
+
 func check_item_quantity(index : int):
 	if inventory[index][1] <= 0:
 		inventory.erase(index)
@@ -158,6 +182,13 @@ func get_item_from_last_slot():
 	else:
 		return null
 
+func get_item_from_first_slot():
+	if inventory.size() > 0:
+		var item_to_return = inventory[0][0]
+		return item_to_return
+	else:
+		return null
+
 func move_item_out():
 	if expectingItem:
 		return
@@ -174,7 +205,6 @@ func move_item_out():
 			
 			if colider:
 				var item_to_move = get_item_from_last_slot()
-				
 				if item_to_move != null and colider.can_recive_item(item_to_move):
 					colider.expectingItem = true
 					
@@ -187,22 +217,32 @@ func move_item_out():
 					
 					item.global_position = marcador.global_position
 					colider.InputSlot = item
-					
-			#ray.enabled = false
 	pass
 
 func move_item_in():
+	if !ItemInputsNode:
+		return
+	
 	if InputSlot != null and expectingItem == true:
-		
-		var dir = InputSlot.global_position.direction_to(colisionShape.global_position)
-		var distance = InputSlot.global_position.distance_to(colisionShape.global_position)
-		
-		if distance > 0.5:
-			InputSlot.global_position += (dir * MainGlobal.conveyor_speed[data["tier"]])
-		else:
-			add_item_to_inventory(InputSlot.item_name, 1)
-			InputSlot.queue_free()
-			expectingItem = false
+		var maisProximo = null
+		var menorDistancia = INF  # Começamos com a maior distância possível.
+		for input in ItemInputsNode.get_children():
+			var distanciaAtual = InputSlot.global_position.distance_to(input.global_position)
+			
+			if distanciaAtual < menorDistancia:
+				menorDistancia = distanciaAtual
+				maisProximo = input
+			
+		if maisProximo != null:
+			var dir = InputSlot.global_position.direction_to(maisProximo.global_position)
+			var distance = InputSlot.global_position.distance_to(maisProximo.global_position)
+			
+			if distance > 0.5:
+				InputSlot.global_position += (dir * MainGlobal.conveyor_speed[data["tier"]])
+			else:
+				add_item_to_inventory(InputSlot.item_name, 1)
+				InputSlot.queue_free()
+				expectingItem = false
 
 func can_recive_item(item_name):
 	if expectingItem:
@@ -210,12 +250,17 @@ func can_recive_item(item_name):
 	
 	for key in inventory:
 		if inventory[key][0] == item_name:
-			if (inventory[key][1] + 1) <= MaxStack:
-				return true
-			else:
+			if (inventory[key][1] + 1) > MaxStack:
 				return false
 	
-	if (inventory.size() + 1) <= NumSlots:
-		return true
-	else:
-		return false
+	for key in NumSlots:
+		if inventory.has(key) and (inventory.size() + 1) > NumSlots:
+			return false
+	
+	if Type == types.Process:
+		for recipe in recipes:
+			if item_name in recipe['require']:
+				return true
+	
+	return true
+	

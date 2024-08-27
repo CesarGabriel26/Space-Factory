@@ -38,14 +38,12 @@ func check_target_tile_position():
 		var colider = detector.get_collider()
 		
 		if colider:
-			var colider_props = (colider.global_position + (colider.out_direction * 32) == global_position) or colider.Type == types.Starter
+			var colider_props = (colider.global_position + (colider.out_direction * 32) == global_position) or colider.Type != types.Reciver
 			values_to_return[i] = (detector.is_colliding() and colider_props)
 	
 	return values_to_return
 
 func check_autotile_detectors():
-	
-	
 	var detectors = check_target_tile_position()
 	
 	match out_direction:
@@ -58,14 +56,8 @@ func check_autotile_detectors():
 		Vector2.RIGHT:
 			detectors[3] = false
 	
-	if name == "@StaticBody2D@23":
-		print(detectors)
-	
 	$model/layer0.region_rect = auto_tile(Vector2(32,32), detectors, out_direction)
 	$model/layer1.region_rect = $model/layer0.region_rect
-	
-	#for i : RayCast2D in $center.get_children():
-	#	i.enabled = false
 
 func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, false, false, false], out_dir : Vector2 = Vector2.DOWN):
 	const rects = {
@@ -77,7 +69,7 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 			[false, false, false, true] : Vector2(3, 2), # Direita_para_Baixo
 			[false, true, false, false] : Vector2(2, 0), # Esquerda_para_Baixo
 			
-			[false, false, true, true] : Vector2(0, 3), # Cima_Direita_para_baixo
+			[false, false, true, true] : Vector2(3, 0), # Cima_Direita_para_baixo
 			[false, true, true, false] : Vector2(6, 2), # Cima_Esquerda_para_baixo
 			
 			[false, true, true, true] : Vector2(5, 0), # Cima_Esquerda_Direita_para_baixo

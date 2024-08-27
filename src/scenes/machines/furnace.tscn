@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d20benoe7jsah"]
+[gd_scene load_steps=9 format=3 uid="uid://rr2ytmqkx1ab"]
 
-[ext_resource type="Script" path="res://src/scripts/machines/miner.gd" id="1_2n5go"]
-[ext_resource type="Texture2D" uid="uid://co5nr7gxnqfbv" path="res://src/img/sheets/props/MultiTilemachines.png" id="2_bwq8u"]
-[ext_resource type="PackedScene" uid="uid://bjsitfm2itrmk" path="res://src/scenes/UI/inv/inv_grid.tscn" id="3_5nnhp"]
+[ext_resource type="Script" path="res://src/scripts/machines/furnace.gd" id="1_by56t"]
+[ext_resource type="Texture2D" uid="uid://co5nr7gxnqfbv" path="res://src/img/sheets/props/MultiTilemachines.png" id="2_b25wu"]
+[ext_resource type="PackedScene" uid="uid://bjsitfm2itrmk" path="res://src/scenes/UI/inv/inv_grid.tscn" id="3_mtpd0"]
 
 [sub_resource type="Curve" id="Curve_hjwi5"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -20,14 +20,16 @@ size = Vector2(32, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cghn"]
 
-[node name="miner" type="StaticBody2D"]
+[node name="furnace" type="StaticBody2D" node_paths=PackedStringArray("inventory_node", "MouseDetectionPanel", "ItemOutputsNode", "ItemInputsNode")]
 collision_layer = 4
 collision_mask = 4
 input_pickable = true
-script = ExtResource("1_2n5go")
-Machine = "miner"
-Type = 0
-NumSlots = 5
+script = ExtResource("1_by56t")
+Type = 1
+inventory_node = NodePath("inventory/inv_grid")
+MouseDetectionPanel = NodePath("Panel")
+ItemOutputsNode = NodePath("Outputs")
+ItemInputsNode = NodePath("Inputs")
 
 [node name="model" type="Node2D" parent="."]
 z_index = 1
@@ -39,35 +41,9 @@ polygon = PackedVector2Array(24, -24, 8.10251, -24, 8, -32, -8, -32, -8, -32, -8
 
 [node name="layer0" type="Sprite2D" parent="model"]
 position = Vector2(4.76837e-07, 4.76837e-07)
-texture = ExtResource("2_bwq8u")
+texture = ExtResource("2_b25wu")
 region_enabled = true
-region_rect = Rect2(0, 0, 64, 64)
-
-[node name="layer1" type="Sprite2D" parent="model"]
-z_index = 1
-position = Vector2(0, 4.76837e-07)
-texture = ExtResource("2_bwq8u")
-region_enabled = true
-region_rect = Rect2(64, 0, 64, 64)
-
-[node name="Polygon2D" type="Polygon2D" parent="model/layer1"]
-show_behind_parent = true
-polygon = PackedVector2Array(-24, -7, -19, -7, -19, -5, -18, -5, -18, -3, -16, -3, -16, 3, -18, 3, -18, 5, -19, 5, -19, 7, -24, 7)
-
-[node name="Polygon2D2" type="Polygon2D" parent="model/layer1"]
-show_behind_parent = true
-rotation = -1.5708
-polygon = PackedVector2Array(-24, -7, -19, -7, -19, -5, -18, -5, -18, -3, -16, -3, -16, 3, -18, 3, -18, 5, -19, 5, -19, 7, -24, 7)
-
-[node name="Polygon2D3" type="Polygon2D" parent="model/layer1"]
-show_behind_parent = true
-rotation = -3.14159
-polygon = PackedVector2Array(-24, -7, -19, -7, -19, -5, -18, -5, -18, -3, -16, -3, -16, 3, -18, 3, -18, 5, -19, 5, -19, 7, -24, 7)
-
-[node name="Polygon2D4" type="Polygon2D" parent="model/layer1"]
-show_behind_parent = true
-rotation = -4.71239
-polygon = PackedVector2Array(-24, -7, -19, -7, -19, -5, -18, -5, -18, -3, -16, -3, -16, 3, -18, 3, -18, 5, -19, 5, -19, 7, -24, 7)
+region_rect = Rect2(0, 64, 64, 64)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="model"]
 z_index = 1
@@ -96,7 +72,7 @@ debug_color = Color(1, 0.364706, 0, 0.419608)
 z_index = 4000
 position = Vector2(16, 16)
 
-[node name="inv_grid" parent="inventory" instance=ExtResource("3_5nnhp")]
+[node name="inv_grid" parent="inventory" instance=ExtResource("3_mtpd0")]
 offset_left = 32.0
 offset_top = -32.0
 offset_right = 96.0
@@ -127,45 +103,23 @@ collision_mask = 4
 hit_from_inside = true
 
 [node name="1" type="Marker2D" parent="Outputs"]
-
-[node name="2" type="RayCast2D" parent="Outputs/1"]
-position = Vector2(-17, 0)
-target_position = Vector2(-16, 0)
-collision_mask = 4
-hit_from_inside = true
-
-[node name="3" type="RayCast2D" parent="Outputs/1"]
-position = Vector2(0, -17)
-target_position = Vector2(0, -16)
-collision_mask = 4
-hit_from_inside = true
-
-[node name="2" type="Marker2D" parent="Outputs"]
-position = Vector2(32, 0)
-
-[node name="4" type="RayCast2D" parent="Outputs/2"]
-position = Vector2(0, -18)
-target_position = Vector2(0, -16)
-collision_mask = 4
-hit_from_inside = true
-
-[node name="5" type="RayCast2D" parent="Outputs/2"]
-position = Vector2(18, 0)
-target_position = Vector2(16, 0)
-collision_mask = 4
-hit_from_inside = true
-
-[node name="3" type="Marker2D" parent="Outputs"]
 position = Vector2(32, 32)
 
-[node name="6" type="RayCast2D" parent="Outputs/3"]
+[node name="6" type="RayCast2D" parent="Outputs/1"]
 position = Vector2(17, 0)
 target_position = Vector2(16, 0)
 collision_mask = 4
 hit_from_inside = true
 
-[node name="7" type="RayCast2D" parent="Outputs/3"]
+[node name="7" type="RayCast2D" parent="Outputs/1"]
 position = Vector2(0, 17)
 target_position = Vector2(0, 16)
 collision_mask = 4
 hit_from_inside = true
+
+[node name="Inputs" type="Node2D" parent="."]
+
+[node name="0" type="Marker2D" parent="Inputs"]
+
+[node name="1" type="Marker2D" parent="Inputs"]
+position = Vector2(32, 0)

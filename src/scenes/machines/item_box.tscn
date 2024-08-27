@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl01xipxdtjwo"]
+[gd_scene load_steps=4 format=3 uid="uid://cl01xipxdtjwo"]
 
 [ext_resource type="Texture2D" uid="uid://cl66ilvly3rvl" path="res://src/img/items/minerio_de_cobre.png" id="1_np3wa"]
 [ext_resource type="Script" path="res://src/scripts/machines/item_box.gd" id="1_q2r5w"]
 
-[node name="item_box" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rb8rm"]
+size = Vector2(16, 16)
+
+[node name="item_box" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 0
+mass = 0.01
+gravity_scale = 0.0
 script = ExtResource("1_q2r5w")
 
 [node name="img" type="Sprite2D" parent="."]
 texture = ExtResource("1_np3wa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rb8rm")

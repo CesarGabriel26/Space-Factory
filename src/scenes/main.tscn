@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://tu1wxhx1irct" path="res://src/scenes/player/player_camera.tscn" id="1_0dehj"]
 [ext_resource type="Script" path="res://src/scripts/main.gd" id="1_4h8yo"]
 [ext_resource type="PackedScene" uid="uid://d20benoe7jsah" path="res://src/scenes/machines/miner.tscn" id="1_y78lk"]
-[ext_resource type="PackedScene" uid="uid://dmi6r2d7qgtng" path="res://src/scenes/machines/vacuum_tube.tscn" id="2_4ibpo"]
 [ext_resource type="Script" path="res://src/scripts/player/player_camera.gd" id="2_a45ga"]
+[ext_resource type="PackedScene" uid="uid://rr2ytmqkx1ab" path="res://src/scenes/machines/furnace.tscn" id="3_l1qy3"]
 [ext_resource type="PackedScene" uid="uid://c72xg72t3q372" path="res://src/scenes/tools/builder.tscn" id="4_ojl5c"]
 
 [sub_resource type="TileSet" id="TileSet_do00f"]
@@ -26,61 +26,8 @@ format = 2
 [node name="miner" parent="props/machines" instance=ExtResource("1_y78lk")]
 position = Vector2(16, 16)
 
-[node name="miner2" parent="props/machines" node_paths=PackedStringArray("inventory_node", "MouseDetectionPanel", "ItemOutputsNode") instance=ExtResource("1_y78lk")]
-position = Vector2(176, 16)
-inventory_node = NodePath("../miner/inventory/inv_grid")
-MouseDetectionPanel = NodePath("../miner/Panel")
-ItemOutputsNode = NodePath("../miner/Outputs")
-
-[node name="vacuum_tube" parent="props/machines" instance=ExtResource("2_4ibpo")]
-position = Vector2(48, 80)
-
-[node name="vacuum_tube2" parent="props/machines" node_paths=PackedStringArray("colisionShape", "inventory_node", "MouseDetectionPanel", "ItemOutputsNode") instance=ExtResource("2_4ibpo")]
-position = Vector2(48, 112)
-out_direction = Vector2(1, 0)
-colisionShape = NodePath("../vacuum_tube/CollisionShape2D")
-inventory_node = NodePath("../vacuum_tube/inventory/inv_grid")
-MouseDetectionPanel = NodePath("../vacuum_tube/Panel")
-ItemOutputsNode = NodePath("../vacuum_tube/Outputs")
-
-[node name="vacuum_tube3" parent="props/machines" node_paths=PackedStringArray("colisionShape", "inventory_node", "MouseDetectionPanel", "ItemOutputsNode") instance=ExtResource("2_4ibpo")]
-position = Vector2(80, 112)
-colisionShape = NodePath("../vacuum_tube/CollisionShape2D")
-inventory_node = NodePath("../vacuum_tube/inventory/inv_grid")
-MouseDetectionPanel = NodePath("../vacuum_tube/Panel")
-ItemOutputsNode = NodePath("../vacuum_tube/Outputs")
-
-[node name="vacuum_tube4" parent="props/machines" node_paths=PackedStringArray("colisionShape", "inventory_node", "MouseDetectionPanel", "ItemOutputsNode") instance=ExtResource("2_4ibpo")]
-position = Vector2(80, 144)
-out_direction = Vector2(-1, 0)
-colisionShape = NodePath("../vacuum_tube/CollisionShape2D")
-inventory_node = NodePath("../vacuum_tube/inventory/inv_grid")
-MouseDetectionPanel = NodePath("../vacuum_tube/Panel")
-ItemOutputsNode = NodePath("../vacuum_tube/Outputs")
-
-[node name="vacuum_tube5" parent="props/machines" node_paths=PackedStringArray("colisionShape", "inventory_node", "MouseDetectionPanel", "ItemOutputsNode") instance=ExtResource("2_4ibpo")]
-position = Vector2(48, 144)
-out_direction = Vector2(-1, 0)
-colisionShape = NodePath("../vacuum_tube/CollisionShape2D")
-inventory_node = NodePath("../vacuum_tube/inventory/inv_grid")
-MouseDetectionPanel = NodePath("../vacuum_tube/Panel")
-ItemOutputsNode = NodePath("../vacuum_tube/Outputs")
-
-[node name="vacuum_tube6" parent="props/machines" node_paths=PackedStringArray("colisionShape", "inventory_node", "MouseDetectionPanel", "ItemOutputsNode") instance=ExtResource("2_4ibpo")]
-position = Vector2(16, 144)
-out_direction = Vector2(0, -1)
-colisionShape = NodePath("../vacuum_tube/CollisionShape2D")
-inventory_node = NodePath("../vacuum_tube/inventory/inv_grid")
-MouseDetectionPanel = NodePath("../vacuum_tube/Panel")
-ItemOutputsNode = NodePath("../vacuum_tube/Outputs")
-
-[node name="vacuum_tube7" parent="props/machines" node_paths=PackedStringArray("colisionShape", "inventory_node", "MouseDetectionPanel", "ItemOutputsNode") instance=ExtResource("2_4ibpo")]
+[node name="furnace" parent="props/machines" instance=ExtResource("3_l1qy3")]
 position = Vector2(16, 112)
-out_direction = Vector2(0, -1)
-colisionShape = NodePath("../vacuum_tube/CollisionShape2D")
-inventory_node = NodePath("../vacuum_tube/inventory/inv_grid")
-MouseDetectionPanel = NodePath("../vacuum_tube/Panel")
-ItemOutputsNode = NodePath("../vacuum_tube/Outputs")
 
 [node name="items" type="Node2D" parent="props"]
 
