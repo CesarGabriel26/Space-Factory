@@ -19,7 +19,7 @@ func _process(delta):
 	else:
 		$model/layer1.rotation_degrees = lerpf($model/layer1.rotation_degrees, 0.0, .1)
 		
-	if canRun: update_tick()
+	update_tick()
 	pass
 
 func check_can_run():
