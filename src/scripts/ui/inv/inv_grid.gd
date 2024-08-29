@@ -9,9 +9,9 @@ func add_item(id : int, _name : String, _quantity : int):
 	i.name = str(id)
 	add_child(i)
 
-func update_item_quantity(id : int, _quantity : int):
+func update_item(id : int, _name : String, _quantity : int):
 	var child = get_child(id)
-	child._load(child.item_name, _quantity)
+	child._load(_name, _quantity)
 
 func remove_item(id : int):
 	var child = get_child(id)

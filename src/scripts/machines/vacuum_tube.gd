@@ -74,6 +74,8 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 			[false, false, true, true] : Vector2(3, 0), # Cima_Direita_para_baixo
 			[false, true, true, false] : Vector2(6, 2), # Cima_Esquerda_para_baixo
 			
+			[false, true, false, true] : Vector2(7, 0), # Esquerda_Direita_para_baixo
+			
 			[false, true, true, true] : Vector2(5, 0), # Cima_Esquerda_Direita_para_baixo
 		},
 		Vector2.LEFT : {
@@ -87,6 +89,8 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 			[false, false, true, true] : Vector2(6, 3), # Cima_Direita_para_esquerda
 			[true, false, false, true] : Vector2(4, 0), # Baixo_Direita_para_esquerda
 			
+			[true, false, true, false] : Vector2(7, 1), # Baixo_Cima_para_cima
+		
 			[true, false, true, true] : Vector2(1, 2) # Cima_Baixo_Direita_para_esquerda
 		},
 		Vector2.UP : {
@@ -100,6 +104,8 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 			[true, true, false, false] : Vector2(4, 1), # Baixo_Direita_Para_cima
 			[true, false, false, true] : Vector2(5, 3), # Baixo_Esquerda_Para_cima
 			
+			[false, true, false, true] : Vector2(7, 3), # Esquerda_Direita_para_cima
+			
 			[true, true, false, true] : Vector2(0, 1) # Baixo_Direita_Esquerda_Para_cima
 		},
 		Vector2.RIGHT : {
@@ -112,6 +118,8 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 			
 			[false, true, true, false] : Vector2(3, 1), # Cima_Esquerda_para_direita
 			[true, true, false, false] : Vector2(5, 2), # Baixo_Esquerda_para_direita
+			
+			[true, false, true, false] : Vector2(7, 2), # Baixo_Cima_para_cima
 			
 			[true, true, true, false] : Vector2(5, 1), # Baixo_Esquerda_Cima_para_direita
 		}

@@ -5,14 +5,14 @@ func _ready():
 	inventory_node = $inventory/inv_grid
 	ItemOutputsNode = $Outputs
 	_setup()
-	pass # Replace with function body.
+	pass 
 
 func _process(delta):
-	var canRun = check_can_run()
+	active = check_can_run()
 	
-	$model/CPUParticles2D.emitting = canRun
+	$model/CPUParticles2D.emitting = active
 	
-	if canRun:
+	if active:
 		$model/layer1.rotation_degrees += 50
 		if $model/layer1.rotation_degrees > 360:
 			$model/layer1.rotation_degrees = 0
@@ -38,7 +38,7 @@ func check_can_run():
 
 func tick():
 	var item = generate_resource()
-	add_item_to_inventory(item, 1)
+	add_item_to_inventory(item, 1, Outinventory)
 
 func generate_resource():
 	randomize()
