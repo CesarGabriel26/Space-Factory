@@ -15,7 +15,7 @@ const conveyor_speed = [
 	0.875,
 	1.75,
 	2.625,
-	3.5
+	3.5,
 ]
 
 const pollution_values = [
@@ -26,16 +26,21 @@ const pollution_values = [
 ]
 
 var map_tiles = {}
-var Building = "vacuum_tube"
-var BuildingMode = true
+var BuildingMode = false
 var Builds_Node = null
 var Items_Noode = null
 var pollution_level = 0.0
+
+var recipes = {}
+
 
 func _ready():
 	pass
 
 func _process(delta):
+	if Input.is_action_just_pressed("deb"):
+		BuildingMode = !BuildingMode
+	
 	pass
 
 func calculate_pollution():

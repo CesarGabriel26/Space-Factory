@@ -1,9 +1,13 @@
 extends BaseMachine
 
+@export var DebugResource = ""
+
 func _ready():
 	MouseDetectionPanel = $Panel
-	inventory_node = $inventory/inv_grid
 	ItemOutputsNode = $Outputs
+	outInventory_node = $inventory/inv_grid
+	BuildingModeInAndOutPreview = $"model/Inputs-outputs"
+	
 	_setup()
 	pass 
 
@@ -44,6 +48,9 @@ func generate_resource():
 	randomize()
 	var random_value = randf()  # Gera um valor entre 0 e 1
 	var cumulative_probability = 0.0
+	
+	if DebugResource != "":
+		return DebugResource
 	
 	for resource in data["resources"]:
 		cumulative_probability += data["resources"][resource]

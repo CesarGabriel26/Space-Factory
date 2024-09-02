@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 MainGlobal="*res://src/scripts/Globals/MainGlobal.gd"
+JsonManager="*res://src/scripts/Globals/JsonManager.gd"
+SignalManager="*res://src/scripts/Globals/SignalManager.gd"
 
 [input]
 

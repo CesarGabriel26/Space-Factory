@@ -20,7 +20,7 @@ collision_layer = 4
 collision_mask = 4
 input_pickable = true
 script = ExtResource("1_by56t")
-Machine = "Furnace"
+Machine = "furnace"
 Type = 1
 colisionShape = NodePath("CollisionShape2D")
 tierColor = NodePath("model/minner")
@@ -30,7 +30,7 @@ MouseDetectionPanel = NodePath("Panel")
 ItemOutputsNode = NodePath("Outputs")
 ExpectedItemsOutput = {
 0: 0,
-7: 1
+7: "escoria"
 }
 ItemInputsNode = NodePath("Inputs")
 BuildingModeInAndOutPreview = NodePath("model/Inputs-outputs")
@@ -53,7 +53,8 @@ region_rect = Rect2(0, 64, 64, 64)
 z_index = 1000
 
 [node name="Line2D2" type="Line2D" parent="model/Inputs-outputs"]
-position = Vector2(16, 32)
+position = Vector2(16, 33.6)
+scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0, 0, 8, -8, 5, 0, 15, 8, 5, 0, 8)
 width = 2.0
 default_color = Color(1, 0.435294, 0, 1)
@@ -64,6 +65,7 @@ end_cap_mode = 2
 [node name="Line2D4" type="Line2D" parent="model/Inputs-outputs"]
 position = Vector2(48, -16)
 rotation = 1.5708
+scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0, 0, 8, -8, 5, 0, 15, 8, 5, 0, 8)
 width = 2.0
 default_color = Color(0.116512, 0.520446, 1, 1)
@@ -74,6 +76,7 @@ end_cap_mode = 2
 [node name="Line2D5" type="Line2D" parent="model/Inputs-outputs"]
 position = Vector2(-48, -16)
 rotation = -1.57079
+scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0, 0, 8, -8, 5, 0, 15, 8, 5, 0, 8)
 width = 2.0
 default_color = Color(0.116512, 0.520446, 1, 1)
@@ -82,7 +85,8 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D" type="Line2D" parent="model/Inputs-outputs"]
-position = Vector2(-16, 32)
+position = Vector2(-16, 33.6)
+scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0, 0, 8, -8, 5, 0, 15, 8, 5, 0, 8)
 width = 2.0
 default_color = Color(1, 0, 0, 1)
@@ -92,6 +96,7 @@ end_cap_mode = 2
 
 [node name="Line2D7" type="Line2D" parent="model/Inputs-outputs"]
 position = Vector2(-16, -48)
+scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0, 0, 8, -8, 5, 0, 15, 8, 5, 0, 8)
 width = 2.0
 default_color = Color(0.116512, 0.520446, 1, 1)
@@ -101,6 +106,7 @@ end_cap_mode = 2
 
 [node name="Line2D8" type="Line2D" parent="model/Inputs-outputs"]
 position = Vector2(16, -48)
+scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0, 0, 8, -8, 5, 0, 15, 8, 5, 0, 8)
 width = 2.0
 default_color = Color(0.116512, 0.520446, 1, 1)
@@ -111,6 +117,7 @@ end_cap_mode = 2
 [node name="Line2D6" type="Line2D" parent="model/Inputs-outputs"]
 position = Vector2(48, 16)
 rotation = 1.5708
+scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0, 0, 8, -8, 5, 0, 15, 8, 5, 0, 8)
 width = 2.0
 default_color = Color(0.116512, 0.520446, 1, 1)
@@ -121,6 +128,7 @@ end_cap_mode = 2
 [node name="Line2D3" type="Line2D" parent="model/Inputs-outputs"]
 position = Vector2(-48, 16)
 rotation = -1.57079
+scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0, 0, 8, -8, 5, 0, 15, 8, 5, 0, 8)
 width = 2.0
 default_color = Color(0.116512, 0.520446, 1, 1)

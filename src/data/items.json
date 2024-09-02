@@ -24,6 +24,9 @@
 	"barra_de_zinco": {
 		"value": 150
 	},
+	"barra_de_bronze": {
+		"value": 150
+	},
 	
 	"engrenagem_de_cobre": {
 		"value": 200

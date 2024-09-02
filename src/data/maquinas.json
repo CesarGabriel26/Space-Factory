@@ -6,12 +6,12 @@
 		"data" : {
 			"delay" : 5,
 			"tier" : 0,
-			"resources" : [
-				"minerio_de_cobre",
-				"minerio_de_ferro",
-				"minerio_de_ouro",
-				"minerio_de_zinco"
-			]
+			"resources" : {
+				"minerio_de_cobre" : 0.5,
+				"minerio_de_ferro" : 0.2,
+				"minerio_de_ouro"  : 0.15,
+				"minerio_de_zinco" : 0.15
+			}
 		}
 	},
 	"ResourceDril_Mk2" : {
@@ -21,27 +21,27 @@
 		"data" : {
 			"delay" : 2.5,
 			"tier" : 1,
-			"resources" : [
-				"minerio_de_cobre",
-				"minerio_de_ferro",
-				"minerio_de_ouro",
-				"minerio_de_zinco"
-			]
+			"resources" : {
+				"minerio_de_cobre" : 0.5,
+				"minerio_de_ferro" : 0.2,
+				"minerio_de_ouro"  : 0.15,
+				"minerio_de_zinco" : 0.15
+			}
 		},
 	},
 	"ResourceDril_Mk3" : {
 		"source" : "res://src/scenes/machines/miner.tscn",
 		"menu_icon" : "res://src/img/builds icons/ResourceDril_3.png",
-		"menu" : "estração",
+		"menu" : "estracao",
 		"data" : {
 			"delay" : 1,
 			"tier" : 2,
-			"resources" : [
-				"minerio_de_cobre",
-				"minerio_de_ferro",
-				"minerio_de_ouro",
-				"minerio_de_zinco"
-			]
+			"resources" : {
+				"minerio_de_cobre" : 0.5,
+				"minerio_de_ferro" : 0.2,
+				"minerio_de_ouro"  : 0.15,
+				"minerio_de_zinco" : 0.15
+			}
 		},
 	},
 	"ResourceDril_Mk4" : {
@@ -51,12 +51,12 @@
 		"data" : {
 			"delay" : 0.1,
 			"tier" : 3,
-			"resources" : [
-				"minerio_de_cobre",
-				"minerio_de_ferro",
-				"minerio_de_ouro",
-				"minerio_de_zinco"
-			]
+			"resources" : {
+				"minerio_de_cobre" : 0.5,
+				"minerio_de_ferro" : 0.2,
+				"minerio_de_ouro"  : 0.15,
+				"minerio_de_zinco" : 0.15
+			}
 		},
 	},
 	
@@ -130,43 +130,6 @@
 		},
 	},
 	
-	"Cutter_Mk1" : {
-		"source" : "res://src/scenes/machines/Cutter.tscn",
-		"menu_icon" : "res://src/img/builds icons/cutter_1.png",
-		"menu" : "fabricação",
-		"data" : {
-			"delay" : 5,
-			"tier" : 0,
-		},
-	},
-	"Cutter_Mk2" : {
-		"source" : "res://src/scenes/machines/Cutter.tscn",
-		"menu_icon" : "res://src/img/builds icons/cutter_2.png",
-		"menu" : "fabricação",
-		"data" : {
-			"delay" : 2.5,
-			"tier" : 1,
-		},
-	},
-	"Cutter_Mk3" : {
-		"source" : "res://src/scenes/machines/Cutter.tscn",
-		"menu_icon" : "res://src/img/builds icons/cutter_3.png",
-		"menu" : "fabricação",
-		"data" : {
-			"delay" : 1,
-			"tier" : 2,
-		},
-	},
-	"Cutter_Mk4" : {
-		"source" : "res://src/scenes/machines/Cutter.tscn",
-		"menu_icon" : "res://src/img/builds icons/cutter_4.png",
-		"menu" : "fabricação",
-		"data" : {
-			"delay" : 0.1,
-			"tier" : 3,
-		},
-	},
-	
 	"Trash" : {
 		"source" : "res://src/scenes/machines/trash.tscn",
 		"menu_icon" : "res://src/img/builds icons/trash.png",
@@ -175,13 +138,12 @@
 			"tier" : "input",
 		},
 	},
-	"Seller" : {
-		"source" : "res://src/scenes/machines/seller.tscn",
-		"menu_icon" : "res://src/img/builds icons/seller.png",
+	"itemFilter" : {
+		"source" : "res://src/scenes/machines/item_filter.tscn",
+		"menu_icon" : "res://src/img/builds icons/trash.png",
 		"menu" : "logistica",
 		"data" : {
 			"tier" : "input",
 		},
 	}
-	
 }

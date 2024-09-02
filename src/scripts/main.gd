@@ -10,7 +10,9 @@ func _ready():
 	pass
 
 func _process(delta):
-	Builder.global_position = Tile_Map.map_to_local(Tile_Map.local_to_map(get_global_mouse_position()))
-	Builder.tileMap = Tile_Map
-	$CanvasLayer/Label.text = str(MainGlobal.pollution_level)
+	Builder.visible = MainGlobal.BuildingMode
+	if MainGlobal.BuildingMode:
+		Builder.global_position = Tile_Map.map_to_local(Tile_Map.local_to_map(get_global_mouse_position()))
+		Builder.tileMap = Tile_Map
+		$CanvasLayer/Label.text = str(MainGlobal.pollution_level)
 	pass

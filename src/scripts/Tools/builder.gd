@@ -6,13 +6,25 @@ extends Node2D
 
 var current_rotation = 0
 var tileMap : TileMap = null
-
+var canBuild = true
+var data = {
+	"delay" : 1,
+	"tier" : 2,
+	"resources" : {
+		"minerio_de_cobre" : 0.5,  # 50% de chance
+		"minerio_de_ferro" : 0.2,  # 20% de chance
+		"minerio_de_ouro"  : 0.15, # 15% de chance
+		"minerio_de_zinco" : 0.15  # 15% de chance
+	}
+}
+var _build = ""
 func _ready() -> void:
-	_load_building()
+	SignalManager.MouseEnteredUI.connect(set_can_build)
+	SignalManager.BuildSelected.connect(_load_building)
 	pass
 
 func _process(delta: float) -> void:
-	if MainGlobal.BuildingMode:
+	if MainGlobal.BuildingMode and canBuild:
 		rotate_()
 		build()
 	pass
@@ -28,9 +40,14 @@ func build():
 		if coliding:
 			prop = bodys[0]
 		else:
-			prop = load("res://src/scenes/machines/%s.tscn" % MainGlobal.Building)
+			var Machines = JsonManager.LerJson("res://src/data/maquinas.json")
+			var Machine = Machines[_build]
+			
+			prop = load(Machine["source"])
 			prop = prop.instantiate()
 			prop.global_position = pos
+			prop.data = Machine["data"]
+			
 		
 		prop.out_direction = rotation_to_out_direction()
 		prop._reload()
@@ -44,7 +61,7 @@ func rotate_():
 		if current_rotation > 180:
 			current_rotation = -90
 			
-		_load_building()
+		_load_building(_build)
 
 func rotation_to_out_direction():
 	match current_rotation:
@@ -57,16 +74,26 @@ func rotation_to_out_direction():
 		-90:
 			return Vector2.RIGHT
 
-func _load_building():
+func _load_building(build):
 	if model.get_child_count() > 0:
 		model.get_child(0).queue_free()
 	
-	var prop = load("res://src/scenes/machines/%s.tscn" % MainGlobal.Building)
+	var Machines = JsonManager.LerJson("res://src/data/maquinas.json")
+	var Machine = Machines[build]
+	_build = build
+	var prop = load(Machine["source"])
+	
 	prop = prop.instantiate()
+	prop.data = Machine["data"]
+	
 	prop.set_as_preview()
 	prop.out_direction = rotation_to_out_direction()
+	prop._reload()
 	if prop.IsAutotile:
 		prop.check_autotile_detectors()
 	
 	model.add_child(prop)
 	pass
+
+func set_can_build(can : bool):
+	canBuild = !can

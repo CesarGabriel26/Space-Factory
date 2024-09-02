@@ -1,0 +1,5 @@
+extends Node
+
+signal MouseInteractingWithUIElement
+signal MouseEnteredUI
+signal BuildSelected
