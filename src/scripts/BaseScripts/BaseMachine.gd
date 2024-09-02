@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends BaseBlock
 class_name BaseMachine
 
 signal ItemRecived

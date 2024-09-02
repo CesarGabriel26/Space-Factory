@@ -6,9 +6,14 @@ func _ready():
 	pass
 
 func _process(delta):
-	update()
+	if preview : return
+	#update()
+	#
+	#for i in Outinventory:
+		#Outinventory.erase(i)
 	
-	for i in Outinventory:
-		Outinventory.erase(i)
+	take_damage(.1)
+	
+	await get_tree().create_timer(.5).timeout
 	
 	pass
