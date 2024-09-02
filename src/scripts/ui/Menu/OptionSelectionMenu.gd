@@ -104,3 +104,11 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	SignalManager.emit_signal("MouseEnteredUI", false)
+
+func _on_margin_container_mouse_entered():
+	if !build_menu.visible:
+		SignalManager.emit_signal("MouseEnteredUI", true)
+
+func _on_margin_container_mouse_exited():
+	if !build_menu.visible:
+		SignalManager.emit_signal("MouseEnteredUI", false)

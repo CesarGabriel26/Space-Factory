@@ -83,3 +83,4 @@ func freeze():
 func check_for_freeze(cold_level: float):
 	if cold_level > cold_resistence:
 		freeze()
+

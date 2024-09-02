@@ -5,7 +5,7 @@ enum TimePhase { DAY, SUNSET, NIGHT, SUNRISE }
 @export var gradient : GradientTexture1D
 @export var paused = false
 
-var day_duration : float = 120.0  # Duração de um dia em segundos
+var day_duration : float = 20 #120.0  # Duração de um dia em segundos
 var last_phase  : TimePhase = TimePhase.DAY
 var current_phase : TimePhase = TimePhase.DAY
 var time : float = 0.0
@@ -24,8 +24,6 @@ const phase_names = {
 	TimePhase.SUNRISE: "SUNRISE",
 }
 
-var light_level : float = 1.0  # Variável de nível de luminosidade
-
 func _ready():
 	update_time_phase()
 
@@ -42,7 +40,7 @@ func _process(delta):
 	self.color = gradient.gradient.sample(value)
 	
 	# Calcular nível de luminosidade baseado no tempo
-	light_level = calculate_light_level(time)
+	MainGlobal.light_level = calculate_light_level(time)
 	
 	update_time_phase()
 

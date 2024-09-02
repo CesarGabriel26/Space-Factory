@@ -145,5 +145,13 @@
 		"data" : {
 			"tier" : "input",
 		},
+	},
+	"solatPanelSmal" : {
+		"source" : "res://src/scenes/machines/solar_panel_smal.tscn",
+		"menu_icon" : "res://src/img/builds icons/trash.png",
+		"menu" : "geradores",
+		"data" : {
+			"tier" : "1",
+		},
 	}
 }

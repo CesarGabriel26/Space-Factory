@@ -30,8 +30,8 @@ var BuildingMode = false
 var Builds_Node = null
 var Items_Noode = null
 var pollution_level = 0.0
-
 var recipes = {}
+var light_level : float = 1.0  # Variável de nível de luminosidade
 
 
 func _ready():

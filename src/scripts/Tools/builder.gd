@@ -51,6 +51,7 @@ func build():
 		
 		prop.out_direction = rotation_to_out_direction()
 		prop._reload()
+		print(coliding)
 		if !coliding:
 			MainGlobal.Builds_Node.add_child(prop)
 
