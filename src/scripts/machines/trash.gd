@@ -13,7 +13,7 @@ func _process(delta):
 		Outinventory.erase(i)
 	
 	#take_damage(.1)
-	#
+	
 	#await get_tree().create_timer(.5).timeout
 	
 	pass

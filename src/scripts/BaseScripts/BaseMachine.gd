@@ -3,26 +3,17 @@ class_name BaseMachine
 
 signal ItemRecived
 
-enum types {
-	Starter = 0,
-	Process,
-	Reciver,
-	Filter
-}
 
 @export_category("properties")
 @export var Machine : String = ""
-@export var Type : types = types.Reciver
 @export var out_direction : Vector2 = Vector2.DOWN
 @export var IsAutotile : bool = false
 @export var MonoOutput : bool = false
-
-@export_subgroup("nodes")
-@export var colisionShape : CollisionShape2D = null
-@export var tierColor : Polygon2D = null
-@export var Model : Node2D = null
+@export var TrashHoldEnergyLevel = 135
+@export var max_capacity = 1000
 
 @export_category("Inventory")
+@export var UiInvContainer : Node2D = null
 @export var NumSlots : int = 1
 @export var MaxStack : int = 5
 @export var InputSlot : ItemBox = null
@@ -39,15 +30,13 @@ enum types {
 @onready var item_box = preload("res://src/scenes/machines/item_box.tscn")
 
 # variaveis ocultas
-var data = {}
-
 var currentTime = 0
 var expectingItem = false
-var preview = false
-var active = false
 
 var inventory : Dictionary = {}
 var Outinventory : Dictionary = {}
+
+var current_energy = 0
 
 func _setup():
 	if preview : return
@@ -83,11 +72,7 @@ func _reload():
 	if tierColor:
 		tierColor.color = MainGlobal.machines_tier_color[float(data['tier'])]
 
-func set_as_preview():
-	if colisionShape:
-		colisionShape.disabled = true
-	preview = true
-	
+func set_machine_as_preview():
 	if ItemOutputsNode:
 		var marcadores = ItemOutputsNode.get_children()
 		for marcador : Marker2D in marcadores:
@@ -96,10 +81,8 @@ func set_as_preview():
 				ray.enabled = false
 
 func show_hide_inv(show : bool):
-	if inventory_node:
-		inventory_node.visible = show
-	if outInventory_node:
-		outInventory_node.visible = show
+	if UiInvContainer:
+		UiInvContainer.visible = show
 
 func update_tick():
 	if preview : return
@@ -109,7 +92,7 @@ func update_tick():
 	if currentTime >= (data["delay"] * 10):
 		currentTime = 0
 		
-		if Type == types.Process:
+		if Type != types.Reciver:
 			if can_run_machine():
 				call_deferred('tick')
 		else:
@@ -119,8 +102,15 @@ func update_tick():
 		currentTime += 1
 	#print(int(currentTime / 10))
 
+func receive_energy(amount):
+	current_energy += amount
+	if current_energy > max_capacity:
+		current_energy = max_capacity
+
 func update():
 	if preview : return
+	
+	active = (current_energy > TrashHoldEnergyLevel)
 	
 	if BuildingModeInAndOutPreview:
 		BuildingModeInAndOutPreview.visible = MainGlobal.BuildingMode
@@ -138,9 +128,24 @@ func get_pollution_value():
 		return 0.0  # Se o tier não for válido, retorna 0
 
 func can_run_machine():
-	var can_run = inventory.size() > 0
+	var can_run = (!current_energy < TrashHoldEnergyLevel)
+	
+	if can_run and Type != types.Starter:
+		can_run = (inventory.size() > 0)
+	else:
+		for i in range(NumSlots):
+			if not Outinventory.has(i):
+				return true
+			else:
+				if Outinventory[i][1] < MaxStack:
+					can_run = true
+				else:
+					can_run = false
 	
 	return can_run
+
+func get_available_space():
+	return max_capacity - current_energy
 
 # INVENTARIO
 
@@ -345,8 +350,20 @@ func move_item_out():
 		
 		for ray : RayCast2D in rays:
 			var colider = ray.get_collider()
+			var real_out_direction = out_direction
 			
-			if colider and colider.out_direction + out_direction != Vector2.ZERO:
+			if !MonoOutput:
+				if ray.target_position.x != 0:
+					real_out_direction.x = ray.target_position.x / ray.target_position.x
+					if ray.target_position.x < 0:
+							real_out_direction.x *= -1
+							
+				if ray.target_position.y != 0:
+					real_out_direction.y = ray.target_position.y / ray.target_position.y
+					if ray.target_position.y < 0:
+						real_out_direction.y *= -1
+			
+			if colider and colider.out_direction + real_out_direction != Vector2.ZERO:
 				# Verificando se o RayCast está mapeado para um item específico
 				var rayname = int(str(ray.name))
 				var item_to_move = null
@@ -417,7 +434,7 @@ func move_item_in():
 	check_and_load_inv_ui()
 
 func can_recive_item(item_name):
-	if expectingItem:
+	if expectingItem or (ItemInputsNode == null and ItemOutputsNode == null) or Type == types.Starter:
 		return false
 	
 	var can_receive = true

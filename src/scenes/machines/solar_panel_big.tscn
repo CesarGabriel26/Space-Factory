@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqep35pebpevi"]
+
+[ext_resource type="Script" path="res://src/scripts/machines/solar_panel.gd" id="1_hq0mg"]
+[ext_resource type="Texture2D" uid="uid://co5nr7gxnqfbv" path="res://src/img/sheets/props/MultiTilemachines.png" id="2_t15iw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dm1bq"]
+size = Vector2(64, 64)
+
+[node name="solar_panel_big" type="StaticBody2D" node_paths=PackedStringArray("colisionShape", "Model")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_hq0mg")
+Type = 5
+colisionShape = NodePath("CollisionShape2D")
+Model = NodePath("model")
+
+[node name="model" type="Node2D" parent="."]
+
+[node name="layer0" type="Sprite2D" parent="model"]
+z_index = 1
+position = Vector2(16, 16)
+rotation = -3.14159
+texture = ExtResource("2_t15iw")
+region_enabled = true
+region_rect = Rect2(192, 192, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_dm1bq")

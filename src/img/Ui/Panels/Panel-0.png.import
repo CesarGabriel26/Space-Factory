@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b224l6jlbok61"
-path="res://.godot/imported/furnace_4.png-67c597a5fd12ed78d142309c45346bbd.ctex"
+uid="uid://b5hno6rnme4bw"
+path="res://.godot/imported/Panel-0.png-8c7bb0de0d07092f61ea201b23f08589.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/img/builds icons/furnace_4.png"
-dest_files=["res://.godot/imported/furnace_4.png-67c597a5fd12ed78d142309c45346bbd.ctex"]
+source_file="res://src/img/Ui/Panels/Panel-0.png"
+dest_files=["res://.godot/imported/Panel-0.png-8c7bb0de0d07092f61ea201b23f08589.ctex"]
 
 [params]
 

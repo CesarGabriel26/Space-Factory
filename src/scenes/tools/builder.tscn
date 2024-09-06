@@ -20,11 +20,13 @@ z_index = 2
 position = Vector2(-16, -16)
 
 [node name="0" type="Line2D" parent="outlines"]
-points = PackedVector2Array(0, 16, 0, 32, 16, 32)
+position = Vector2(0, 32)
+points = PackedVector2Array(0, -16, 0, 0, 16, 0)
 width = 2.0
 
 [node name="1" type="Line2D" parent="outlines"]
-points = PackedVector2Array(16, 0, 32, 0, 32, 16)
+position = Vector2(32, 0)
+points = PackedVector2Array(-16, 0, 0, 0, 0, 16)
 width = 2.0
 
 [node name="model" type="Node2D" parent="."]

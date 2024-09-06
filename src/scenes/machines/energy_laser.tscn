@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://lnqmttrb4b78"]
+
+[ext_resource type="Script" path="res://src/scripts/machines/energy_laser.gd" id="1_cckek"]
+[ext_resource type="Texture2D" uid="uid://c70f5ot5m46da" path="res://src/img/sheets/props/SingleTileMachines.png" id="2_l85oy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dm1bq"]
+size = Vector2(32, 32)
+
+[node name="energy_laser" type="StaticBody2D" node_paths=PackedStringArray("colisionShape")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_cckek")
+Type = 4
+colisionShape = NodePath("CollisionShape2D")
+
+[node name="model" type="Node2D" parent="."]
+z_index = 1
+
+[node name="layer0" type="Sprite2D" parent="model"]
+rotation = -3.14159
+texture = ExtResource("2_l85oy")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dm1bq")
+
+[node name="Colisoes" type="Marker2D" parent="."]
+
+[node name="0" type="RayCast2D" parent="Colisoes"]
+position = Vector2(0, 17)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="1" type="RayCast2D" parent="Colisoes"]
+position = Vector2(17, 0)
+target_position = Vector2(50, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="2" type="RayCast2D" parent="Colisoes"]
+position = Vector2(0, -17)
+target_position = Vector2(0, -50)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="3" type="RayCast2D" parent="Colisoes"]
+position = Vector2(-17, 0)
+target_position = Vector2(-50, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="Linhas" type="Marker2D" parent="."]
+
+[node name="0" type="Line2D" parent="Linhas"]
+visible = false
+points = PackedVector2Array(0, 16, 0, 64)
+default_color = Color(0.276706, 0.891025, 0.395853, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="1" type="Line2D" parent="Linhas"]
+visible = false
+points = PackedVector2Array(16, 0, 64, 0)
+default_color = Color(0.276706, 0.891025, 0.395853, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="2" type="Line2D" parent="Linhas"]
+visible = false
+points = PackedVector2Array(0, -16, 0, -64)
+default_color = Color(0.276706, 0.891025, 0.395853, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="3" type="Line2D" parent="Linhas"]
+visible = false
+points = PackedVector2Array(-16, 0, -64, 0)
+default_color = Color(0.276706, 0.891025, 0.395853, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="inventory" type="Node2D" parent="."]
+position = Vector2(16, -16)

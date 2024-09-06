@@ -21,6 +21,11 @@ MainGlobal="*res://src/scripts/Globals/MainGlobal.gd"
 JsonManager="*res://src/scripts/Globals/JsonManager.gd"
 SignalManager="*res://src/scripts/Globals/SignalManager.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 "scroll up"={

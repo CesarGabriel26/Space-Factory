@@ -12,8 +12,6 @@ func _ready():
 	pass 
 
 func _process(delta):
-	active = check_can_run()
-	
 	$model/CPUParticles2D.emitting = active
 	
 	if active:
@@ -26,23 +24,11 @@ func _process(delta):
 	update_tick()
 	pass
 
-func check_can_run():
-	var toReturn = false
-	
-	for i in range(NumSlots):
-		if not Outinventory.has(i):
-			return true
-		else:
-			if Outinventory[i][1] < MaxStack:
-				toReturn = true
-			else:
-				toReturn = false
-	
-	return toReturn
-
 func tick():
-	var item = generate_resource()
-	add_item_to_inventory(item, 1, Outinventory)
+	if active:
+		current_energy -= 100
+		var item = generate_resource()
+		add_item_to_inventory(item, 1, Outinventory)
 
 func generate_resource():
 	randomize()

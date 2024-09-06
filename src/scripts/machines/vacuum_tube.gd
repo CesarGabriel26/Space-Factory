@@ -39,7 +39,7 @@ func check_target_tile_position():
 		var detector = detectors[i]
 		var colider = detector.get_collider()
 		
-		if colider:
+		if colider and colider.Type not in [BaseBlock.types.Energy, BaseBlock.types.Generator]:
 			var colider_props = (colider.global_position + (colider.out_direction * 32) == global_position) or colider.Type != types.Reciver
 			values_to_return[i] = (detector.is_colliding() and colider_props)
 	

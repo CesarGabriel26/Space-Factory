@@ -45,12 +45,16 @@ func _has_required_items(minerios: Array, required_items: Array) -> bool:
 	return true
 
 func _can_continue_craft(inv: Dictionary, required_items: Array, result: Array):
+	var toReturn = true
 	for id in Outinventory:
 		if Outinventory[id][0] == result[0][0]:
+			toReturn = true
 			if Outinventory[id][1] + result[id][1] > MaxStack:
-				return false
+				toReturn = false
+		else:
+			toReturn = false
 	
-	return true
+	return toReturn
 
 func _remove_items_from_inventory(required_items: Array) -> void:
 	for item in required_items:

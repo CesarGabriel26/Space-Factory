@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhu6bomqyii8v"
-path="res://.godot/imported/furnace_1.png-1825b30e06a0b2bf3622dabd32bc0cfb.ctex"
+uid="uid://myy4000g5ecd"
+path="res://.godot/imported/geradores.png-dcde43e6ba7681837a3e41215f2cf17b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/img/builds icons/furnace_1.png"
-dest_files=["res://.godot/imported/furnace_1.png-1825b30e06a0b2bf3622dabd32bc0cfb.ctex"]
+source_file="res://src/img/Ui/icons/geradores.png"
+dest_files=["res://.godot/imported/geradores.png-dcde43e6ba7681837a3e41215f2cf17b.ctex"]
 
 [params]
 

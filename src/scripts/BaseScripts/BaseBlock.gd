@@ -3,7 +3,19 @@ class_name BaseBlock
 
 @onready var ExplosionEffect = preload("res://src/resources/effects/ExplosionEffect.tscn")
 
-@export_category("Properties")
+enum types {
+	Starter = 0,
+	Process,
+	Reciver,
+	Filter,
+	Energy,
+	Generator
+}
+
+@export_category("properties")
+## Tipo do bloco
+@export var Type : types = types.Reciver
+
 ## Vida total do bloco
 @export var life = 10
 
@@ -33,6 +45,15 @@ class_name BaseBlock
 
 ## Chance de gerar escória (ou outro resíduo) quando destruído
 @export var slag_yield = 0.05
+
+@export_subgroup("nodes")
+@export var colisionShape : CollisionShape2D = null
+@export var tierColor : Polygon2D = null
+@export var Model : Node2D = null
+
+var data = {}
+var preview = false
+var active = false
 
 ## Reduz a vida do bloco baseado em um dano especificado
 func take_damage(amount: float):
@@ -84,3 +105,11 @@ func check_for_freeze(cold_level: float):
 	if cold_level > cold_resistence:
 		freeze()
 
+## seta bloco como preview na build tool
+func set_as_preview():
+	if colisionShape:
+		colisionShape.disabled = true
+	preview = true
+	
+	if has_method("set_machine_as_preview"):
+		call_deferred("set_machine_as_preview")

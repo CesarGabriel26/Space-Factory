@@ -4,8 +4,6 @@ func _ready():
 	MouseDetectionPanel = $Panel
 	inventory_node = $inventory/inv_grid
 	outInventory_node = $inventory/inv_grid2
-	ItemOutputsNode = $Outputs
-	ItemInputsNode = $Inputs
 	BuildingModeInAndOutPreview = $"model/Inputs-outputs"
 	_setup()
 	pass # Replace with function body.
@@ -15,6 +13,9 @@ func _process(delta):
 	pass
 
 func tick():
+	if !active:
+		return
+	
 	if inventory.has(0) and check_out_slot_is_full(0) and check_out_slot_is_full(1):
 		var results = processar_minerio(get_items_for_crafting(inventory))
 		if results.has("result"):
@@ -32,4 +33,3 @@ func tick():
 	else:
 		$CPUParticles2D.emitting = false
 	
-	active = $CPUParticles2D.emitting

@@ -32,20 +32,20 @@ border_color = Color(1, 0.913725, 0.427451, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5qv0"]
 
-[node name="itemFilter" type="StaticBody2D" node_paths=PackedStringArray("colisionShape", "tierColor", "Model", "outInventory_node", "MouseDetectionPanel", "ItemOutputsNode", "ItemInputsNode", "BuildingModeInAndOutPreview")]
+[node name="itemFilter" type="StaticBody2D" node_paths=PackedStringArray("outInventory_node", "MouseDetectionPanel", "ItemOutputsNode", "ItemInputsNode", "BuildingModeInAndOutPreview", "colisionShape", "tierColor", "Model")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_y2u2e")
-Type = 3
 out_direction = Vector2(0, 0)
-colisionShape = NodePath("CollisionShape2D")
-tierColor = NodePath("model/Polygon2D")
-Model = NodePath("model")
 outInventory_node = NodePath("inventory/inv_grid")
 MouseDetectionPanel = NodePath("Panel")
 ItemOutputsNode = NodePath("Outputs")
 ItemInputsNode = NodePath("Inputs")
 BuildingModeInAndOutPreview = NodePath("model/Inputs-outputs")
+Type = 3
+colisionShape = NodePath("CollisionShape2D")
+tierColor = NodePath("model/Polygon2D")
+Model = NodePath("model")
 
 [node name="model" type="Node2D" parent="."]
 
@@ -147,6 +147,7 @@ offset_left = 2.0
 offset_top = 22.0
 offset_right = 78.0
 offset_bottom = 70.0
+mouse_filter = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="inventory/ItemSelection/CenterContainer"]
 custom_minimum_size = Vector2(64, 48)
@@ -158,6 +159,7 @@ horizontal_scroll_mode = 0
 clip_contents = true
 custom_minimum_size = Vector2(64, 48)
 layout_mode = 2
+mouse_filter = 0
 
 [node name="Saidas" type="Control" parent="inventory/ItemSelection"]
 anchors_preset = 0
@@ -173,9 +175,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="inventory/ItemSelection/Saidas/CenterContainer"]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="Saida0" type="Panel" parent="inventory/ItemSelection/Saidas/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(8, 8)
