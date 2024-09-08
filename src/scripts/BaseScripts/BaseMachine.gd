@@ -21,7 +21,6 @@ signal ItemRecived
 @export var outInventory_node : InventoryGrid = null
 
 @export_category("inputs / outputs")
-@export var MouseDetectionPanel : Panel = null
 @export var ItemOutputsNode : Node2D = null
 @export var ExpectedItemsOutput : Dictionary = {}
 @export var ItemInputsNode : Node2D = null
@@ -37,15 +36,6 @@ var inventory : Dictionary = {}
 var Outinventory : Dictionary = {}
 
 var current_energy = 0
-
-func _setup():
-	if preview : return
-	show_hide_inv(false)
-	if MouseDetectionPanel:
-		MouseDetectionPanel.connect("mouse_entered", show_hide_inv.bind(true))
-		MouseDetectionPanel.connect("mouse_exited", show_hide_inv.bind(false))
-	
-	_reload()
 
 func _reload():
 	if MonoOutput and ItemOutputsNode:
@@ -107,7 +97,7 @@ func receive_energy(amount):
 	if current_energy > max_capacity:
 		current_energy = max_capacity
 
-func update():
+func update_machine():
 	if preview : return
 	
 	active = (current_energy > TrashHoldEnergyLevel)
@@ -147,7 +137,7 @@ func can_run_machine():
 func get_available_space():
 	return max_capacity - current_energy
 
-# INVENTARIO
+#region Inventory
 
 func add_item_to_inventory(item_name : String, item_quantity : int, inv : Dictionary = Outinventory):
 	var slot_indices: Array = inv.keys()
@@ -322,7 +312,9 @@ func get_slot_by_item(item_name: String, inv : Dictionary = Outinventory):
 			return index
 	return "notFound"
 
-# END INVENTARIO
+#endregion
+
+#region Item Movement
 
 func handle_especific_output(rayname):
 	if Type in [types.Process, types.Filter]:
@@ -479,3 +471,5 @@ func can_recive_item(item_name):
 				break 
 	
 	return can_receive
+
+#endregion

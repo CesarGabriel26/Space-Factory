@@ -12,6 +12,7 @@ var connected_generators = []  # Lista de geradores conectados
 var connected_transfer_blocks = []  # Lista de outros blocos de transferência conectados
 
 func _ready():
+	_setup()
 	var rays : Array = colisoes.get_children()
 	for ray : RayCast2D in rays:
 		var dir = Vector2.ZERO
@@ -34,6 +35,7 @@ func _process(delta):
 	_transfer_energy_to_connected_blocks()
 	_pull_energy_from_generators()
 	show_rays()
+	update()
 	pass
 
 # Função para transferir energia para outros blocos conectados
@@ -97,3 +99,19 @@ func show_rays():
 			
 			# Define o ponto final com o offset
 			line.points[1] = local_collision_point + offset
+
+func send_block_data(send : bool):
+	var max_life = 100
+	var send_data = {
+		"name" : data["name"],
+		"life" : life,
+		"life_max" : max_life,
+		"energy" : current_energy,
+		"energy_max" : max_capacity
+	}
+	
+	if send:
+		SignalManager.emit_signal("MouseHoveringBlock", send_data)
+	else:
+		SignalManager.emit_signal("MouseHoveringBlock", {})
+	pass

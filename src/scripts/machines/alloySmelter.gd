@@ -31,3 +31,18 @@ func tick():
 		$CPUParticles2D.emitting = false
 	
 	active = $CPUParticles2D.emitting
+
+func send_block_data(send : bool):
+	var send_data = {
+		"name" : data["name"],
+		"life" : life,
+		"life_max" : max_life,
+		"energy" : current_energy,
+		"energy_max" : max_capacity
+	}
+	
+	if send:
+		SignalManager.emit_signal("MouseHoveringBlock", send_data)
+	else:
+		SignalManager.emit_signal("MouseHoveringBlock", {})
+	pass

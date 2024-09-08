@@ -13,7 +13,7 @@ size = Vector2(4, 4)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5qv0"]
 
-[node name="VacuumTube" type="StaticBody2D" node_paths=PackedStringArray("UiInvContainer", "outInventory_node", "MouseDetectionPanel", "ItemOutputsNode", "ItemInputsNode", "colisionShape", "tierColor")]
+[node name="VacuumTube" type="StaticBody2D" node_paths=PackedStringArray("UiInvContainer", "outInventory_node", "ItemOutputsNode", "ItemInputsNode", "colisionShape", "tierColor", "MouseDetectionPanel")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_q1uhw")
@@ -22,11 +22,11 @@ MonoOutput = true
 UiInvContainer = NodePath("inventory")
 MaxStack = 1
 outInventory_node = NodePath("inventory/inv_grid")
-MouseDetectionPanel = NodePath("Panel")
 ItemOutputsNode = NodePath("Outputs")
 ItemInputsNode = NodePath("Inputs")
 colisionShape = NodePath("CollisionShape2D")
 tierColor = NodePath("model/Polygon2D")
+MouseDetectionPanel = NodePath("Panel")
 
 [node name="model" type="Node2D" parent="."]
 

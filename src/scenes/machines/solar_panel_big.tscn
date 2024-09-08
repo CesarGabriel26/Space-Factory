@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqep35pebpevi"]
+[gd_scene load_steps=5 format=3 uid="uid://dqep35pebpevi"]
 
 [ext_resource type="Script" path="res://src/scripts/machines/solar_panel.gd" id="1_hq0mg"]
 [ext_resource type="Texture2D" uid="uid://co5nr7gxnqfbv" path="res://src/img/sheets/props/MultiTilemachines.png" id="2_t15iw"]
@@ -6,13 +6,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dm1bq"]
 size = Vector2(64, 64)
 
-[node name="solar_panel_big" type="StaticBody2D" node_paths=PackedStringArray("colisionShape", "Model")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhy8q"]
+
+[node name="solar_panel_big" type="StaticBody2D" node_paths=PackedStringArray("colisionShape", "Model", "MouseDetectionPanel")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_hq0mg")
 Type = 5
 colisionShape = NodePath("CollisionShape2D")
 Model = NodePath("model")
+MouseDetectionPanel = NodePath("Panel")
 
 [node name="model" type="Node2D" parent="."]
 
@@ -27,3 +30,10 @@ region_rect = Rect2(192, 192, 64, 64)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_dm1bq")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mhy8q")

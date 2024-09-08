@@ -141,3 +141,16 @@ func auto_tile(size : Vector2 = Vector2(32,32), ray_casts : Array = [false, fals
 			), 
 			size
 		)
+
+func send_block_data(send : bool):
+	var send_data = {
+		"name" : data["name"],
+		"life" : life,
+		"life_max" : max_life,
+	}
+	
+	if send:
+		SignalManager.emit_signal("MouseHoveringBlock", send_data)
+	else:
+		SignalManager.emit_signal("MouseHoveringBlock", {})
+	pass

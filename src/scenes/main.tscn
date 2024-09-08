@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgdlnaiorjiha"]
+[gd_scene load_steps=25 format=3 uid="uid://cgdlnaiorjiha"]
 
 [ext_resource type="PackedScene" uid="uid://tu1wxhx1irct" path="res://src/scenes/player/player_camera.tscn" id="1_0dehj"]
 [ext_resource type="Script" path="res://src/scripts/main.gd" id="1_4h8yo"]
@@ -6,6 +6,11 @@
 [ext_resource type="Script" path="res://src/scripts/player/player_camera.gd" id="2_a45ga"]
 [ext_resource type="PackedScene" uid="uid://c72xg72t3q372" path="res://src/scenes/tools/builder.tscn" id="4_ojl5c"]
 [ext_resource type="Script" path="res://src/scripts/ui/Menu/OptionSelectionMenu.gd" id="6_o0bec"]
+[ext_resource type="Texture2D" uid="uid://3t7k0swahf4j" path="res://src/img/Ui/Panels/top border.png" id="7_cwbmc"]
+[ext_resource type="Texture2D" uid="uid://d1h82a71dt6rt" path="res://src/img/sheets/icons_sheet.png" id="8_4rn7d"]
+[ext_resource type="Texture2D" uid="uid://d03j6cthfoggg" path="res://src/img/Ui/Panels/base.png" id="8_m237s"]
+[ext_resource type="Texture2D" uid="uid://dgxveudrbthuj" path="res://src/img/Ui/progress/bg.png" id="9_2ebhj"]
+[ext_resource type="Texture2D" uid="uid://6jribahn486u" path="res://src/img/Ui/progress/fill.png" id="10_ao5sk"]
 
 [sub_resource type="Gradient" id="Gradient_ikant"]
 offsets = PackedFloat32Array(0, 0.25, 0.375, 0.625, 0.75, 1)
@@ -17,7 +22,15 @@ gradient = SubResource("Gradient_ikant")
 [sub_resource type="TileSet" id="TileSet_do00f"]
 tile_size = Vector2i(32, 32)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em2u7"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ypyx"]
+texture = ExtResource("7_cwbmc")
+modulate_color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp0cc"]
+atlas = ExtResource("8_4rn7d")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lemeu"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 0.588235)
 border_width_left = 2
 border_width_top = 2
@@ -25,35 +38,19 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.427493, 0.427493, 0.427493, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4le5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cofxn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p5h24"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_12mir"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7gn8p"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p51ox"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hislh"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d03q1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fra6a"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y4flq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8kesr"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ueyy"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nwj8e"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ichtl"]
-bg_color = Color(0.180392, 0.180392, 0.180392, 0.588235)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.427493, 0.427493, 0.427493, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5tufi"]
-bg_color = Color(0.180392, 0.180392, 0.180392, 0.588235)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.427493, 0.427493, 0.427493, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rw7qr"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("Tile_Map", "Builder")]
 script = ExtResource("1_4h8yo")
@@ -101,15 +98,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -360.0
-offset_top = -368.0
+offset_left = -316.0
+offset_top = -448.0
+offset_right = 2.0
+offset_bottom = 2.0
 grow_horizontal = 0
 grow_vertical = 0
 border_width = 4.0
 
-[node name="BuildMenu" type="Control" parent="CanvasLayer/Ui/BuildMenuReference" node_paths=PackedStringArray("tab_container", "button_container")]
-custom_minimum_size = Vector2(360, 368)
-layout_direction = 2
+[node name="BuildMenu" type="Control" parent="CanvasLayer/Ui/BuildMenuReference" node_paths=PackedStringArray("tab_container", "button_container", "stats", "stats_name", "stats_life", "stats_energia", "stats_liquido", "stats_calor")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,102 +114,169 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_o0bec")
-tab_container = NodePath("Builds/MarginContainer/TabContainer")
-button_container = NodePath("Tabs/MarginContainer/GridContainer")
-metadata/_edit_use_anchors_ = true
+tab_container = NodePath("items/MarginContainer/TabContainer")
+button_container = NodePath("tabs/MarginContainer/GridContainer")
+stats = NodePath("stats")
+stats_name = NodePath("stats/MarginContainer/VBoxContainer/HBoxContainer/RichTextLabel")
+stats_life = NodePath("stats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Vida")
+stats_energia = NodePath("stats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Energia")
+stats_liquido = NodePath("stats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Liquido")
+stats_calor = NodePath("stats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Calor")
 
-[node name="Builds" type="PanelContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu"]
-custom_minimum_size = Vector2(0, 296)
+[node name="stats" type="PanelContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu"]
+visible = false
+clip_contents = true
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.658067
-anchor_bottom = 0.804
-offset_right = 0.0959969
-offset_bottom = -43.7499
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_em2u7")
+anchor_left = 0.006
+anchor_top = 0.004
+anchor_right = 0.987
+anchor_bottom = 0.436
+offset_left = 0.092
+offset_top = 0.2
+offset_right = 0.133972
+offset_bottom = -0.200012
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_7ypyx")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/Builds"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats"]
+clip_contents = true
 layout_mode = 2
-mouse_filter = 2
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 17
+theme_override_constants/margin_bottom = 17
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_bp0cc")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Reator De Tório"
+scroll_active = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Vida" type="TextureProgressBar" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("9_2ebhj")
+texture_progress = ExtResource("10_ao5sk")
+tint_progress = Color(1, 0.164706, 0, 1)
+
+[node name="Energia" type="TextureProgressBar" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("9_2ebhj")
+texture_progress = ExtResource("10_ao5sk")
+tint_progress = Color(1, 1, 0, 1)
+
+[node name="Liquido" type="TextureProgressBar" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("9_2ebhj")
+texture_progress = ExtResource("10_ao5sk")
+tint_progress = Color(0, 0.670588, 1, 1)
+
+[node name="Calor" type="TextureProgressBar" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/stats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("9_2ebhj")
+texture_progress = ExtResource("10_ao5sk")
+tint_progress = Color(1, 0.588235, 0.329412, 1)
+
+[node name="tabs" type="PanelContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu"]
+layout_mode = 2
+anchor_left = 0.673
+anchor_top = 0.436
+anchor_right = 0.987
+anchor_bottom = 0.991
+offset_left = -0.0139923
+offset_top = -0.200012
+offset_right = 0.133972
+offset_bottom = 0.0499878
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_lemeu")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/tabs"]
+layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/Builds/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/tabs/MarginContainer"]
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/tab_selected = SubResource("StyleBoxEmpty_j4le5")
-theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_p5h24")
-theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_7gn8p")
-theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_hislh")
-theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_fra6a")
-theme_override_styles/panel = SubResource("StyleBoxEmpty_8kesr")
-theme_override_styles/tabbar_background = SubResource("StyleBoxEmpty_nwj8e")
-tabs_visible = false
-
-[node name="Tabs" type="PanelContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu"]
-custom_minimum_size = Vector2(123, 296)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.658
-anchor_right = 0.999733
-anchor_bottom = 0.804
-offset_left = 0.119934
-offset_right = 0.0959969
-offset_bottom = -43.7499
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ichtl")
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/Tabs"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/Tabs/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Tools" type="PanelContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu"]
-custom_minimum_size = Vector2(0, 72)
+[node name="items" type="PanelContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu"]
+layout_mode = 2
+anchor_left = 0.006
+anchor_top = 0.436
+anchor_right = 0.673
+anchor_bottom = 0.876
+offset_left = 0.092
+offset_top = -0.200012
+offset_right = -0.0140076
+offset_bottom = -0.200012
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_lemeu")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/items"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu/items/MarginContainer"]
+layout_mode = 2
+theme_override_styles/tab_selected = SubResource("StyleBoxEmpty_cofxn")
+theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_12mir")
+theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_p51ox")
+theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_d03q1")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_y4flq")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1ueyy")
+theme_override_styles/tabbar_background = SubResource("StyleBoxEmpty_rw7qr")
+tabs_visible = false
+
+[node name="tools" type="PanelContainer" parent="CanvasLayer/Ui/BuildMenuReference/BuildMenu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.80413
-anchor_right = 0.999889
-anchor_bottom = 1.00026
-offset_left = 6.10352e-05
-offset_top = 0.0799866
-offset_right = 0.0400505
-offset_bottom = -0.0960388
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5tufi")
+anchor_left = 0.00628931
+anchor_top = 0.875556
+anchor_right = 0.67317
+anchor_bottom = 0.991222
+offset_right = -0.0680008
+offset_bottom = -0.0499992
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_lemeu")
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CanvasLayer/Ui"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -192.0
-offset_right = 192.0
-offset_bottom = 64.0
-grow_horizontal = 2
-border_width = 4.0
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Ui/ReferenceRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Base" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(995, 425)
+texture = ExtResource("8_m237s")
 
 [connection signal="mouse_entered" from="CanvasLayer/Ui/BuildMenuReference/BuildMenu" to="CanvasLayer/Ui/BuildMenuReference/BuildMenu" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Ui/BuildMenuReference/BuildMenu" to="CanvasLayer/Ui/BuildMenuReference/BuildMenu" method="_on_mouse_exited"]

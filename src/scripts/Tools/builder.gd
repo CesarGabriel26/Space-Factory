@@ -46,11 +46,14 @@ func build():
 		else:
 			var Machines = JsonManager.LerJson("res://src/data/maquinas.json")
 			var Machine = Machines[_build]
-						
+			
+			var data = Machine["data"]
+			data["name"] = _build
+			
 			prop = load(Machine["source"])
 			prop = prop.instantiate()
 			prop.global_position = pos
-			prop.data = Machine["data"]
+			prop.data = data
 			
 		if prop is BaseMachine:
 			prop.out_direction = rotation_to_out_direction()

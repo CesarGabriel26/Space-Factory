@@ -18,42 +18,57 @@ enum types {
 
 ## Vida total do bloco
 @export var life = 10
+var max_life = 100
 
-## Resistência a ser congelado (valores mais altos indicam maior resistência)
 @export var cold_resistence = 1
-
-## A taxa de mudança para o azul
 @export var freeze_rate = 0.1
-
-## Resistência a explosões (valores mais altos indicam maior resistência)
 @export var explosion_resistence = 1
-
-## Resistencia a pegar fogo (valores mais altos indicam maior resistência)
 @export var heat_resistence = 1
-
-## Chance de pegar fogo (valores mais altos indicam maior probabilidade)
 @export var flammability = 0.1
-
-## Velocidade de queima (quanto tempo leva para queimar completamente)
 @export var burn_rate = 5.0
-
-## Durabilidade do bloco (afeta sua integridade ao longo do tempo)
 @export var durability = 100
-
-## Efeito ao ambiente (pode ser usado para alterar atributos como poluição)
-@export var environmental_impact = 0.1
-
-## Chance de gerar escória (ou outro resíduo) quando destruído
-@export var slag_yield = 0.05
 
 @export_subgroup("nodes")
 @export var colisionShape : CollisionShape2D = null
 @export var tierColor : Polygon2D = null
 @export var Model : Node2D = null
+@export var MouseDetectionPanel : Panel = null
 
 var data = {}
 var preview = false
 var active = false
+
+var mouseHovering = false
+
+func _setup():
+	if preview : return
+	
+	if MouseDetectionPanel:
+		MouseDetectionPanel.connect("mouse_entered", mouse_input.bind(true))
+		MouseDetectionPanel.connect("mouse_exited", mouse_input.bind(false))
+	
+	if has_method("show_hide_inv"):
+		call_deferred("show_hide_inv", false)
+		call_deferred("_reload")
+
+func update():
+	if preview : return
+	
+	if has_method("update_machine"):
+		call_deferred("update_machine")
+	
+	if has_method("send_block_data") and mouseHovering:
+		call_deferred("send_block_data", true)
+
+func mouse_input(hovering : bool):
+	if has_method("show_hide_inv"):
+		call_deferred("show_hide_inv", hovering)
+	
+	if has_method("send_block_data"):
+		call_deferred("send_block_data", hovering)
+	
+	mouseHovering = hovering
+	pass
 
 ## Reduz a vida do bloco baseado em um dano especificado
 func take_damage(amount: float):

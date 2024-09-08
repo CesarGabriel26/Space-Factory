@@ -9,11 +9,13 @@ var connected_solar_panels = []  # Lista de painéis solares conectados
 
 func _ready():
 	_find_connected_panels()
+	_setup()
 	pass 
 
 func _process(delta):
 	_generate_energy(delta)
 	_share_energy_with_connected_panels()
+	update()
 	pass
 
 func get_available_energy():
@@ -72,3 +74,19 @@ func get_neighbor_at_position(position: Vector2) -> Node2D:
 		if child is SolarPanel and child.global_position.distance_to(position) < 1:
 			return child
 	return null
+
+func send_block_data(send : bool):
+	var max_life = 100
+	var send_data = {
+		"name" : data["name"],
+		"life" : life,
+		"life_max" : max_life,
+		"energy" : current_voltage,
+		"energy_max" : max_capacity
+	}
+	
+	if send:
+		SignalManager.emit_signal("MouseHoveringBlock", send_data)
+	else:
+		SignalManager.emit_signal("MouseHoveringBlock", {})
+	pass
