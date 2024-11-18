@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtw5rbugxej4"]
+
+[ext_resource type="Texture2D" uid="uid://co5nr7gxnqfbv" path="res://resources/images/SpriteSheets/props/Blocks_64x64.png" id="1_2q5mo"]
+[ext_resource type="Script" path="res://data/scripts/Buildable/Miner.gd" id="1_f2g18"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y30ew"]
+size = Vector2(64, 64)
+
+[node name="Miner" type="StaticBody2D"]
+script = ExtResource("1_f2g18")
+
+[node name="Layer0" type="Sprite2D" parent="."]
+texture = ExtResource("1_2q5mo")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Layer1" type="Sprite2D" parent="Layer0"]
+texture = ExtResource("1_2q5mo")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y30ew")

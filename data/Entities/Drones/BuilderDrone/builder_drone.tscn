@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dryej0j0bkwcs"]
+
+[ext_resource type="Script" path="res://data/Entities/Drones/BuilderDrone/builder_drone.gd" id="1_32klh"]
+[ext_resource type="Texture2D" uid="uid://bkmrkubjrudxk" path="res://resources/images/Drones/Builder.png" id="2_k052a"]
+[ext_resource type="Script" path="res://scripts/classes/utils/pathfinding.gd" id="2_qwi7r"]
+[ext_resource type="PackedScene" uid="uid://b2yn331u1wdo8" path="res://resources/effects/laser/laser.tscn" id="4_gawk0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v18nx"]
+radius = 14.0
+
+[node name="BuilderDrone" type="RigidBody2D" node_paths=PackedStringArray("Laser", "pathfinfingAgent", "sprite")]
+z_index = 1
+collision_layer = 256
+collision_mask = 0
+input_pickable = true
+gravity_scale = 0.0
+lock_rotation = true
+freeze_mode = 1
+script = ExtResource("1_32klh")
+Laser = NodePath("Sprite/Layer0/laser/laser")
+pathfinfingAgent = NodePath("Utils/Navigation")
+sprite = NodePath("Sprite/Layer0")
+speed = 2.0
+
+[node name="Utils" type="Node2D" parent="."]
+
+[node name="Navigation" type="NavigationAgent2D" parent="Utils"]
+script = ExtResource("2_qwi7r")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Layer0" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+texture = ExtResource("2_k052a")
+region_enabled = true
+region_rect = Rect2(0, 0, 38, 34)
+
+[node name="Layer1" type="Sprite2D" parent="Sprite/Layer0"]
+self_modulate = Color(0, 0.802333, 0.83, 1)
+texture_filter = 1
+texture = ExtResource("2_k052a")
+region_enabled = true
+region_rect = Rect2(38, 0, 38, 34)
+
+[node name="laser" type="Node2D" parent="Sprite/Layer0"]
+z_index = -1
+
+[node name="laser" parent="Sprite/Layer0/laser" instance=ExtResource("4_gawk0")]
+
+[node name="ColisionArea" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v18nx")

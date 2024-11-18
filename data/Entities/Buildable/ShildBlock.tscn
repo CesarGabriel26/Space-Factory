@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://80biudpdd0lp"]
+
+[ext_resource type="Texture2D" uid="uid://dkliccddwdgyv" path="res://resources/images/SpriteSheets/props/Blocks.png" id="1_01w6s"]
+[ext_resource type="Script" path="res://data/scripts/Buildable/ShildBlock.gd" id="1_x684s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8sq3"]
+size = Vector2(32, 32)
+
+[node name="ShildBlock" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_x684s")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_01w6s")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l8sq3")

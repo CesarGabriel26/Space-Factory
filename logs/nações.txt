@@ -1,0 +1,65 @@
+1. Rússia
+Buffs:
+Resistência ao frio: Menor consumo de energia e maior eficiência em zonas frias do espaço.
+Equipamento robusto: Maquinário mais durável, com resistência aumentada a danos físicos.
+Mineração eficiente: Capacidade extra de carregar recursos minerais pesados.
+Debuffs:
+Menor eficiência energética: Consome mais energia em operações de alta precisão.
+Velocidade de produção lenta: Maquinários e reparos demoram mais para serem concluídos.
+2. Estados Unidos
+Buffs:
+Tecnologia avançada: Acesso a tecnologias de ponta, como veículos rápidos e scanners aprimorados.
+Versatilidade de navegação: Menor penalidade ao operar em diferentes tipos de terreno e climas.
+Rede de comunicação: Acesso a drones e satélites que melhoram o mapeamento e a comunicação entre bases.
+Debuffs:
+Alto custo de manutenção: Equipamentos sofisticados, mas caros para manter e consertar.
+Dependência de energia: Consome mais energia em zonas isoladas sem fontes próximas.
+3. China
+Buffs:
+Alta produtividade: Produz recursos e maquinários em massa e com menor custo.
+Adaptabilidade: Capacidade de operar em ambientes variados com debuffs reduzidos.
+Desenvolvimento rápido de colônias: Instalações construídas mais rapidamente.
+Debuffs:
+Baixa qualidade de fabricação: Maquinários com vida útil mais curta.
+Recursos naturais escassos: Menor taxa de sucesso na extração de recursos raros.
+4. União Europeia
+Buffs:
+Eficiência energética: Tecnologia avançada com baixo consumo de energia.
+Foco em energia renovável: Menor custo para coletar energia solar e outras fontes renováveis.
+Capacidades científicas avançadas: Pesquisa e desenvolvimento de novas tecnologias mais rápidos.
+Debuffs:
+Complexidade de produção: Equipamentos são difíceis de reparar, com partes raras.
+Logística lenta: Transporte entre colônias e bases espaciais é menos eficiente.
+5. Índia
+Buffs:
+Tecnologia de baixo custo: Equipamentos baratos e fáceis de substituir.
+Alta resiliência: Capacidade de operar com recursos limitados e em ambientes hostis.
+Especialização em exploração planetária: Aumento na coleta de informações planetárias e no mapeamento de terreno.
+Debuffs:
+Equipamento básico: Menos resistência e funcionalidade limitada em comparação com outras nações.
+Limitação de infraestrutura: Instalações ocupam mais espaço e têm eficiência reduzida.
+6. Japão
+Buffs:
+Tecnologia de precisão: Equipamentos com maior eficiência e precisão em ambientes extremos.
+Automação avançada: Acesso a robôs de apoio que ajudam na mineração e nas operações.
+Tecnologia compacta: Equipamentos menores, economizando espaço e permitindo transportes mais leves.
+Debuffs:
+Alto custo de produção: Equipamentos são caros e demorados para fabricar.
+Fragilidade estrutural: Equipamentos, embora avançados, são mais suscetíveis a danos físicos.
+7. Brasil
+Buffs:
+Adaptabilidade em biomas hostis: Operações em áreas com variações de temperatura e atmosfera são mais eficientes.
+Experiência em recursos naturais: Aumento na coleta de recursos orgânicos e minerais.
+Foco em sustentabilidade: Equipamentos e instalações consomem menos recursos naturais.
+Debuffs:
+Tecnologia básica: Equipamentos possuem funções limitadas e são menos avançados.
+Falta de especialização tecnológica: Menor eficiência em operações de alta precisão.
+
+8. Reino Unido
+Buffs:
+Avanço em biotecnologia: Acesso a recursos aprimorados para criação de colônias autossustentáveis.
+Especialização em inteligência artificial: IA otimizada para gerenciar operações remotas e comunicação.
+Durabilidade de longa distância: Equipamentos que operam bem em missões distantes e prolongadas.
+Debuffs:
+Custos de desenvolvimento elevados: Desenvolver novas tecnologias e bases é mais caro.
+Dependência de materiais específicos: Certos componentes são raros e difíceis de obter.

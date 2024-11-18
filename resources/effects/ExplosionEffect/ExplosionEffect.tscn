@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch48eaeskfvfu"]
+
+[ext_resource type="Script" path="res://resources/effects/ExplosionEffect/ExplosionEffect.gd" id="1_ymfx0"]
+
+[sub_resource type="Curve" id="Curve_nn2lr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_auib4"]
+colors = PackedColorArray(1, 1, 1, 1, 0.388235, 0.388235, 0.388235, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bnjcr"]
+radius = 80.0
+
+[node name="ExplosionEffect" type="CPUParticles2D"]
+emitting = false
+amount = 250
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 200.0
+scale_amount_min = 0.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_nn2lr")
+color = Color(1, 0.517647, 0, 1)
+color_ramp = SubResource("Gradient_auib4")
+hue_variation_max = 1.0
+script = ExtResource("1_ymfx0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bnjcr")
