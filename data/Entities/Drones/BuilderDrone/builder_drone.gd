@@ -14,14 +14,15 @@ func _process(delta):
 	_update(delta)
 	
 	# Atualiza o progresso da construção conforme o tempo de construção total
-	if building and build_progress < target.data["build_duration"]:
+	if building and (build_progress * 2) < target.data["build_duration"]:
 		build_progress += delta  # Incrementa pelo tempo entre frames
+		# Calcula o progresso normalizado (0.5 a 1.0)
+		var normalized_progress = (0.5 + (build_progress / target.data["build_duration"]) * 0.5) + .05
 		
-		# Calcula o progresso normalizado (0.0 a 1.0) e atualiza o shader do Sprite
-		var normalized_progress = 0.5 - (build_progress / (target.data["build_duration"] * 2))
 		if target:  # Garante que o target tem um Sprite
 			target.build_progress = normalized_progress
 			target._update()
+	
 		
 	elif building:
 		fire(false)

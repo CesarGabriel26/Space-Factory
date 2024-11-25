@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://blm8e84qojnuy"]
+
+[ext_resource type="Script" path="res://data/Ui/inv_controller/inv_controller.gd" id="1_3cbm0"]
+
+[node name="invController" type="VBoxContainer"]
+offset_right = 128.0
+offset_bottom = 64.0
+scale = Vector2(0.750242, 0.750242)
+theme_override_constants/separation = 0
+script = ExtResource("1_3cbm0")
+
+[node name="In-inv" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Out-inv" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2

@@ -22,6 +22,7 @@ InventoryManager="*res://scripts/managers/InventoryManager.gd"
 GlobalData="*res://scripts/globals/GlobalData.gd"
 Constants="*res://scripts/globals/Constants.gd"
 JsonManager="*res://scripts/managers/file/JsonManager.gd"
+TextureManager="*res://scripts/managers/file/TextureManager.gd"
 
 [display]
 
@@ -44,6 +45,7 @@ MouseL={
 [layer_names]
 
 2d_physics/layer_1="Mundo"
+2d_navigation/layer_1="Mundo"
 2d_physics/layer_2="Contrucoes"
 2d_physics/layer_3="Inimigos"
 2d_physics/layer_4="Projeteis"

@@ -1,12 +1,58 @@
 {
-	"shild_block": {
+	"miner_mk1" : {
+		"menu" : "estracao",
 		"life" : 25,
-		"prop_scene": "res://data/Entities/Buildable/ShildBlock.tscn",
-		"texture_file" : "res://resources/images/SpriteSheets/props/Blocks.png",
-		"texture_cords" : {
-			"x" : 0,
-			"y" : 0
+		"tier" : 0,
+		"delay" : 5,
+		
+		"prop_scene": "res://data/Entities/Buildable/Miner.tscn",
+		"texture": {
+			"texture_size": "(64, 64)",
+			"texture_file" : "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+			"texture_cords" : [
+				{
+					"x" : 0,
+					"y" : 0,
+				},
+				{
+					"x" : 1,
+					"y" : 0,
+				}
+			],
 		},
+		
+		"build_duration": 5,
+		
+		"has_inventory" : {
+			"input" : true,
+			"output" : true,
+			"fluid_input" : true,
+			"fluid_output" : false
+		},
+		"items_to_generate": {
+			"minerio_de_cobre" : 0.5,
+			"minerio_de_ferro" : 0.2,
+			"minerio_de_ouro"  : 0.15,
+			"minerio_de_zinco" : 0.15
+		}
+	},
+	
+	"shild_block": {
+		"menu" : "defesa",
+		"life" : 25,
+		
+		"prop_scene": "res://data/Entities/Buildable/ShildBlock.tscn",
+		"texture": {
+			"texture_size": "(32, 32)",
+			"texture_file" : "res://resources/images/SpriteSheets/props/Blocks.png",
+			"texture_cords" : [
+				{
+					"x" : 0,
+					"y" : 0
+				},
+			]
+		},
+		
 		"build_duration": 1,
 		"has_inventory" : {
 			"input" : false,

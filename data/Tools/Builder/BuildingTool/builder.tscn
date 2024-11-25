@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://dolgtflb4sqyj" path="res://resources/images/Tools/BuildingSpot.png" id="1_eayhw"]
 [ext_resource type="Script" path="res://data/Tools/Builder/BuildingTool/builder.gd" id="1_gkcxq"]
-[ext_resource type="Texture2D" uid="uid://dkliccddwdgyv" path="res://resources/images/SpriteSheets/props/Blocks.png" id="2_xy5oe"]
+[ext_resource type="Texture2D" uid="uid://co5nr7gxnqfbv" path="res://resources/images/SpriteSheets/props/Blocks_64x64.png" id="2_ggfts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eaqsn"]
-size = Vector2(31, 31)
+size = Vector2(63, 63)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6g4a"]
 texture = ExtResource("1_eayhw")
@@ -14,30 +14,42 @@ texture = ExtResource("1_eayhw")
 bg_color = Color(1, 0, 0, 0.372549)
 
 [node name="Builder" type="Area2D"]
+z_index = 1
 collision_layer = 3
 collision_mask = 19
 script = ExtResource("1_gkcxq")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Sprites"]
 modulate = Color(1, 1, 1, 0.427451)
 z_index = -1
-texture = ExtResource("2_xy5oe")
+texture = ExtResource("2_ggfts")
 region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
+region_rect = Rect2(0, 0, 64, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eaqsn")
 
 [node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
 theme_override_styles/panel = SubResource("StyleBoxTexture_a6g4a")
 
 [node name="OverlayColor" type="Panel" parent="."]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(32, 32)
 theme_override_styles/panel = SubResource("StyleBoxFlat_vtgx0")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfy8y800e4c37"]
+[gd_scene load_steps=10 format=3 uid="uid://cfy8y800e4c37"]
 
 [ext_resource type="Texture2D" uid="uid://dolgtflb4sqyj" path="res://resources/images/Tools/BuildingSpot.png" id="1_5qyb4"]
 [ext_resource type="Script" path="res://data/Tools/Builder/BuildingSpot/BuildingSpot.gd" id="1_6o20i"]
 [ext_resource type="Shader" path="res://resources/Shaders/BuildingSpot.gdshader" id="2_fs173"]
-[ext_resource type="Texture2D" uid="uid://dkliccddwdgyv" path="res://resources/images/SpriteSheets/props/Blocks.png" id="3_2nesj"]
+[ext_resource type="Texture2D" uid="uid://co5nr7gxnqfbv" path="res://resources/images/SpriteSheets/props/Blocks_64x64.png" id="3_hgbgh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tjqkf"]
 shader = ExtResource("2_fs173")
@@ -11,6 +11,17 @@ shader_parameter/build_progress = 0.5
 shader_parameter/tile_count = Vector2(100, 100)
 shader_parameter/border_color = Color(1, 0.647, 0, 1)
 shader_parameter/border_thickness = 0.02
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nne5r"]
+shader = ExtResource("2_fs173")
+shader_parameter/build_progress = 0.674
+shader_parameter/tile_count = Vector2(4, 4)
+shader_parameter/border_color = Color(1, 0.84, 0, 1)
+shader_parameter/border_thickness = 0.02
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx5dr"]
+atlas = ExtResource("3_hgbgh")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wgfxh"]
 texture = ExtResource("1_5qyb4")
@@ -23,17 +34,20 @@ collision_layer = 16
 collision_mask = 15
 script = ExtResource("1_6o20i")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprites_With_Shader" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_tjqkf")
-texture = ExtResource("3_2nesj")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
 
-[node name="Sprite2" type="Sprite2D" parent="Sprite"]
-modulate = Color(1, 1, 1, 0.427451)
-z_index = -1
-texture = ExtResource("3_2nesj")
+[node name="Sprite" type="Sprite2D" parent="Sprites_With_Shader"]
+material = SubResource("ShaderMaterial_nne5r")
+texture = ExtResource("3_hgbgh")
 region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Sprites_Without_Shader" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.156863)
+
+[node name="Sprite2" type="Sprite2D" parent="Sprites_Without_Shader"]
+texture = SubResource("AtlasTexture_jx5dr")
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="Panel" type="Panel" parent="."]
@@ -44,4 +58,5 @@ offset_bottom = 32.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_wgfxh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_ypwro")

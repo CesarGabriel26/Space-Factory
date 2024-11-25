@@ -4,6 +4,8 @@ class_name baseBlock
 const explosionEffect = preload("res://resources/effects/ExplosionEffect/ExplosionEffect.tscn")
 const building_spot = preload("res://data/Tools/Builder/BuildingSpot/BuildingSpot.tscn")
 
+@export_category("Nodes")
+@export var Sprites : Node2D
 @export_category("Stats")
 @export var life: float = 0.0
 @export var explosion_radius : float = 1.0
@@ -15,6 +17,22 @@ var a = false
 
 func _load():
 	life = data['life']
+	_load_texture()
+
+func _load_texture():
+	var loaded_textures = TextureManager._get_texture(data.texture)
+	
+	var size = loaded_textures['size']
+	var textures = loaded_textures.textures
+	
+	for c in Sprites.get_children():
+		c.queue_free()
+	
+	for texture in textures:
+		var Sprite = Sprite2D.new()
+		
+		Sprite.texture = texture
+		Sprites.add_child(Sprite)
 
 func receiveDemage(d : float):
 	life -= d

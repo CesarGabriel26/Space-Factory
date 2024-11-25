@@ -1,8 +1,10 @@
-extends StaticBody2D
+extends baseBlock
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_load()
+	$InvPreview/invController._update(data.map_pos)
 	pass # Replace with function body.
 
 
