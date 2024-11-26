@@ -66,4 +66,4 @@ layer_0/tile_data = PackedInt32Array(2, 4, 0, 65538, 65540, 0, 3, 65540, 0, 6553
 [node name="Entities" type="Node2D" parent="."]
 
 [node name="BuilderDrone" parent="Entities" instance=ExtResource("1_vlpi8")]
-position = Vector2(476, 380)
+position = Vector2(547, 237)

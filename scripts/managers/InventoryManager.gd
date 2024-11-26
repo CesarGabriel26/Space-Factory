@@ -1,7 +1,7 @@
 extends Node
 
 const MaxStack = 5
-const NumSlots = 3
+const NumSlots = 4
 
 func move_item_between_inventories(source_inv: Dictionary, target_inv: Dictionary, slot_index: int, quantity: int):
 	if source_inv.has(slot_index):
@@ -21,12 +21,13 @@ func clear_inventory(inv: Dictionary):
 func add_item_to_inventory(inv : Dictionary, item_name : String, item_quantity : int):
 	var slot_indices: Array = inv.keys()
 	slot_indices.sort()
+	
 	for item in slot_indices:
 		if inv[item][0] == item_name:
 			var able_to_add = MaxStack - inv[item][1]
 			if able_to_add >= item_quantity:
 				inv[item][1] += item_quantity
-				return
+				return inv
 			else:
 				inv[item][1] += able_to_add
 				item_quantity = item_quantity - able_to_add
@@ -35,10 +36,10 @@ func add_item_to_inventory(inv : Dictionary, item_name : String, item_quantity :
 	for i in range(NumSlots):
 		if inv.has(i) == false:
 			inv[i] = [item_name, item_quantity]
-			return
+			return inv
 		else:
 			if inv[i][0] == item_name:
-				return
+				return inv
 
 func add_item_to_especific_slot( inv : Dictionary, slotIndex : int, item_name : String, item_quantity : int):
 	if inv.has(slotIndex) == false:

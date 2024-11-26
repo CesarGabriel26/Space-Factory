@@ -87,13 +87,9 @@ func _build():
 		var pos = main_world._world_pos_to_map_pos(global_position)
 		
 		if data.has_inventory.input:
-			data['input_inv'] = {
-				0: ['escoria', 5]
-			}
+			data['input_inv'] = {}
 		if data.has_inventory.output:
-			data['output_inv'] = {
-				0: ['escoria', 1]
-			}
+			data['output_inv'] = {}
 		if data.has_inventory.fluid_input:
 			data['fluid_input_inv'] = [[null,0]] # o input de fluido só aceita um tipo de fluido por isso o tamanho maximo é 1
 		if data.has_inventory.fluid_output:

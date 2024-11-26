@@ -24,7 +24,7 @@
 		"build_duration": 5,
 		
 		"has_inventory" : {
-			"input" : true,
+			"input" : false,
 			"output" : true,
 			"fluid_input" : true,
 			"fluid_output" : false

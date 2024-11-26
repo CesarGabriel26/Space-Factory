@@ -40,7 +40,6 @@ func _load_sprites(loaded_textures : Dictionary):
 	shader.set("shader_parameter/tile_count", tile_count)
 	shader.set("shader_parameter/build_progress", .5)
 	
-	
 	for c in sprites_with_shader.get_children():
 		c.queue_free()
 	

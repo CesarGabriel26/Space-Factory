@@ -6,6 +6,7 @@ const INV_SLOT = preload("res://data/Ui/inv_slot/inv_slot.tscn")
 @onready var out_inv = $"Out-inv"
 
 func _update(map_pos : Vector2):
+	print(map_pos)
 	var block_data = GlobalData.WorldTiles[map_pos]
 	
 	in_inv.visible = block_data.has('input_inv')
