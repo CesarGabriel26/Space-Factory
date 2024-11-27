@@ -22,10 +22,7 @@ region_rect = Rect2(0, 0, 64, 64)
 [node name="InvPreview" type="Node2D" parent="."]
 
 [node name="invController" parent="InvPreview" instance=ExtResource("2_ch2sq")]
-offset_left = 32.0
-offset_top = -32.0
-offset_right = 160.0
-offset_bottom = 32.0
+position = Vector2(32, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y30ew")

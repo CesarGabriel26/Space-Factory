@@ -11,6 +11,7 @@ var shader = ShaderMaterial.new()
 
 func _ready():
 	life = 1
+	data = data.duplicate(true) 
 	$CollisionShape2D.shape.size = $Panel.size
 	DroneManager.builds_for_drones.append([self, false])
 	
