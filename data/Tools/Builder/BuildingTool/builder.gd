@@ -114,11 +114,13 @@ func _build():
 	for x in range(size.x):
 		for y in range(size.y):
 			var tile_pos = pos + Vector2(x, y)
-			positions.append(tile_pos)
-			MapDataManager.WorldTiles[tile_pos] = {
-				'ref': pos,
-				'out_dir': out_dirs[Vector2(x, y)]
-			}
+			if tile_pos != pos:
+				positions.append(tile_pos)
+				MapDataManager.WorldTiles[tile_pos] = {
+					'ref': pos,
+					'map_pos': tile_pos,
+					'out_dir': out_dirs[Vector2(x, y)]
+				}
 	
 	if data.has_inventory.input:
 		data['input_inv'] = {}
@@ -130,10 +132,17 @@ func _build():
 		data['fluid_output_inv'] = {}
 	
 	# Atualiza as informações do bloco principal
-	data['out_dir'] = out_dirs[Vector2(0, 0)]
+	# **Definindo o out_dir dependendo do tamanho do bloco**
+	if size == Vector2(1, 1):
+		data['out_dir'] = Vector2(out_dir.x, out_dir.y)
+	else:
+		data['out_dir'] = out_dirs[Vector2(0,0)]
+	
 	data['map_pos'] = pos
 	data['occupiedTiles'] = positions
-
+	
+	MapDataManager.WorldTiles[pos] = data
+	
 	# Carrega e posiciona o novo bloco na cena
 	var prop = data.prop_scene
 	if FileAccess.file_exists(prop):

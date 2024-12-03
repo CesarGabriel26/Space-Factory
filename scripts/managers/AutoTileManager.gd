@@ -83,8 +83,14 @@ func _get_auto_tilable_blocks():
 		
 		for i in range(nearby_blocks.size()):
 			var nearby_block = nearby_blocks[i]
+			var check_pos_is_diferent_from_out_dir 
 			
-			if check_pos[i] not in nodeData.out_dir:
+			if typeof(nodeData.out_dir) == TYPE_ARRAY:
+				check_pos_is_diferent_from_out_dir = (check_pos[i] not in nodeData.out_dir)
+			else:
+				check_pos_is_diferent_from_out_dir = (check_pos[i]!= nodeData.out_dir)
+			
+			if check_pos_is_diferent_from_out_dir:
 				res[i] = _auto_tile_conditions(nodeData, nearby_block)
 			else:
 				res[i] = false
@@ -99,14 +105,19 @@ func _auto_tile_conditions(nodeData, nearby_block):
 	if nearby_block == null or nodeData  == null:
 		return false
 	
-	elif nearby_block and nearby_block.has('ref'):
-		return true
-	
-	elif (nearby_block.out_dir + nodeData.out_dir) == Vector2.ZERO:
-		return false
-	
-	elif (nearby_block.out_dir + nearby_block.map_pos) != nodeData.map_pos:
-		return false
-	
+	#elif nearby_block and nearby_block.has('ref'):
+		#return true
+	if typeof(nearby_block.out_dir) == TYPE_ARRAY:
+		for out_dir in nearby_block.out_dir:
+			if (out_dir + nearby_block.map_pos) == nodeData.map_pos:
+				if (out_dir + nodeData.out_dir) == Vector2.ZERO:
+					return false
 	else:
-		return true
+		if (nearby_block.out_dir + nodeData.out_dir) == Vector2.ZERO:
+			return false
+	
+		if (nearby_block.out_dir + nearby_block.map_pos) != nodeData.map_pos:
+			return false
+	
+	
+	return true
