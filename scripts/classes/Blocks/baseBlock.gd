@@ -34,6 +34,12 @@ func _load_texture():
 		Sprite.texture = texture
 		Sprites.add_child(Sprite)
 
+func _update_texture_rect(pos):
+	for Sprite in Sprites.get_children():
+		var t : AtlasTexture = Sprite.texture
+		t.region.position = pos
+		
+
 func receiveDemage(d : float):
 	life -= d
 	

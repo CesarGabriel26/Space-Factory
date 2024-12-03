@@ -13,6 +13,7 @@ script = ExtResource("1_f2g18")
 Sprites = NodePath("Sprites")
 
 [node name="Sprites" type="Node2D" parent="."]
+position = Vector2(16, 16)
 
 [node name="Blocks64x64" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("2_g66q3")
@@ -20,9 +21,11 @@ region_enabled = true
 region_rect = Rect2(0, 0, 64, 64)
 
 [node name="InvPreview" type="Node2D" parent="."]
+position = Vector2(16, 16)
 
 [node name="invController" parent="InvPreview" instance=ExtResource("2_ch2sq")]
 position = Vector2(32, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_y30ew")

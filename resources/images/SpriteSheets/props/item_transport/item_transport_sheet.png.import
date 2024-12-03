@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg31kc5vn2g1y"
-path="res://.godot/imported/item_transport_overlay_sheet.png-c25d7e7703c719aeb78b5db38e3db881.ctex"
+uid="uid://c7aaqvpsaej6u"
+path="res://.godot/imported/item_transport_sheet.png-0c6ec19cc16c304bfbc8e891ad89b6c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/SpriteSheets/props/item_transport_overlay_sheet.png"
-dest_files=["res://.godot/imported/item_transport_overlay_sheet.png-c25d7e7703c719aeb78b5db38e3db881.ctex"]
+source_file="res://resources/images/SpriteSheets/props/item_transport/item_transport_sheet.png"
+dest_files=["res://.godot/imported/item_transport_sheet.png-0c6ec19cc16c304bfbc8e891ad89b6c6.ctex"]
 
 [params]
 

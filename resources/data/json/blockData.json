@@ -1,64 +1,103 @@
 {
-	"miner_mk1" : {
-		"menu" : "estracao",
-		"life" : 25,
-		"tier" : 0,
-		"delay" : 5,
-		
+	"miner_mk1": {
+		"menu": "estracao",
+		"life": 25,
+		"tier": 0,
+		"delay": 5,
 		"prop_scene": "res://data/Entities/Buildable/Miner.tscn",
 		"texture": {
 			"texture_size": "(64, 64)",
-			"texture_file" : "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
-			"texture_cords" : [
+			"layers": [
 				{
-					"x" : 0,
-					"y" : 0,
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 0
+					}
 				},
 				{
-					"x" : 1,
-					"y" : 0,
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+					"texture_cord": {
+						"x": 1,
+						"y": 0
+					}
 				}
-			],
+			]
 		},
-		
 		"build_duration": 5,
-		
-		"has_inventory" : {
-			"input" : false,
-			"output" : true,
-			"fluid_input" : true,
-			"fluid_output" : false
+		"has_inventory": {
+			"input": false,
+			"output": true,
+			"fluid_input": true,
+			"fluid_output": false
 		},
 		"items_to_generate": {
-			"minerio_de_cobre" : 0.5,
-			"minerio_de_ferro" : 0.2,
-			"minerio_de_ouro"  : 0.15,
-			"minerio_de_zinco" : 0.15
+			"minerio_de_cobre": 0.5,
+			"minerio_de_ferro": 0.2,
+			"minerio_de_ouro": 0.15,
+			"minerio_de_zinco": 0.15
 		}
 	},
-	
+	"item_pipe_mk1": {
+		"menu": "logistica",
+		"life": 25,
+		"tier": 0,
+		"prop_scene": "res://data/Entities/Buildable/ItemPipe.tscn",
+		"texture": {
+			"texture_size": "(32, 32)",
+			"layers": [
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/item_transport/item_transport_sheet.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/item_transport/item_transport_overlay_sheet.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 1
+					}
+				}
+			]
+		},
+		"build_duration": 0.5,
+		"has_inventory": {
+			"input": false,
+			"output": true,
+			"fluid_input": true,
+			"fluid_output": false
+		},
+		"items_to_generate": {
+			"minerio_de_cobre": 0.5,
+			"minerio_de_ferro": 0.2,
+			"minerio_de_ouro": 0.15,
+			"minerio_de_zinco": 0.15
+		}
+	},
 	"shild_block": {
-		"menu" : "defesa",
-		"life" : 25,
-		
+		"menu": "defesa",
+		"life": 25,
 		"prop_scene": "res://data/Entities/Buildable/ShildBlock.tscn",
 		"texture": {
 			"texture_size": "(32, 32)",
-			"texture_file" : "res://resources/images/SpriteSheets/props/Blocks.png",
-			"texture_cords" : [
+			"layers": [
 				{
-					"x" : 0,
-					"y" : 0
-				},
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 0
+					}
+				}
 			]
 		},
-		
 		"build_duration": 1,
-		"has_inventory" : {
-			"input" : false,
-			"output" : false,
-			"fluid_input" : false,
-			"fluid_output" : false
+		"has_inventory": {
+			"input": false,
+			"output": false,
+			"fluid_input": false,
+			"fluid_output": false
 		}
-	},
+	}
 }

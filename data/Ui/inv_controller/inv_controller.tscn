@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://data/Ui/inv_controller/inv_controller.gd" id="1_3cbm0"]
 
 [node name="Inventory" type="Node2D"]
+z_index = 1
 script = ExtResource("1_3cbm0")
 
 [node name="invController" type="VBoxContainer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnngwnuyht73t"]
+[gd_scene load_steps=8 format=3 uid="uid://bnngwnuyht73t"]
 
 [ext_resource type="Texture2D" uid="uid://dolgtflb4sqyj" path="res://resources/images/Tools/BuildingSpot.png" id="1_eayhw"]
 [ext_resource type="Script" path="res://data/Tools/Builder/BuildingTool/builder.gd" id="1_gkcxq"]
@@ -12,6 +12,8 @@ texture = ExtResource("1_eayhw")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtgx0"]
 bg_color = Color(1, 0, 0, 0.372549)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2rmpm"]
 
 [node name="Builder" type="Area2D"]
 z_index = 1
@@ -43,13 +45,17 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(16, 16)
 theme_override_styles/panel = SubResource("StyleBoxTexture_a6g4a")
 
 [node name="OverlayColor" type="Panel" parent="."]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-pivot_offset = Vector2(32, 32)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vtgx0")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(16.0181, 16)
+mesh = SubResource("SphereMesh_2rmpm")

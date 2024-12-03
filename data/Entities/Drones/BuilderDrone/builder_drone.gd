@@ -36,7 +36,7 @@ func _physics_process(delta):
 
 func fire(t : bool = true):
 	Laser.ligado = t
-	Laser.manual_target_position = target.global_position
+	Laser.manual_target_position = target.center
 
 func build(b):
 	build_progress = 0.0

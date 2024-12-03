@@ -1,26 +1,32 @@
 extends Node2D
 
-@onready var tile_map = $GridMap
-@onready var navigation_region_2d = $NavigationRegion2D
+@onready var gridMap = $GridMap
+@onready var visible_map = $NavigationRegion2D/VisibleMap
 
+@onready var navigation_region_2d = $NavigationRegion2D
 @export var builderTool : BuilderTool
 
 func _ready():
 	navigation_region_2d.bake_navigation_polygon()
 	builderTool.main_world = self
-	builderTool.sprite_size_changed.connect(_change_tile_size)
 
 func _process(delta):
 	# Atualiza a posição da ferramenta com base na grade
-	builderTool.global_position = _map_pos_to_world_pos(
-		_world_pos_to_map_pos(get_global_mouse_position())
+	builderTool.global_position = _grid_map_pos_to_world_pos(
+		_world_pos_to_grid_map_pos(get_global_mouse_position())
 	)
 
-func _map_pos_to_world_pos(pos: Vector2) -> Vector2:
-	return tile_map.map_to_local(pos)
+func _grid_map_pos_to_world_pos(pos: Vector2) -> Vector2:
+	return gridMap.map_to_local(pos)
 
-func _world_pos_to_map_pos(pos: Vector2) -> Vector2:
-	return tile_map.local_to_map(pos)
+func _world_pos_to_grid_map_pos(pos: Vector2) -> Vector2:
+	return gridMap.local_to_map(pos)
+
+func _world_map_pos_to_world_pos(pos: Vector2) -> Vector2:
+	return visible_map.map_to_local(pos)
+
+func _world_pos_to_world_map_pos(pos: Vector2) -> Vector2:
+	return visible_map.local_to_map(pos)
 
 #func _draw():
 	#var cell_size = tile_map.tile_set.tile_size
@@ -46,6 +52,13 @@ func _world_pos_to_map_pos(pos: Vector2) -> Vector2:
 					#false  # Apenas contorno
 				#)
 
-func _change_tile_size(size : Vector2):
-	tile_map.tile_set.tile_size = size
-	pass
+func _world_map_pos_to_grid_map_pos(pos: Vector2) -> Vector2:
+	var conv_pos = _world_map_pos_to_world_pos(pos)
+	conv_pos = _world_pos_to_grid_map_pos(conv_pos)
+	
+	return conv_pos
+
+
+#func _change_tile_size(size : Vector2):
+	#gridMap.tile_set.tile_size = size
+	#pass

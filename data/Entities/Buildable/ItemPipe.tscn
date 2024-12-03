@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://8ri08o68xm8k"]
+
+[ext_resource type="Script" path="res://data/scripts/Buildable/ItemPipe.gd" id="1_j1sdp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8sq3"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wamnm"]
+
+[node name="ItemPipe" type="StaticBody2D" node_paths=PackedStringArray("Sprites") groups=["auto_tile"]]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_j1sdp")
+Sprites = NodePath("Sprites")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l8sq3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_wamnm")

@@ -2,7 +2,7 @@ extends baseBlock
 
 @export var exploded = false
 
-func _ready():
+func _ready(): 
 	_load()
 	pass
 
