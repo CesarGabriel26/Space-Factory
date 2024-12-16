@@ -1,6 +1,7 @@
 extends Node
 
 var WorldTiles = {}
+var WorldData = {}
 
 func _get_nearby_blocks(initial_pos: Vector2):
 	const check_pos = [

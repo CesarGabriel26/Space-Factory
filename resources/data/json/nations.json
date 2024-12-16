@@ -1,0 +1,92 @@
+{
+   "nations": {
+	"russia": {
+	  "properties": {
+		"production_speed": 0.8,
+		"building_speed": 1.0,
+		"energy_efficiency": 0.9,
+		"mining_efficiency": 1.3,
+		"equipment_durability": 1.25,
+		"cold_resistance": 1.2
+	  }
+	},
+	"usa": {
+	  "properties": {
+		"production_speed": 1.0,
+		"building_speed": 1.1,
+		"energy_efficiency": 0.9,
+		"mining_efficiency": 1.0,
+		"equipment_durability": 1.0,
+		"cold_resistance": 1.0
+	  }
+	},
+	"china": {
+	  "properties": {
+		"production_speed": 1.35,
+		"building_speed": 1.4,
+		"energy_efficiency": 1.0,
+		"mining_efficiency": 0.9,
+		"equipment_durability": 0.7,
+		"cold_resistance": 1.0
+	  }
+	},
+	"europe": {
+	  "properties": {
+		"production_speed": 0.9,
+		"building_speed": 1.0,
+		"energy_efficiency": 1.2,
+		"mining_efficiency": 1.0,
+		"equipment_durability": 1.0,
+		"cold_resistance": 1.1
+	  }
+	},
+	"india": {
+	  "properties": {
+		"production_speed": 1.1,
+		"building_speed": 1.2,
+		"energy_efficiency": 1.1,
+		"mining_efficiency": 1.0,
+		"equipment_durability": 0.85,
+		"cold_resistance": 1.0
+	  }
+	},
+	"japan": {
+	  "properties": {
+		"production_speed": 1.0,
+		"building_speed": 1.1,
+		"energy_efficiency": 1.0,
+		"mining_efficiency": 1.0,
+		"equipment_durability": 0.75,
+		"cold_resistance": 1.0
+	  }
+	},
+	"brazil": {
+	  "properties": {
+		"production_speed": 1.0,
+		"building_speed": 1.0,
+		"energy_efficiency": 1.1,
+		"mining_efficiency": 1.15,
+		"equipment_durability": 0.9,
+		"cold_resistance": 1.05
+	  }
+	},
+	"uk": {
+	  "properties": {
+		"production_speed": 0.9,
+		"building_speed": 1.0,
+		"energy_efficiency": 1.0,
+		"mining_efficiency": 1.0,
+		"equipment_durability": 1.1,
+		"cold_resistance": 1.0
+	  }
+	}
+  },
+  "default_properties": {
+	"production_speed": 1.0,
+	"building_speed": 1.0,
+	"energy_efficiency": 1.0,
+	"mining_efficiency": 1.0,
+	"equipment_durability": 1.0,
+	"cold_resistance": 1.0
+  }
+}

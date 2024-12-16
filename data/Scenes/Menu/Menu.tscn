@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3dmfso34hbgg"]
+
+[ext_resource type="Script" path="res://data/Scenes/Menu/Menu.gd" id="1_vdax1"]
+[ext_resource type="Material" uid="uid://bqmcjfsg277s8" path="res://resources/models/Planet/Body.tres" id="2_mcjpy"]
+[ext_resource type="Shader" path="res://resources/Shaders/StarSky.gdshader" id="2_wn0he"]
+[ext_resource type="Material" uid="uid://bj6mk13cirwqy" path="res://resources/models/Planet/Atmosphere.tres" id="3_h4jjp"]
+[ext_resource type="Material" uid="uid://qx0aa1xcytap" path="res://resources/models/Planet/clouds.tres" id="4_qcq5s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mgco"]
+shader = ExtResource("2_wn0he")
+shader_parameter/star_height = 5.0
+shader_parameter/star_size = 12.0
+shader_parameter/star_blend = 0.0
+shader_parameter/depth_blend = 0.18
+shader_parameter/flare_ratio = 1.0
+shader_parameter/twinkle_speed = 20.405
+shader_parameter/star_layes = 6
+
+[sub_resource type="Sky" id="Sky_sf40g"]
+sky_material = SubResource("ShaderMaterial_7mgco")
+
+[sub_resource type="Environment" id="Environment_13vax"]
+background_mode = 2
+sky = SubResource("Sky_sf40g")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.85
+
+[sub_resource type="SphereMesh" id="SphereMesh_1kgn7"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b7odf"]
+viewport_path = NodePath("Node/SubViewport")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vdax1")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Node"]
+size = Vector2i(1920, 1080)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node/SubViewport"]
+environment = SubResource("Environment_13vax")
+
+[node name="Camera3D" type="Camera3D" parent="Node/SubViewport"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Planet" type="Node3D" parent="Node/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
+
+[node name="Body" type="MeshInstance3D" parent="Node/SubViewport/Planet"]
+mesh = SubResource("SphereMesh_1kgn7")
+surface_material_override/0 = ExtResource("2_mcjpy")
+
+[node name="Atmo" type="MeshInstance3D" parent="Node/SubViewport/Planet"]
+mesh = SubResource("SphereMesh_1kgn7")
+surface_material_override/0 = ExtResource("3_h4jjp")
+
+[node name="Clouds" type="MeshInstance3D" parent="Node/SubViewport/Planet"]
+mesh = SubResource("SphereMesh_1kgn7")
+surface_material_override/0 = ExtResource("4_qcq5s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 2
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_b7odf")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0555556
+anchor_top = 0.296296
+anchor_right = 0.2225
+anchor_bottom = 0.889161
+offset_right = -0.32
+offset_bottom = -0.176003
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Single Player"

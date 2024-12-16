@@ -38,8 +38,33 @@ func read_from_json_file(file_path: String) -> Dictionary:
 
 func get_on_json_by_keys(file_path: String, keys : Array[String]):
 	var data = read_from_json_file(file_path)
+	
 	var dt = data
-	for key in keys:
-		dt = dt[key]
+	
+	if typeof(dt) == TYPE_DICTIONARY:
+		for key in keys:
+			if dt.has(key):
+				dt = dt[key]
+			else:
+				return null
 	
 	return dt
+
+func search_for_item(item_name : String):
+	const files_to_try = [
+		"res://resources/data/json/items.json",
+		"res://resources/data/json/fluids.json"
+	]
+	
+	for file in files_to_try:
+		var data = get_on_json_by_keys(
+			file,
+			[
+				item_name
+			]
+		)
+		
+		if data != null:
+			return data
+	
+	pass

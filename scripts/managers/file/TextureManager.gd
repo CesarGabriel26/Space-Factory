@@ -1,28 +1,66 @@
 extends Node
 
 #"texture": {
-	#"texture_size": "(32, 32)",
+	#"texture_size": "(64, 64)",
 	#"layers": [
 		#{
-			#"texture_file": "res://resources/images/SpriteSheets/props/Blocks.png",
+			#"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
 			#"texture_cord": {
 				#"x": 0,
-				#"y": 0
+				#"y": 3
 			#}
+		#},
+		#{
+			#"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+			#"texture_cord": {
+				#"x": 1,
+				#"y": 3
+			#},
+			#"animation" : [
+				#{
+					#"prop" : "rotation_degrees",
+					#"ope": "add",
+					#"val": 200,
+				#}
+			#]
+		#}
+		#{
+			#"node_type" : 0
+			#"node_props": {
+				#"global_position" : (1,1)
+			#}
+			#"animation" : [
+				#{
+					#"prop" : "rotation_degrees",
+					#"ope": "add",
+					#"val": 200,
+				#}
+			#]
 		#}
 	#]
-#},
+#}
 
 func _get_texture(texture_data : Dictionary) -> Dictionary :
 	var texture_size = str_to_var("Vector2" + texture_data.texture_size)
 	var layers = texture_data.layers
 	
-	var textures : Array[AtlasTexture]
+	var textures : Array
 	
 	for layer in layers:
+		var texture_data_to_return = {}
+	
 		var texture_file = layer.texture_file
 		var texture_cord = Vector2(layer.texture_cord.x, layer.texture_cord.y)
-		textures.append(_load_texture(texture_size, texture_file, texture_cord))
+	
+		texture_data_to_return['texture'] = _load_texture(texture_size, texture_file, texture_cord)
+		
+		if layer.has("animation"):
+			texture_data_to_return['animation'] = layer.animation
+		
+		if layer.has("props"):
+			texture_data_to_return['props'] = layer.props
+		
+		textures.append(texture_data_to_return)
 	
 	return {
 		"size" : texture_size,
@@ -52,4 +90,39 @@ func _load_texture(texture_size : Vector2, texture_file : String, texture_cord :
 	else:
 		printerr("Arquivo não encontrado:", texture_file)
 		return null
-	
+
+func _add_sprites(textures: Array,with_animation : bool, animations : Array, Sprites : Node, shader : ShaderMaterial = null, useTextureRect : bool = false):
+	var layer = 0
+	for texture in textures:
+		var Sprite
+		
+		if useTextureRect:
+			Sprite = TextureRect.new()
+			Sprite.set_anchors_preset(Control.PRESET_FULL_RECT)
+		else:
+			Sprite = Sprite2D.new()
+		
+		Sprite.texture = texture.texture
+		
+		if shader:
+			Sprite.material = shader
+
+		
+		if texture.has('animation'):
+			for anim in texture.animation:
+				animations.append(
+					{
+						"node" : Sprite,
+						"propriedade" : anim.prop,
+						"operacao": anim.ope,
+						"valor": anim.val
+					}
+				)
+		
+		if texture.has("props"):
+			for prop in texture.props:
+				Sprite.set(prop, texture.props[prop])
+		
+		Sprite.z_index = layer
+		Sprites.add_child(Sprite)
+		layer += 1

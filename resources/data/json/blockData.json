@@ -1,9 +1,9 @@
 {
 	"miner_mk1": {
-		"menu": "estracao",
-		"life": 25,
 		"tier": 0,
+		"life": 25,
 		"delay": 5,
+		"menu": "estração",
 		"prop_scene": "res://data/Entities/Buildable/Miner.tscn",
 		"texture": {
 			"texture_size": "(64, 64)",
@@ -25,23 +25,24 @@
 			]
 		},
 		"build_duration": 5,
-		"has_inventory": {
-			"input": false,
-			"output": true,
-			"fluid_input": true,
-			"fluid_output": false
+		"inventory": {
+			"has_inventory": {
+				"input": false,
+				"output": true,
+				"fluid_input": true,
+				"fluid_output": false
+			},
+			"item_inventory_size" : 1
 		},
-		"items_to_generate": {
-			"minerio_de_cobre": 0.5,
-			"minerio_de_ferro": 0.2,
-			"minerio_de_ouro": 0.15,
-			"minerio_de_zinco": 0.15
-		}
 	},
+	
 	"item_pipe_mk1": {
-		"menu": "logistica",
-		"life": 25,
 		"tier": 0,
+		"life": 25,
+		"menu": "logistica",
+		"build_duration": 0.5,
+		"one_way" : true,
+		"max_stack": 1,
 		"prop_scene": "res://data/Entities/Buildable/ItemPipe.tscn",
 		"texture": {
 			"texture_size": "(32, 32)",
@@ -62,20 +63,231 @@
 				}
 			]
 		},
-		"build_duration": 0.5,
-		"has_inventory": {
-			"input": false,
-			"output": true,
-			"fluid_input": true,
-			"fluid_output": false
-		},
-		"items_to_generate": {
-			"minerio_de_cobre": 0.5,
-			"minerio_de_ferro": 0.2,
-			"minerio_de_ouro": 0.15,
-			"minerio_de_zinco": 0.15
+		"inventory": {
+			"has_inventory": {
+				"input": false,
+				"output": true,
+				"fluid_input": false,
+				"fluid_output": false
+			},
+			"item_inventory_size" : 1
 		}
 	},
+	
+	"fluid_pipe_mk1": {
+		"tier": 0,
+		"life": 25,
+		"menu": "logistica",
+		"build_duration": 0.5,
+		"one_way" : true,
+		"prop_scene": "res://data/Entities/Buildable/FluidPipe.tscn",
+		"texture": {
+			"texture_size": "(32, 32)",
+			"layers": [
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/fluid_transport/fluid_transport_sheet.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/fluid_transport/fluid_transport_fill_layer_sheet.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 1
+					},
+					"props": {
+						"visible" : false
+					}
+				},
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/fluid_transport/fluid_transport_overlay_sheet.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 1
+					}
+				}
+			]
+		},
+		"inventory": {
+			"has_inventory": {
+				"input": false,
+				"output": false,
+				"fluid_input": true,
+				"fluid_output": true
+			},
+			"item_inventory_size" : 1
+		}
+	},
+	
+	"furnace_mk1": {
+		"tier": 0,
+		"life": 25,
+		"delay": 2,
+		"menu": "refino",
+		"recipes_page": "furnace",
+		"build_duration": 5,
+		"prop_scene": "res://data/Entities/Buildable/Crafter.tscn",
+		"texture": {
+			"texture_size": "(64, 64)",
+			"layers": [
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 1
+					}
+				}
+			]
+		},
+		"inventory": {
+			"has_inventory": {
+				"input": true,
+				"output": true,
+				"fluid_input": false,
+				"fluid_output": false
+			},
+			"item_inventory_size" : 1
+		}
+	},
+	
+	"alloy_smelter_mk1": {
+		"tier": 0,
+		"life": 25,
+		"delay": 2,
+		"menu": "refino",
+		"recipes_page": "alloySmelter",
+		"build_duration": 5,
+		"prop_scene": "res://data/Entities/Buildable/Crafter.tscn",
+		"texture": {
+			"texture_size": "(64, 64)",
+			"layers": [
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 2
+					}
+				}
+			]
+		},
+		"inventory": {
+			"has_inventory": {
+				"input": true,
+				"output": true,
+				"fluid_input": false,
+				"fluid_output": false
+			},
+			"item_inventory_size" : 2
+		}
+	},
+	
+	"atmospheric_condenser_mk1": {
+		"tier": 0,
+		"life": 25,
+		"delay": 2,
+		"menu": "estração",
+		"build_duration": 5,
+		"prop_scene": "res://data/Entities/Buildable/AtmosphericMondenser.tscn",
+		"texture": {
+			"texture_size": "(64, 64)",
+			"layers": [
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+					"texture_cord": {
+						"x": 0,
+						"y": 3
+					}
+				},
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+					"texture_cord": {
+						"x": 1,
+						"y": 3
+					},
+					"animation" : [
+						{
+							"prop" : "rotation_degrees",
+							"ope": "add",
+							"val": 200,
+						}
+					]
+				}
+			]
+		},
+		"inventory": {
+			"type" : "fluid",
+			"has_inventory": {
+				"input": false,
+				"output": false,
+				"fluid_input": false,
+				"fluid_output": true
+			},
+			"item_inventory_size" : 1
+		}
+	},
+	
+	
+	
+	"large_router": {
+		"tier": 0,
+		"life": 25,
+		"menu": "logistica",
+		"build_duration": 1,
+		"prop_scene": "res://data/Entities/Buildable/Router.tscn",
+		"texture": {
+			"texture_size": "(64, 64)",
+			"layers": [
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_64x64.png",
+					"texture_cord": {
+						"x": 1,
+						"y": 1
+					}
+				}
+			]
+		},
+		"inventory": {
+			"has_inventory": {
+				"input": false,
+				"output": true,
+				"fluid_input": false,
+				"fluid_output": false
+			},
+			"item_inventory_size" : 1
+		}
+	},
+	
+	"small_router": {
+		"tier": 0,
+		"life": 25,
+		"menu": "logistica",
+		"build_duration": 1,
+		"prop_scene": "res://data/Entities/Buildable/Router.tscn",
+		"texture": {
+			"texture_size": "(32, 32)",
+			"layers": [
+				{
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_32x32.png",
+					"texture_cord": {
+						"x": 2,
+						"y": 0
+					}
+				}
+			]
+		},
+		"inventory": {
+			"has_inventory": {
+				"input": false,
+				"output": true,
+				"fluid_input": false,
+				"fluid_output": false
+			},
+			"item_inventory_size" : 1
+		}
+	},
+	
 	"shild_block": {
 		"menu": "defesa",
 		"life": 25,
@@ -84,7 +296,7 @@
 			"texture_size": "(32, 32)",
 			"layers": [
 				{
-					"texture_file": "res://resources/images/SpriteSheets/props/Blocks.png",
+					"texture_file": "res://resources/images/SpriteSheets/props/Blocks_32x32.png",
 					"texture_cord": {
 						"x": 0,
 						"y": 0
@@ -92,12 +304,14 @@
 				}
 			]
 		},
+		"inventory": {
+			"has_inventory": {
+				"input": false,
+				"output": false,
+				"fluid_input": false,
+				"fluid_output": false
+			}
+		},
 		"build_duration": 1,
-		"has_inventory": {
-			"input": false,
-			"output": false,
-			"fluid_input": false,
-			"fluid_output": false
-		}
 	}
 }

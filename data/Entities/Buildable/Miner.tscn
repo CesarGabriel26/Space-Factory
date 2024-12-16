@@ -7,12 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y30ew"]
 size = Vector2(64, 64)
 
-[node name="Miner" type="StaticBody2D" node_paths=PackedStringArray("Sprites")]
+[node name="Miner" type="StaticBody2D" node_paths=PackedStringArray("Sprites", "invController")]
 input_pickable = true
 script = ExtResource("1_f2g18")
 Sprites = NodePath("Sprites")
+invController = NodePath("InvPreview/invController")
 
 [node name="Sprites" type="Node2D" parent="."]
+z_index = 1
 position = Vector2(16, 16)
 
 [node name="Blocks64x64" type="Sprite2D" parent="Sprites"]

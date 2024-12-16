@@ -1,0 +1,76 @@
+{
+	"furnace": [
+		{
+			"delay" : 2,
+			"require": [
+				["minerio_de_cobre", 1]
+			],
+			"result": [
+				["barra_de_cobre", 1]
+			],
+			"escoria": 0.1
+		},
+		{
+			"delay" : 2,
+			"require": [
+				["minerio_de_ferro", 1]
+			],
+			"result": [
+				["barra_de_ferro", 1]
+			],
+			"escoria": 0.15
+		},
+		{
+			"delay" : 2,
+			"require": [
+				["minerio_de_ouro", 1]
+			],
+			"result": [
+				["barra_de_ouro", 1]
+			],
+			"escoria": 0.05
+		},
+		{
+			"delay" : 2,
+			"require": [
+				["minerio_de_zinco", 1]
+			],
+			"result": [
+				["barra_de_zinco", 1]
+			],
+			"escoria": 0.2
+		},
+	],
+	"alloySmelter": [
+		{
+			"delay" : 3,
+			"require": [
+				["barra_de_cobre", 1], 
+				["barra_de_zinco", 1]
+			],
+			"result": [
+				["barra_de_bronze", 2]
+			],
+		}
+	],
+	
+	"fluid_condenser": [
+		{
+			"delay": 1,
+			"require": [
+				{
+					"type" : "global_variable",
+					"query" : {
+						"ambiente_humidity": {
+							"gte": 0
+						}
+					}
+				}
+			],
+			"result": {
+				"resource": "Water",
+				"amount": "ambiente_humidity * 200"
+			}
+		}
+	]
+}

@@ -39,7 +39,7 @@ const tiles_positions = {
 		
 		[true, false, true, false] : Vector2(7, 1), # Baixo_Cima_para_cima
 	
-		[true, false, true, true] : Vector2(1, 2) # Cima_Baixo_Direita_para_esquerda
+		[true, false, true, true] : Vector2(6, 0) # Cima_Baixo_Direita_para_esquerda
 	},
 	Vector2.UP : {
 		#DOWN | LEFT | UP   | RIGHT 
@@ -54,7 +54,7 @@ const tiles_positions = {
 		
 		[false, true, false, true] : Vector2(7, 3), # Esquerda_Direita_para_cima
 		
-		[true, true, false, true] : Vector2(0, 1) # Baixo_Direita_Esquerda_Para_cima
+		[true, true, false, true] : Vector2(6, 1) # Baixo_Direita_Esquerda_Para_cima
 	},
 	Vector2.RIGHT : {
 		#DOWN | LEFT | UP   | RIGHT
@@ -96,6 +96,7 @@ func _get_auto_tilable_blocks():
 				res[i] = false
 		
 		var pos = tiles_positions[nodeData.out_dir][res] * str_to_var('Vector2' + nodeData.texture.texture_size)
+		
 		node._update_texture_rect(pos)
 
 func _auto_tile_conditions(nodeData, nearby_block):

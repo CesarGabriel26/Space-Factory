@@ -1,5 +1,7 @@
 extends Node
 
+signal load_new_build
+
 var drones = []
 var builds_for_drones = []
 
@@ -37,4 +39,3 @@ func put_drones_to_work():
 				elif drone.target == bul:
 					builds_for_drones[builds_for_drones.find(build)][1] = true
 					break
-

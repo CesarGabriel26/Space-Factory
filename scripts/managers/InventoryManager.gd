@@ -18,28 +18,34 @@ func move_item_between_inventories(source_inv: Dictionary, target_inv: Dictionar
 func clear_inventory(inv: Dictionary):
 	inv.clear()
 
-func add_item_to_inventory(inv : Dictionary, item_name : String, item_quantity : int):
+func add_item_to_inventory(inv : Dictionary, item_name : String, item_quantity : int = 1, num_slots : int = NumSlots, max_stack = MaxStack):
 	var slot_indices: Array = inv.keys()
 	slot_indices.sort()
 	
+	if item_quantity <= 0:
+		return false
+	
 	for item in slot_indices:
 		if inv[item][0] == item_name:
-			var able_to_add = MaxStack - inv[item][1]
+			var able_to_add = max_stack - inv[item][1]
 			if able_to_add >= item_quantity:
 				inv[item][1] += item_quantity
-				return inv
+				return true
 			else:
 				inv[item][1] += able_to_add
-				item_quantity = item_quantity - able_to_add
+				return false
 	
 	# item doesn't exist in inventory yet, so add it to an empty slot
-	for i in range(NumSlots):
+	
+	for i in range(num_slots):
 		if inv.has(i) == false:
 			inv[i] = [item_name, item_quantity]
-			return inv
+			return true
 		else:
 			if inv[i][0] == item_name:
-				return inv
+				return true
+	
+	return false
 
 func add_item_to_especific_slot( inv : Dictionary, slotIndex : int, item_name : String, item_quantity : int):
 	if inv.has(slotIndex) == false:
@@ -68,21 +74,30 @@ func check_slot_is_full(inv : Dictionary, slot_index : int):
 	else:
 		return false
 
-func has_space_for_item(inv: Dictionary, item_name: String, quantity: int) -> bool:
-	var total_space = 0
-	for slot in inv:
-		if inv[slot][0] == item_name:
-			total_space += MaxStack - inv[slot][1]
-		elif !inv.has(slot): # Slot vazio
-			total_space += MaxStack
+func has_space_for_item(inv: Dictionary, item_name: String, item_quantity: int, num_slots : int = NumSlots, stack_size : int = MaxStack):
+	var slot_indices: Array = inv.keys()
+	slot_indices.sort()
 	
-	return total_space >= quantity
+	if inv.is_empty():
+		return item_quantity
+	
+	for item in slot_indices:
+		
+		if inv.has(item) == false:
+			return item_quantity
+		
+		if inv[item][0] == item_name:
+			var able_to_add = stack_size - inv[item][1]
+			if able_to_add >= item_quantity:
+				return item_quantity
+			else:
+				return able_to_add
 
-func get_and_remove_item_from_last_slot(inv : Dictionary):
+func get_and_remove_item_from_last_slot(inv : Dictionary ,Quantity : int = 1):
 	if inv.size() > 0:
 		var idx = inv.size() - 1
 		var item_to_return = inv[idx][0]
-		inv[idx][1] -= 1
+		inv[idx][1] -= Quantity
 		check_item_quantity(inv, idx)
 		return item_to_return
 	
@@ -97,17 +112,25 @@ func get_and_remove_item_from_slot(inv : Dictionary, slotIndex : int = 0 ,Quanti
 	else:
 		return null
 
-func get_item_from_last_slot(inv : Dictionary):
+func get_item_from_last_slot(inv : Dictionary, with_quantity: bool = false):
 	if inv.size() > 0:
 		var idx = inv.size() - 1
 		var item_to_return = inv[idx][0]
+		
+		if with_quantity:
+			return inv[idx]
+		
 		return item_to_return
 	else:
 		return null
 
-func get_item_data_from_slot(inv : Dictionary, slotIndex : int):
+func get_item_data_from_slot(inv : Dictionary, slotIndex : int, with_quantity: bool = false):
 	if inv.size() > 0 and inv.has(slotIndex):
 		var item_to_return = inv[slotIndex][0]
+		
+		if with_quantity:
+			return inv[slotIndex]
+		
 		return item_to_return
 	else:
 		return null

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://hol8vsl7x5ym"]
+
+[ext_resource type="Script" path="res://data/Entities/props/item_box.gd" id="1_6ea1t"]
+[ext_resource type="Texture2D" uid="uid://bi5frfqcw6brm" path="res://resources/images/items/barra_de_bronze.png" id="1_i25y6"]
+
+[node name="ItemBox" type="Node2D"]
+script = ExtResource("1_6ea1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i25y6")

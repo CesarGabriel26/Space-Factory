@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brsxpt8v7ivlm"]
+
+[ext_resource type="AudioStream" uid="uid://c7n274w31uisv" path="res://resources/Audios/Music/A Few Jumps Away.mp3" id="1_l1wl7"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_l1wl7")

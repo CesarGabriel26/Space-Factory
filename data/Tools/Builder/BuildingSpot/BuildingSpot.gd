@@ -29,9 +29,13 @@ func _update():
 func _done():
 	DroneManager.builds_for_drones.erase([self, true])
 	
+	data.erase('building')
+	MapDataManager.WorldTiles[data.map_pos] = data
+	
 	var propPacked : PackedScene = load(toBuild)
 	var propInstance = propPacked.instantiate()
 	propInstance.data = data
+	propInstance.world_ref = world_ref
 	propInstance.global_position = global_position
 	get_parent().add_child(propInstance)
 	AutoTileManager._get_auto_tilable_blocks()
@@ -39,9 +43,9 @@ func _done():
 
 func _load_sprites(loaded_textures : Dictionary):
 	var size = loaded_textures['size']
-	var textures : Array[AtlasTexture] = loaded_textures.textures
+	var textures : Array = loaded_textures.textures
 	
-	var tile_count = (textures[0].atlas.get_size() / size)
+	var tile_count = (textures[0]['texture'].atlas.get_size() / size)
 	
 	shader.shader = load("res://resources/Shaders/BuildingSpot.gdshader")
 	shader.set("shader_parameter/tile_count", tile_count)
@@ -63,16 +67,7 @@ func _load_sprites(loaded_textures : Dictionary):
 	for c in sprites_without_shader.get_children():
 		c.queue_free()
 	
-	for texture in textures:
-		var sprite_with_shader = Sprite2D.new()
-		var sprite_without_shader = Sprite2D.new()
-		
-		sprite_with_shader.material = shader
-		
-		sprite_with_shader.texture = texture
-		sprites_with_shader.add_child(sprite_with_shader)
-		
-		sprite_without_shader.texture = texture
-		sprites_without_shader.add_child(sprite_without_shader)
+	TextureManager._add_sprites(textures, false, [], sprites_with_shader, shader)
+	TextureManager._add_sprites(textures, false, [], sprites_without_shader)
 	
 	pass

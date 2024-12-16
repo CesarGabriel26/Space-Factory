@@ -14,7 +14,7 @@ var main_world : Node2D
 
 const debug_builds = [
 	"miner_mk1",
-	"shild_block",
+	"Router",
 	"item_pipe_mk1"
 ]
 
@@ -23,18 +23,22 @@ var rot = 0
 var out_dir = Vector2.UP
 
 func _ready():
-	await get_tree().process_frame
-	_load_build(debug_builds[current])
+	DroneManager.load_new_build.connect(_load_build)
 
 func _process(delta):
-	_handle_input()
-	$OverlayColor.visible = (get_overlapping_bodies().size() > 0)
+	if visible:
+		_handle_input()
+		$OverlayColor.visible = (get_overlapping_bodies().size() > 0)
 
 # Função que gerencia input de rotação, troca de blocos e construção
 func _handle_input():
 	if !(get_overlapping_bodies().size() > 0):
 		if Input.is_action_pressed("MouseL"):
 			_build()
+	
+	if Input.is_action_pressed("MouseR"):
+		visible = false
+		set_process(false)
 	
 	if Input.is_action_just_pressed("rotate"):
 		match rot:
@@ -48,16 +52,11 @@ func _handle_input():
 				rot = 0
 	
 	sprites.rotation_degrees = rot
-	
-	if Input.is_action_just_pressed("ui_up"):
-		current = (current + 1) % debug_builds.size()
-		_load_build(debug_builds[current])
-	elif Input.is_action_just_pressed("ui_down"):
-		current = (current - 1 + debug_builds.size()) % debug_builds.size()
-		_load_build(debug_builds[current])
 
 # Função para carregar os dados do bloco atual
 func _load_build(_name : String = ""):
+	visible = true
+	set_process(true)
 	if _name != "":
 		data = JsonManager.get_on_json_by_keys("res://resources/data/json/blockData.json", [_name])
 		if !data.is_empty() and data.texture:
@@ -83,10 +82,8 @@ func _load_sprites(loaded_textures : Dictionary):
 	for c in sprites.get_children():
 		c.queue_free()
 	
-	for texture in textures:
-		var sprite = Sprite2D.new()
-		sprite.texture = texture
-		sprites.add_child(sprite)
+	TextureManager._add_sprites(textures, false, [], sprites)
+	
 
 # Atualiza a rotação e a direção de saída
 func _update_rotation():
@@ -111,8 +108,15 @@ func _build():
 	var positions = []
 	var out_dirs = _calculate_out_dirs(size)
 	
-	for x in range(size.x):
-		for y in range(size.y):
+	positions.append(pos)
+	
+	for y in range(size.y):
+		var rg = range(size.x)
+		
+		if y == 1:
+			rg = range(size.x -1, -1 , -1)
+		
+		for x in rg:
 			var tile_pos = pos + Vector2(x, y)
 			if tile_pos != pos:
 				positions.append(tile_pos)
@@ -122,23 +126,28 @@ func _build():
 					'out_dir': out_dirs[Vector2(x, y)]
 				}
 	
-	if data.has_inventory.input:
+	if data.inventory.has_inventory.input:
 		data['input_inv'] = {}
-	if data.has_inventory.output:
+	if data.inventory.has_inventory.output:
 		data['output_inv'] = {}
-	if data.has_inventory.fluid_input:
+	if data.inventory.has_inventory.fluid_input:
 		data['fluid_input_inv'] = {}
-	if data.has_inventory.fluid_output:
+	if data.inventory.has_inventory.fluid_output:
 		data['fluid_output_inv'] = {}
 	
-	# Atualiza as informações do bloco principal
-	# **Definindo o out_dir dependendo do tamanho do bloco**
-	if size == Vector2(1, 1):
+	if data.has("one_way"):
 		data['out_dir'] = Vector2(out_dir.x, out_dir.y)
 	else:
 		data['out_dir'] = out_dirs[Vector2(0,0)]
 	
+	if data.inventory.has_inventory.input or data.inventory.has_inventory.output:
+		data['waiting_for_item'] = false
+	
+	if data.inventory.has_inventory.fluid_input or data.inventory.has_inventory.fluid_output:
+		data['waiting_for_fluid'] = false
+	
 	data['map_pos'] = pos
+	data['building'] = true
 	data['occupiedTiles'] = positions
 	
 	MapDataManager.WorldTiles[pos] = data
@@ -152,6 +161,7 @@ func _build():
 		
 		BuildingSpot_instance.global_position = global_position
 		BuildingSpot_instance.rot = rot
+		BuildingSpot_instance.world_ref = main_world
 		BuildingSpot_instance.toBuild = prop
 		BuildingSpot_instance.data = data.duplicate(true)
 		BuildingSpot_instance.get_node("Panel").position = $Panel.position
@@ -160,6 +170,10 @@ func _build():
 		
 		target_node.add_child(BuildingSpot_instance)
 		emit_signal("new_build_placed")
+		
+		if !Input.is_action_pressed("shift"):
+			visible = false
+			set_process(false)
 	else:
 		printerr("Arquivo %s Não Existe na pasta" % prop)
 
@@ -167,21 +181,26 @@ func _build():
 func _calculate_out_dirs(size: Vector2) -> Dictionary:
 	var out_dirs = {}
 	
-	for x in range(size.x):
-		for y in range(size.y):
+	for y in range(size.y):
+		var rg = range(size.x)
+		
+		if y == 1:
+			rg = range(size.x -1, -1 , -1)
+		
+		for x in rg:
 			var dirs = []
 			
-			# Adiciona direções nas bordas
-			if x == 0:
-				dirs.append(Vector2(-1, 0)) # Esquerda
-			elif x == size.x - 1:
-				dirs.append(Vector2(1, 0)) # Direita
+			# Verifica as bordas e adiciona direções na ordem horária
+			if x == 0: # Esquerda
+				dirs.append(Vector2(-1, 0))
+			if y == 0: # Cima
+				dirs.append(Vector2(0, -1))
+			if x == size.x - 1: # Direita
+				dirs.append(Vector2(1, 0))
+			if y == size.y - 1: # Baixo
+				dirs.append(Vector2(0, 1))
 			
-			if y == 0:
-				dirs.append(Vector2(0, -1)) # Cima
-			elif y == size.y - 1:
-				dirs.append(Vector2(0, 1)) # Baixo
-			
+			# Armazena as direções para cada posição relativa
 			out_dirs[Vector2(x, y)] = dirs
 	
 	return out_dirs

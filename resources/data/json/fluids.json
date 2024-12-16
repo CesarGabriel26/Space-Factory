@@ -1,0 +1,11 @@
+{
+	"Water" : {
+		"stack" : 1200
+	},
+	"Cryofluid" : {
+		"stack" : 1200
+	},
+	"Oil" : {
+		"stack" : 1200
+	}
+}

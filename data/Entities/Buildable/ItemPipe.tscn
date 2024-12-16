@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://8ri08o68xm8k"]
+[gd_scene load_steps=5 format=3 uid="uid://8ri08o68xm8k"]
 
 [ext_resource type="Script" path="res://data/scripts/Buildable/ItemPipe.gd" id="1_j1sdp"]
+[ext_resource type="Texture2D" uid="uid://cv6743wh4jgh0" path="res://resources/images/items/engrenagem_de_cobre.png" id="2_tr4wo"]
+[ext_resource type="PackedScene" uid="uid://blm8e84qojnuy" path="res://data/Ui/inv_controller/inv_controller.tscn" id="3_ef2ro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8sq3"]
 size = Vector2(32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wamnm"]
 
 [node name="ItemPipe" type="StaticBody2D" node_paths=PackedStringArray("Sprites") groups=["auto_tile"]]
 collision_layer = 2
@@ -15,8 +15,15 @@ Sprites = NodePath("Sprites")
 
 [node name="Sprites" type="Node2D" parent="."]
 
+[node name="Items" type="Node2D" parent="."]
+
+[node name="item" type="Sprite2D" parent="Items"]
+texture = ExtResource("2_tr4wo")
+
+[node name="InvPreview" type="Node2D" parent="."]
+
+[node name="invController" parent="InvPreview" instance=ExtResource("3_ef2ro")]
+position = Vector2(16, -16)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l8sq3")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_wamnm")
