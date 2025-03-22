@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://iqqkjyhcetox"
-path.s3tc="res://.godot/imported/A Few Jumps Away - Arthur Vyncke.png-68240c8452bd4d97954476c55627b3a5.s3tc.ctex"
+path.s3tc="res://.godot/imported/A Few Jumps Away - Arthur Vyncke.png-fb7a23e994e80da5e73e03d3cfef033e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/data/Credits/imgs/A Few Jumps Away - Arthur Vyncke.png"
-dest_files=["res://.godot/imported/A Few Jumps Away - Arthur Vyncke.png-68240c8452bd4d97954476c55627b3a5.s3tc.ctex"]
+source_file="res://resources/Data/Credits/imgs/A Few Jumps Away - Arthur Vyncke.png"
+dest_files=["res://.godot/imported/A Few Jumps Away - Arthur Vyncke.png-fb7a23e994e80da5e73e03d3cfef033e.s3tc.ctex"]
 
 [params]
 

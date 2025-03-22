@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgjgab1pesmsg"]
+
+[ext_resource type="Script" uid="uid://b0j6jkdibxlrj" path="res://resources/Entities/Player/player_cam.gd" id="1_451ni"]
+[ext_resource type="Script" uid="uid://chmi7hylo8q2m" path="res://resources/Scenes/Ui/ui.gd" id="2_lixu7"]
+[ext_resource type="PackedScene" uid="uid://brs4jgugvbhx2" path="res://resources/Scenes/Ui/Logistics-container/Logistics/logistics.tscn" id="3_2rgxe"]
+[ext_resource type="PackedScene" uid="uid://cg7gwx87rbelh" path="res://resources/Scenes/Ui/Build-menu/build_menu.tscn" id="4_o386f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq5wf"]
+size = Vector2(32, 32)
+
+[node name="PlayerCam" type="CharacterBody2D"]
+script = ExtResource("1_451ni")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_nq5wf")
+disabled = true
+
+[node name="Ui" type="CanvasLayer" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_lixu7")
+player = NodePath("..")
+
+[node name="Control" type="Control" parent="Ui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="build_menu" parent="Ui/Control" instance=ExtResource("4_o386f")]
+visible = false
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Ui/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="logistics" parent="Ui/Control/CenterContainer" instance=ExtResource("3_2rgxe")]
+visible = false
+layout_mode = 2
+mouse_filter = 1

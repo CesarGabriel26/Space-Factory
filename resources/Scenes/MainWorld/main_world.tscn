@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5fvqr7xqbapv"]
+
+[ext_resource type="Script" uid="uid://dqynl83j2x400" path="res://resources/Scenes/MainWorld/main_world.gd" id="1_03w1n"]
+[ext_resource type="Script" uid="uid://c0u3ib65tnb7p" path="res://resources/Tools/MapGenerator/map_generator.gd" id="2_j7igl"]
+[ext_resource type="TileSet" uid="uid://banj6wwo10ahe" path="res://resources/Tools/MapGenerator/main_world_set.tres" id="3_j7igl"]
+[ext_resource type="PackedScene" uid="uid://bgjgab1pesmsg" path="res://resources/Entities/Player/PlayerCam.tscn" id="4_dbvig"]
+[ext_resource type="PackedScene" uid="uid://btsvd01pdp870" path="res://resources/Tools/Cursor/cursor.tscn" id="7_enj57"]
+
+[node name="mainWorld" type="Node2D"]
+script = ExtResource("1_03w1n")
+
+[node name="MapGenerator" type="Node" parent="." node_paths=PackedStringArray("chunks_container", "player")]
+script = ExtResource("2_j7igl")
+chunks_container = NodePath("../Maps/Chunks")
+player = NodePath("../PlayerCam")
+
+[node name="Maps" type="Node2D" parent="."]
+
+[node name="Chunks" type="Node2D" parent="Maps"]
+
+[node name="Props" type="TileMapLayer" parent="Maps"]
+tile_set = ExtResource("3_j7igl")
+
+[node name="Cursor" parent="." node_paths=PackedStringArray("prop_map", "map_generator") instance=ExtResource("7_enj57")]
+z_index = 2
+prop_map = NodePath("../Maps/Props")
+map_generator = NodePath("../MapGenerator")
+
+[node name="PlayerCam" parent="." instance=ExtResource("4_dbvig")]
+position = Vector2(640, 360)

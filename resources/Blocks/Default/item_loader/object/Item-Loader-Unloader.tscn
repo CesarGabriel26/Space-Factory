@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc0m6kiivtsid"]
+
+[ext_resource type="Script" uid="uid://b4f7qxb8f85dd" path="res://resources/Blocks/Default/item_loader/object/Item-Loader-Unloader.gd" id="1_e3ede"]
+[ext_resource type="Texture2D" uid="uid://dkliccddwdgyv" path="res://assets/textures/SpriteSheets/props/Blocks_32x32.png" id="2_ylw4y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yd6p"]
+size = Vector2(32, 32)
+
+[node name="Item-Loader-Unloader" type="StaticBody2D" node_paths=PackedStringArray("ItemPosition", "VisibleNotifier", "ModelspritesNode", "Model")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_e3ede")
+ItemPosition = NodePath("model/ItemPosition")
+VisibleNotifier = NodePath("VisibleNotifier")
+ModelspritesNode = NodePath("model/sprites")
+Model = NodePath("model")
+
+[node name="model" type="Node2D" parent="."]
+
+[node name="sprites" type="Node2D" parent="model"]
+
+[node name="0" type="Sprite2D" parent="model/sprites"]
+texture = ExtResource("2_ylw4y")
+region_enabled = true
+region_rect = Rect2(96, 32, 32, 32)
+
+[node name="1" type="Sprite2D" parent="model/sprites"]
+z_index = 2
+texture = ExtResource("2_ylw4y")
+region_enabled = true
+region_rect = Rect2(96, 64, 32, 32)
+
+[node name="ItemPosition" type="Marker2D" parent="model"]
+
+[node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-16, -16, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4yd6p")

@@ -1,0 +1,31 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://banj6wwo10ahe"]
+
+[ext_resource type="Texture2D" uid="uid://dc8f16giucls2" path="res://assets/textures/SpriteSheets/tile maps/DebugTiles.png" id="1_dx372"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lxfhf"]
+resource_name = "debugTiles"
+texture = ExtResource("1_dx372")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:3/0 = 0
+2:3/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "preview"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_lxfhf")

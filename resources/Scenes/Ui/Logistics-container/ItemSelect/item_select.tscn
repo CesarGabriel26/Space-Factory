@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://ibloryiq2npt"]
+
+[ext_resource type="Texture2D" uid="uid://bi5frfqcw6brm" path="res://assets/textures/items/barra_de_bronze.png" id="1_0x2wj"]
+[ext_resource type="Script" uid="uid://f5xp5m7elcmv" path="res://resources/Scenes/Ui/Logistics-container/ItemSelect/item_select.gd" id="1_dxn54"]
+[ext_resource type="StyleBox" uid="uid://b73fnc34bsu4n" path="res://resources/Styles/Container/Cinza.tres" id="1_v2sj4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3p2e"]
+
+[node name="ItemSelect" type="Panel" node_paths=PackedStringArray("texture_rect", "button", "label")]
+custom_minimum_size = Vector2(224, 38)
+theme_override_styles/panel = ExtResource("1_v2sj4")
+script = ExtResource("1_dxn54")
+texture_rect = NodePath("CenterContainer/MarginContainer/HBoxContainer/TextureRect")
+button = NodePath("Button")
+label = NodePath("CenterContainer/MarginContainer/HBoxContainer/Label")
+
+[node name="CenterContainer" type="FlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_0x2wj")
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Barra de Bronze"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g3p2e")
+flat = true

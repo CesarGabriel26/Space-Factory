@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsicd8w6vln5f"]
+
+[ext_resource type="Script" uid="uid://dr2p8qf24k4g7" path="res://resources/Scenes/Ui/MainMenu/menu.gd" id="1_ptcqf"]
+[ext_resource type="PackedScene" uid="uid://dyx7yywftfkkk" path="res://resources/Scenes/Ui/Loading/Loading.tscn" id="2_jnicp"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ptcqf")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="single_player" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Single Player"
+
+[node name="lab" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "LAB"
+
+[node name="multi_player" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Multi Player"
+
+[node name="LoadingScreen" parent="." instance=ExtResource("2_jnicp")]
+visible = false
+layout_mode = 1

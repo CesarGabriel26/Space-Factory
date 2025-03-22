@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://2tcb52d0cp2h"]
+
+[ext_resource type="Script" uid="uid://dgebjwdo8uqb" path="res://resources/Entities/Props/ItemBox/item_box.gd" id="1_tugcb"]
+
+[node name="Item" type="Sprite2D"]
+z_index = 1
+script = ExtResource("1_tugcb")

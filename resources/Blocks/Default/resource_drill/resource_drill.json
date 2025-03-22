@@ -1,0 +1,43 @@
+{
+	"tier": 0,
+	"life": [25.0, 25.5],
+	"speed": [4.0, 2.5],
+	"menu": {
+		"tab": "extração",
+		"group": "item_extração"
+	},
+	"build_duration": 0.1,
+	"prop_scene": "object/Drill.tscn",
+	"texture": {
+		"texture_size": {
+			"x": 64,
+			"y": 64
+		},
+		"layers": [
+			{
+				"texture_file": "textures/resource_drill.png",
+				"texture_cord": {
+					"x": 0,
+					"y": 0
+				}
+			},
+			{
+				"texture_file": "textures/resource_drill.png",
+				"texture_cord": {
+					"x": 1,
+					"y": 0
+				},
+				"animation": {
+					"rotate" : {
+						"speed" : 25,
+						"loop" : true
+					}
+				}
+			}
+		]
+	},
+	"inv_config": {
+		"inv_type": "item",
+		"slot_count": 1,
+	}
+}

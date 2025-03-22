@@ -1,0 +1,216 @@
+[gd_scene load_steps=10 format=3 uid="uid://brs4jgugvbhx2"]
+
+[ext_resource type="Script" uid="uid://db3eiqdvhdftk" path="res://resources/Scenes/Ui/Logistics-container/Logistics/logistics.gd" id="1_3mowo"]
+[ext_resource type="StyleBox" uid="uid://bkfq87ne4iyr1" path="res://resources/Styles/Container/CinzaSelect.tres" id="2_jusjo"]
+[ext_resource type="Texture2D" uid="uid://cmwwopt01yy71" path="res://assets/textures/ui/Icons/Close.png" id="3_jusjo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oobso"]
+bg_color = Color(0.215686, 0.215686, 0.215686, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.266667, 0.266667, 0.266667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dobwx"]
+bg_color = Color(0.244776, 0.244776, 0.244776, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.314316, 0.314316, 0.314316, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tp5rs"]
+bg_color = Color(0.180005, 0.180005, 0.180005, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.266667, 0.266667, 0.266667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_32hbl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hofgr"]
+border_width_top = 2
+border_color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jusjo"]
+
+[node name="logistics" type="Panel" node_paths=PackedStringArray("close_button")]
+custom_minimum_size = Vector2(384, 384)
+anchors_preset = -1
+anchor_right = 0.3
+anchor_bottom = 0.533111
+offset_bottom = 0.160004
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oobso")
+script = ExtResource("1_3mowo")
+close_button = NodePath("CloseButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemSelectSlot" type="Panel" parent="."]
+custom_minimum_size = Vector2(95, 95)
+layout_mode = 2
+anchor_left = 0.042
+anchor_top = 0.19
+anchor_right = 0.292
+anchor_bottom = 0.437
+offset_left = -0.128
+offset_top = 0.0399933
+offset_right = -0.128006
+offset_bottom = 0.192001
+theme_override_styles/panel = ExtResource("2_jusjo")
+
+[node name="TextureRect" type="TextureRect" parent="ItemSelectSlot"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.084
+anchor_top = 0.084
+anchor_right = 0.926
+anchor_bottom = 0.926
+offset_left = 0.0199995
+offset_top = 0.0199995
+offset_right = 0.0299911
+offset_bottom = 0.0299911
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_jusjo")
+expand_mode = 1
+
+[node name="ItemSelectList" type="Panel" parent="."]
+custom_minimum_size = Vector2(95, 95)
+layout_mode = 2
+anchor_left = 0.354
+anchor_top = 0.187
+anchor_right = 0.958
+anchor_bottom = 0.937
+offset_left = -7.936
+offset_top = 0.192001
+offset_right = 0.127991
+offset_bottom = 0.192017
+theme_override_styles/panel = SubResource("StyleBoxFlat_dobwx")
+
+[node name="searchBar" type="Panel" parent="ItemSelectList"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 232.0
+offset_bottom = 42.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tp5rs")
+
+[node name="edit" type="LineEdit" parent="ItemSelectList/searchBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_32hbl")
+placeholder_text = "Nome Do Item"
+max_length = 20
+flat = true
+caret_blink = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ItemSelectList"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.214
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 0.0639954
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemSelectList/ScrollContainer"]
+custom_minimum_size = Vector2(224, 0)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00520833
+anchor_top = 0.106771
+anchor_right = 0.994625
+anchor_bottom = 0.116771
+offset_right = 0.0639992
+offset_bottom = 0.16
+theme_override_styles/separator = SubResource("StyleBoxFlat_hofgr")
+metadata/_edit_use_anchors_ = true
+
+[node name="CloseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+anchor_left = 0.898
+anchor_top = 0.013
+anchor_right = 0.987
+anchor_bottom = 0.102
+offset_left = 0.167969
+offset_top = 0.0079999
+offset_right = -0.00802612
+offset_bottom = -0.168003
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_hover_pressed_color = Color(1, 0.572549, 0.509804, 1)
+theme_override_colors/icon_hover_color = Color(0.494245, 1.16115e-06, 0, 1)
+theme_override_colors/icon_pressed_color = Color(1, 0.571068, 0.508893, 1)
+theme_override_colors/icon_normal_color = Color(0.699195, 2.08165e-06, 6.73831e-07, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jusjo")
+icon = ExtResource("3_jusjo")
+flat = true
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.458333
+anchor_right = 0.207917
+anchor_bottom = 0.708021
+offset_right = 0.16
+offset_bottom = 0.119999
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0416667
+anchor_top = 0.729167
+anchor_right = 0.270667
+anchor_bottom = 0.812334
+offset_right = 0.0639992
+offset_bottom = 0.0639992
+metadata/_edit_use_anchors_ = true
+
+[node name="SpinBox" type="SpinBox" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 1.0
+allow_greater = true
+alignment = 3
+update_on_text_changed = true

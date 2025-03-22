@@ -1,0 +1,93 @@
+{
+	"tier": 0,
+	"life": [25.0, 25.5],
+	"speed": [4.0, 2.5],
+	"menu": {
+		"tab": "logística",
+		"group": "item_transport"
+	},
+	"build_duration": 0.5,
+	"prop_scene": "object/item_pipe.tscn",
+	"texture": {
+		"texture_size": {
+			"x": 32.0,
+			"y": 32.0
+		},
+		"layers": [
+			{
+				"texture_file": "textures/item_transport_tier_sheet.png",
+				"texture_cord": {
+					"x": 0.0,
+					"y": 3.0
+				},
+				"props": {
+					"self_modulate": "ffa214"
+				}
+			},
+			{
+				"texture_file": "textures/item_transport_sheet.png",
+				"texture_cord": {
+					"x": 0.0,
+					"y": 3.0
+				}
+			},
+			{
+				"texture_file": "textures/item_transport_overlay_sheet.png",
+				"texture_cord": {
+					"x": 0.0,
+					"y": 3.0
+				},
+				"props": {
+					"z_index": 2.0
+				}
+			}
+		]
+	},
+	"inv_config": {
+		"inv_type": "item_array",
+		"slot_count": 1.0,
+		"overwrite_item_stack": 1.0
+	},
+	"auto_tile": {
+		"(-1.0, 0.0)": {
+			"[false, false, false, false]": "(0.0, 2.0)",
+			"[false, false, false, true]": "(0.0, 2.0)",
+			"[false, true, false, true]": "(4.0, 2.0)",
+			"[false, true, false, false]": "(2.0, 2.0)",
+			"[true, false, false, false]": "(1.0, 2.0)",
+			"[true, false, false, true]": "(5.0, 2.0)",
+			"[true, true, false, false]": "(3.0, 2.0)",
+			"[true, true, false, true]": "(6.0, 2.0)"
+		},
+		"(0.0, -1.0)": {
+			"[false, false, false, false]": "(0.0, 3.0)",
+			"[false, false, false, true]": "(1.0, 3.0)",
+			"[false, false, true, false]": "(2.0, 3.0)",
+			"[false, false, true, true]": "(3.0, 3.0)",
+			"[false, true, false, false]": "(0.0, 3.0)",
+			"[false, true, false, true]": "(4.0, 3.0)",
+			"[false, true, true, false]": "(5.0, 3.0)",
+			"[false, true, true, true]": "(6.0, 3.0)"
+		},
+		"(0.0, 1.0)": {
+			"[false, false, false, false]": "(0.0, 1.0)",
+			"[false, false, false, true]": "(2.0, 1.0)",
+			"[false, false, true, false]": "(1.0, 1.0)",
+			"[false, false, true, true]": "(3.0, 1.0)",
+			"[true, false, false, false]": "(0.0, 1.0)",
+			"[true, false, false, true]": "(4.0, 1.0)",
+			"[true, false, true, false]": "(5.0, 1.0)",
+			"[true, false, true, true]": "(6.0, 1.0)"
+		},
+		"(1.0, 0.0)": {
+			"[false, false, false, false]": "(0.0, 0.0)",
+			"[false, false, true, false]": "(0.0, 0.0)",
+			"[false, true, false, false]": "(1.0, 0.0)",
+			"[false, true, true, false]": "(4.0, 0.0)",
+			"[true, false, false, false]": "(2.0, 0.0)",
+			"[true, false, true, false]": "(5.0, 0.0)",
+			"[true, true, false, false]": "(3.0, 0.0)",
+			"[true, true, true, false]": "(6.0, 0.0)"
+		}
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"tier": 0,
+	"life": 25,
+	"menu": {
+		"tab": "logística",
+		"group": "fluid_transport"
+	},
+	"build_duration": 0.5,
+	"prop_scene": "object/fluid_tank.tscn",
+	"texture": {
+		"texture_size": {
+			"x": 64,
+			"y": 64
+		},
+		"layers": [
+			{
+				"texture_file": "textures/fluid_tank_overlay.png",
+			},
+			{
+				"texture_file": "textures/fluid_tank.png",
+			}
+		]
+	},
+	"inv_config": {
+		"inv_type": "fluid",
+		"slot_count": 1
+	},
+}

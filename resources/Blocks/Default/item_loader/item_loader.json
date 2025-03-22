@@ -1,0 +1,33 @@
+{
+	"life": 25,
+	"speed" : 4,
+	"action_type" : "load",
+	"menu": {
+		"tab": "logística",
+		"group": "item_transport"
+	},
+	"build_duration": 0.5,
+	"prop_scene": "object/Item-Loader-Unloader.tscn",
+	"texture": {
+		"texture_size": {
+			"x": 32,
+			"y": 32
+		},
+		"layers": [
+			{
+				"texture_file": "textures/item_loader_unloader.png",
+			},
+			{
+				"texture_file": "textures/item_loader_unloader_overlay.png",
+				"props": {
+					"z_index" : 2
+				}
+			}
+		]
+	},
+	"inv_config": {
+		"inv_type" : "item_array",
+		"slot_count" : 1,
+		"overwrite_item_stack" : 1
+	}
+}

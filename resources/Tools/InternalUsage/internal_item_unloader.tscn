@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://boc8020ifp211"]
+
+[ext_resource type="Script" uid="uid://da1wo77te4b75" path="res://resources/Tools/InternalUsage/InternalItemUnloader.gd" id="1_jqhgb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jqhgb"]
+
+[node name="InternalItemUnloader" type="Marker2D" node_paths=PackedStringArray("ItemPosition")]
+script = ExtResource("1_jqhgb")
+ItemPosition = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(16.0181, 16)
+mesh = SubResource("SphereMesh_jqhgb")

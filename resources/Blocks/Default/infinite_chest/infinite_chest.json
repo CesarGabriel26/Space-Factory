@@ -1,0 +1,24 @@
+{
+	"life": 25,
+	"menu": {
+		"tab": "criativo",
+		"group": "item_creation"
+	},
+	"build_duration": 0.1,
+	"prop_scene": "object/infinite_chest.tscn",
+	"texture": {
+		"texture_size": {
+			"x": 32,
+			"y": 32
+		},
+		"layers": [
+			{
+				"texture_file": "textures/infinite_chest.png",
+			}
+		]
+	},
+	"inv_config": {
+		"inv_type": "item",
+		"slot_count": 1
+	}
+}

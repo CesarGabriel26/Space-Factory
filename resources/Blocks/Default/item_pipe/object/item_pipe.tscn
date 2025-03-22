@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0uqfpnd1ar8a"]
+
+[ext_resource type="Script" uid="uid://b3334nymex8i2" path="res://resources/Blocks/Default/item_pipe/object/item_pipe.gd" id="1_qvsg7"]
+[ext_resource type="Texture2D" uid="uid://d0m8rooutp1wy" path="res://resources/Blocks/Default/item_pipe/textures/item_transport_tier_sheet.png" id="2_76jgt"]
+[ext_resource type="Texture2D" uid="uid://c7aaqvpsaej6u" path="res://resources/Blocks/Default/item_pipe/textures/item_transport_sheet.png" id="3_w7p4c"]
+[ext_resource type="Texture2D" uid="uid://cg31kc5vn2g1y" path="res://resources/Blocks/Default/item_pipe/textures/item_transport_overlay_sheet.png" id="4_ghk1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo4qd"]
+size = Vector2(32, 32)
+
+[node name="ItemPipe" type="StaticBody2D" node_paths=PackedStringArray("ItemPosition", "VisibleNotifier", "ModelspritesNode", "Model") groups=["auto_tile", "item_move"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_qvsg7")
+ItemPosition = NodePath("model/ItemPosition")
+VisibleNotifier = NodePath("VisibleNotifier")
+ModelspritesNode = NodePath("model/sprites")
+Model = NodePath("model")
+
+[node name="model" type="Node2D" parent="."]
+
+[node name="sprites" type="Node2D" parent="model"]
+
+[node name="0" type="Sprite2D" parent="model/sprites"]
+texture = ExtResource("2_76jgt")
+region_enabled = true
+region_rect = Rect2(0, 96, 32, 32)
+
+[node name="1" type="Sprite2D" parent="model/sprites"]
+texture = ExtResource("3_w7p4c")
+region_enabled = true
+region_rect = Rect2(0, 96, 32, 32)
+
+[node name="2" type="Sprite2D" parent="model/sprites"]
+z_index = 2
+texture = ExtResource("4_ghk1d")
+region_enabled = true
+region_rect = Rect2(0, 96, 32, 32)
+
+[node name="ItemPosition" type="Marker2D" parent="model"]
+
+[node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+rect = Rect2(-16, -16, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_jo4qd")
+debug_color = Color(0.864668, 0.000592971, 0.863902, 0.42)

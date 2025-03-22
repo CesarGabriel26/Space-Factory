@@ -1,0 +1,24 @@
+{
+	"life": 25,
+	"menu": {
+		"tab": "criativo",
+		"group": "item_creation"
+	},
+	"build_duration": 0.1,
+	"prop_scene": "object/VoidChest.tscn",
+	"texture": {
+		"texture_size": {
+			"x": 32,
+			"y": 32
+		},
+		"layers": [
+			{
+				"texture_file": "textures/void_chest.png",
+			}
+		]
+	},
+	"inv_config": {
+		"inv_type": "item",
+		"slot_count": 100
+	}
+}

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://btsvd01pdp870"]
+
+[ext_resource type="Script" uid="uid://cyithkq5hlro3" path="res://resources/Tools/Cursor/cursor.gd" id="1_7nj6f"]
+[ext_resource type="Script" uid="uid://btqait4b8qm6d" path="res://resources/Tools/Cursor/BuildTool/build_tool.gd" id="1_cgika"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eslgs"]
+size = Vector3(32, 32, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgika"]
+size = Vector2(30, 30)
+
+[node name="Cursor" type="Area2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_7nj6f")
+
+[node name="BuildTool" type="Node2D" parent="." node_paths=PackedStringArray("ModelPositionMarker", "Indicador", "colisionShape")]
+script = ExtResource("1_cgika")
+ModelPositionMarker = NodePath("Model")
+Indicador = NodePath("indicator")
+colisionShape = NodePath("../CollisionShape2D")
+
+[node name="Model" type="Marker2D" parent="BuildTool"]
+modulate = Color(1, 1, 1, 0.74902)
+
+[node name="indicator" type="MeshInstance2D" parent="BuildTool"]
+modulate = Color(0.305882, 0.494118, 1, 0.360784)
+z_index = 2
+mesh = SubResource("BoxMesh_eslgs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cgika")
+debug_color = Color(0.964979, 0, 0.489491, 0.42)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-16, 16, -16, -16, 16, -16, 16, 16)
+closed = true
+width = 2.0
+joint_mode = 1
+begin_cap_mode = 1

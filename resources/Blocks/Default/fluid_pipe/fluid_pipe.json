@@ -1,0 +1,62 @@
+{
+	"tier": 0,
+	"life": 25,
+	"menu": {
+		"tab": "logística",
+		"group": "fluid_transport"
+	},
+	"build_duration": 0.5,
+	"prop_scene": "object/pipe.tscn",
+	"texture": {
+		"texture_size": {
+			"x": 32,
+			"y": 32
+		},
+		"layers": [
+			{
+				"texture_file": "textures/fluid_transport_sheet.png",
+				"texture_cord": {
+					"x": 0,
+					"y": 1
+				}
+			},
+			{
+				"texture_file": "textures/fluid_transport_fill_layer_sheet.png",
+				"texture_cord": {
+					"x": 0,
+					"y": 1
+				},
+			},
+			{
+				"texture_file": "textures/fluid_transport_overlay_sheet.png",
+				"texture_cord": {
+					"x": 0,
+					"y": 1
+				}
+			}
+		]
+	},
+	"inv_config": {
+		"inv_type": "fluid",
+		"slot_count": 1
+	},
+	"auto_tile": {
+		"default": {
+			"[false, false, false, false]": "(0, 1)",
+			"[false, true, false, false]": "(1, 0)",
+			"[false, false, false, true]": "(1, 2)",
+			"[false, true, false, true]": "(1, 0)",
+			"[false, false, true, false]": "(2, 1)",
+			"[true, false, true, false]": "(2, 1)",
+			"[false, true, true, false]": "(0, 0)",
+			"[false, false, true, true]": "(2, 0)",
+			"[true, true, false, false]": "(0, 2)",
+			"[true, false, false, true]": "(2, 2)",
+			"[true, true, true, false]": "(3, 0)",
+			"[true, true, false, true]": "(3, 1)",
+			"[false, true, true, true]": "(4, 0)",
+			"[true, false, true, true]": "(4, 1)",
+			"[true, true, true, true]": "(3, 2)"
+		}
+	}
+}

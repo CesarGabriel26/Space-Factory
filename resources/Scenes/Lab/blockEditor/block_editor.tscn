@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwppupd8018gw"]
+
+[ext_resource type="Script" uid="uid://bbk3rpeoq3w5r" path="res://resources/Scenes/Lab/blockEditor/block_editor.gd" id="1_12ua3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12ua3"]
+bg_color = Color(0.113725, 0.121569, 0.129412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kms5m"]
+bg_color = Color(0.113725, 0.121569, 0.129412, 1)
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_12ua3"]
+
+[node name="BlockEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_12ua3")
+
+[node name="CodeEdit" type="CodeEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/word_highlighted_color = Color(1, 1, 1, 0.0705882)
+theme_override_colors/current_line_color = Color(1, 1, 1, 0.0705882)
+theme_override_colors/background_color = Color(0.113725, 0.133333, 0.160784, 1)
+theme_override_colors/font_color = Color(0.866667, 0.866667, 0.866667, 1)
+theme_override_colors/selection_color = Color(0.439216, 0.729412, 0.980392, 0.4)
+theme_override_colors/caret_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_12ua3")
+theme_override_colors/line_number_color = Color(0.803922, 0.972549, 0.823529, 0.74902)
+theme_override_colors/line_length_guideline_color = Color(0.211765, 0.239216, 0.290196, 1)
+theme_override_colors/code_folding_color = Color(0.803922, 0.811765, 0.823529, 1)
+theme_override_styles/completion = SubResource("StyleBoxFlat_kms5m")
+text = "extends BaseBlock
+
+func _ready() -> void:
+	pass"
+scroll_smooth = true
+scroll_past_end_of_file = true
+minimap_draw = true
+caret_blink = true
+syntax_highlighter = SubResource("CodeHighlighter_12ua3")
+highlight_all_occurrences = true
+highlight_current_line = true
+draw_tabs = true
+symbol_lookup_on_click = true
+symbol_tooltip_on_hover = true
+line_folding = true
+gutters_draw_breakpoints_gutter = true
+gutters_draw_bookmarks = true
+gutters_draw_executing_lines = true
+gutters_draw_line_numbers = true
+gutters_zero_pad_line_numbers = true
+gutters_draw_fold_gutter = true
+code_completion_enabled = true
+indent_automatic = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true

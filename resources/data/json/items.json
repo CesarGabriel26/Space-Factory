@@ -1,52 +1,54 @@
 {
 	"minerio_de_cobre": {
-		"value": 80
+		"value": 80.0,
+		"stack": 100.0
 	},
 	"minerio_de_zinco": {
-		"value": 80
+		"value": 80.0,
+		"stack": 100.0
 	},
 	"minerio_de_ferro": {
-		"value": 80
+		"value": 80.0,
+		"stack": 100.0
 	},
 	"minerio_de_ouro": {
-		"value": 80
+		"value": 80.0,
+		"stack": 100.0
 	},
-	
 	"barra_de_cobre": {
-		"value": 150,
-		"stack" : "default"
+		"value": 150.0,
+		"stack": "default"
 	},
 	"barra_de_ferro": {
-		"value": 150,
-		"stack" : "default"
+		"value": 150.0,
+		"stack": "default"
 	},
 	"barra_de_ouro": {
-		"value": 150,
-		"stack" : "default"
+		"value": 150.0,
+		"stack": "default"
 	},
 	"barra_de_zinco": {
-		"value": 150,
-		"stack" : "default"
+		"value": 150.0,
+		"stack": "default"
 	},
 	"barra_de_bronze": {
-		"value": 150,
-		"stack" : "default"
+		"value": 150.0,
+		"stack": "default"
 	},
-	
 	"engrenagem_de_cobre": {
-		"value": 200,
-		"stack" : "default"
+		"value": 200.0,
+		"stack": "default"
 	},
 	"engrenagem_de_ferro": {
-		"value": 200,
-		"stack" : "default"
+		"value": 200.0,
+		"stack": "default"
 	},
 	"engrenagem_de_ouro": {
-		"value": 200,
-		"stack" : "default"
+		"value": 200.0,
+		"stack": "default"
 	},
 	"engrenagem_de_zinco": {
-		"value": 200,
-		"stack" : "default"
+		"value": 200.0,
+		"stack": "default"
 	}
 }

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctbiv5oe4ws0e"]
+
+[ext_resource type="Script" uid="uid://d0igtp14oc3rh" path="res://resources/Blocks/Default/fluid_tank/object/fluid_tank.gd" id="1_ytm4k"]
+[ext_resource type="Texture2D" uid="uid://ch4wvt2ul1a7o" path="res://resources/Blocks/Default/fluid_tank/textures/fluid_tank_overlay.png" id="2_oef1b"]
+[ext_resource type="Texture2D" uid="uid://d3w0acqwlksiv" path="res://resources/Blocks/Default/fluid_tank/textures/fluid_tank.png" id="3_0auwf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17762"]
+size = Vector2(64, 64)
+
+[node name="fluid_tank" type="StaticBody2D" node_paths=PackedStringArray("VisibleNotifier", "ModelspritesNode", "Model")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_ytm4k")
+VisibleNotifier = NodePath("VisibleNotifier")
+ModelspritesNode = NodePath("model/sprites")
+Model = NodePath("model")
+
+[node name="model" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(16, 16)
+
+[node name="sprites" type="Node2D" parent="model"]
+
+[node name="0" type="Sprite2D" parent="model/sprites"]
+texture = ExtResource("2_oef1b")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="1" type="Sprite2D" parent="model/sprites"]
+texture = ExtResource("3_0auwf")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+rect = Rect2(-16, -16, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_17762")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwhl7yu1yvy23"]
+
+[ext_resource type="Script" uid="uid://ca8f1vqcojhyw" path="res://resources/Blocks/Default/fluid_pipe/object/pipe.gd" id="1_f41wk"]
+[ext_resource type="Texture2D" uid="uid://dpfgwyfs38q7w" path="res://resources/Blocks/Default/fluid_pipe/textures/fluid_transport_sheet.png" id="2_f41wk"]
+[ext_resource type="Texture2D" uid="uid://ci2vaeo7eep1g" path="res://resources/Blocks/Default/fluid_pipe/textures/fluid_transport_fill_layer_sheet.png" id="3_d6heg"]
+[ext_resource type="Texture2D" uid="uid://d02ko7khpxps7" path="res://resources/Blocks/Default/fluid_pipe/textures/fluid_transport_overlay_sheet.png" id="3_plkf4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo4qd"]
+size = Vector2(32, 32)
+
+[node name="Pipe" type="StaticBody2D" node_paths=PackedStringArray("VisibleNotifier", "ModelspritesNode", "Model") groups=["auto_tile"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_f41wk")
+VisibleNotifier = NodePath("VisibleNotifier")
+ModelspritesNode = NodePath("model/sprites")
+Model = NodePath("model")
+
+[node name="model" type="Node2D" parent="."]
+
+[node name="sprites" type="Node2D" parent="model"]
+
+[node name="0" type="Sprite2D" parent="model/sprites"]
+texture = ExtResource("2_f41wk")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="1" type="Sprite2D" parent="model/sprites"]
+modulate = Color(0, 0.396, 1, 0)
+texture = ExtResource("3_d6heg")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="2" type="Sprite2D" parent="model/sprites"]
+z_index = 2
+texture = ExtResource("3_plkf4")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+rect = Rect2(-16, -16, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_jo4qd")
